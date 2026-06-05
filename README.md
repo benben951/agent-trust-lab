@@ -4,6 +4,8 @@
 
 Risk-sensitive LLM output review and trust-report generation system.
 
+Live demo: [https://benben951.github.io/agent-trust-lab/](https://benben951.github.io/agent-trust-lab/)
+
 ## Portfolio Snapshot
 
 Agent Trust Lab is a public-safe portfolio project for evaluating LLM and agent outputs in risk-sensitive workflows such as AML review, compliance QA, due diligence, trust and safety, and AI data-quality calibration.
@@ -76,6 +78,8 @@ python -m http.server 8765
 ```
 
 Then visit `http://localhost:8765/web/`.
+
+The public GitHub Pages demo is deployed at `https://benben951.github.io/agent-trust-lab/`.
 
 ## System Flow
 
