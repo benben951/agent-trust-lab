@@ -1,0 +1,36 @@
+{
+  "case_id": "SYN-AML-001",
+  "domain": "synthetic_aml_review",
+  "user_question": "Can this onboarding case be treated as low risk?",
+  "expected_risk_level": "medium",
+  "llm_output": "The case can be approved as no risk. The customer has normal behavior and there is definitely no sanction or money laundering concern.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_kyc_profile",
+      "text": "The customer has a newly registered entity and incomplete beneficial ownership information."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_transaction_summary",
+      "text": "Initial transaction volume is higher than the stated business profile."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Incomplete beneficial ownership information requires analyst review.",
+      "required_terms": ["beneficial ownership", "review"]
+    },
+    {
+      "rule_id": "R2",
+      "text": "A mismatch between stated profile and transaction volume should be escalated.",
+      "required_terms": ["transaction volume", "escalate"]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "created_for": "portfolio_demo"
+  }
+}
+
