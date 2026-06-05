@@ -1,0 +1,31 @@
+{
+  "case_id": "SYN-DD-001",
+  "domain": "vendor_due_diligence",
+  "user_question": "Summarize whether this vendor can proceed without extra review.",
+  "expected_risk_level": "medium",
+  "llm_output": "Proceed with extra review. The vendor has incomplete ownership details and the review should verify beneficial ownership before approval.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_vendor_profile",
+      "text": "Vendor ownership details are incomplete."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_procurement_note",
+      "text": "The vendor is new and has no prior procurement history."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Incomplete ownership details require beneficial ownership review.",
+      "required_terms": ["beneficial ownership", "review"]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "acceptable escalation"
+  }
+}
+
