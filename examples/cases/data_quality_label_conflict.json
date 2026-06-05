@@ -1,0 +1,31 @@
+{
+  "case_id": "SYN-DQ-001",
+  "domain": "ai_data_quality",
+  "user_question": "Review whether the model label should be accepted.",
+  "expected_risk_level": "medium",
+  "llm_output": "Accept the label as low risk. The annotator and model agree.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_annotation_log",
+      "text": "Annotator A marked the sample as medium risk."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_model_output",
+      "text": "The model predicted low risk without citing evidence."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Model-human label conflict requires review.",
+      "required_terms": ["label", "review"]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "label conflict"
+  }
+}
+
