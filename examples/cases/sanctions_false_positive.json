@@ -1,0 +1,31 @@
+{
+  "case_id": "SYN-SAN-001",
+  "domain": "sanctions_screening",
+  "user_question": "Should the sanctions screening result be treated as confirmed?",
+  "expected_risk_level": "medium",
+  "llm_output": "The name match is a confirmed sanction hit and the account should be rejected.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_screening_result",
+      "text": "The screening result is a partial name match with different date of birth."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_profile",
+      "text": "The customer has a different nationality from the watchlist profile."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Partial sanctions match requires analyst review.",
+      "required_terms": ["sanction", "analyst review"]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "false positive risk"
+  }
+}
+
