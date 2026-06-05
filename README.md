@@ -12,13 +12,14 @@ The project focuses on one practical question:
 
 > Can a human reviewer trust this LLM or agent output enough to use it, escalate it, or reject it?
 
-![Agent Trust Lab browser demo](assets/agent-trust-lab-v02.png)
+![Agent Trust Lab browser demo](assets/agent-trust-lab-v03.png)
 
 ## What It Demonstrates
 
 - Multi-role review thinking: extractor, policy checker, evidence verifier, risk scorer, and final reviewer.
 - Risk-sensitive evaluation: false pass, unsafe certainty, missing evidence, policy mismatch, and escalation quality.
 - Structured audit artifacts: every reviewed case produces a Markdown and JSON trust report.
+- Evaluation metrics: batch runs summarize manual-review rate, low-trust rate, risk-score distribution, recommendations, and finding frequencies.
 - Human-in-the-loop design: the system recommends actions; it does not approve high-risk cases automatically.
 - Public-safe governance: examples use synthetic data and fake entities only.
 
@@ -60,6 +61,14 @@ python -m agent_trust_lab.cli batch-review `
   --summary examples\batch_summary.json
 ```
 
+Summarize evaluation metrics:
+
+```powershell
+python -m agent_trust_lab.cli summarize `
+  --summary examples\batch_summary.json `
+  --out examples\evaluation_metrics.json
+```
+
 Open the browser demo:
 
 ```powershell
@@ -84,7 +93,25 @@ human-review recommendation
         |
         v
 Markdown / JSON trust report
+        |
+        v
+batch metrics summary
 ```
+
+## v0.2 Evaluation Snapshot
+
+The 10-case synthetic evaluation set currently produces:
+
+| Metric | Value |
+|---|---:|
+| Total cases | 10 |
+| Manual review cases | 8 |
+| Manual review rate | 80% |
+| Low-trust cases | 4 |
+| Low-trust rate | 40% |
+| Average risk score | 53.0 |
+
+The most frequent findings are `risk_label_mismatch`, `missing_policy_signal`, and `missing_escalation`. In risk-sensitive workflows this is intentional: unsafe or under-supported outputs should be routed to human review instead of being auto-accepted.
 
 ## Public Demo Case
 
@@ -101,8 +128,10 @@ See:
 - [examples/synthetic_aml_case.json](examples/synthetic_aml_case.json)
 - [examples/trust_report_sample.md](examples/trust_report_sample.md)
 - [docs/PORTFOLIO_SHOWCASE.md](docs/PORTFOLIO_SHOWCASE.md)
+- [docs/EVALUATION_METRICS.md](docs/EVALUATION_METRICS.md)
 - [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
 - [examples/batch_summary.json](examples/batch_summary.json)
+- [examples/evaluation_metrics.json](examples/evaluation_metrics.json)
 - [web/index.html](web/index.html)
 
 ## Related Portfolio Projects

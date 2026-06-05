@@ -106,7 +106,9 @@ const domainFilter = document.querySelector("#domain-filter");
 const metrics = {
   cases: document.querySelector("#metric-cases"),
   review: document.querySelector("#metric-review"),
+  reviewRate: document.querySelector("#metric-review-rate"),
   low: document.querySelector("#metric-low"),
+  lowRate: document.querySelector("#metric-low-rate"),
   risk: document.querySelector("#metric-risk")
 };
 
@@ -122,10 +124,47 @@ function titleCase(value) {
 
 function renderMetrics() {
   metrics.cases.textContent = cases.length;
-  metrics.review.textContent = cases.filter((item) => item.human_review_required).length;
-  metrics.low.textContent = cases.filter((item) => item.trust_level === "low").length;
+  const reviewCount = cases.filter((item) => item.human_review_required).length;
+  const lowCount = cases.filter((item) => item.trust_level === "low").length;
+  metrics.review.textContent = reviewCount;
+  metrics.reviewRate.textContent = `${Math.round((reviewCount / cases.length) * 100)}% routed`;
+  metrics.low.textContent = lowCount;
+  metrics.lowRate.textContent = `${Math.round((lowCount / cases.length) * 100)}% low trust`;
   const avgRisk = Math.round(cases.reduce((sum, item) => sum + item.risk_score, 0) / cases.length);
   metrics.risk.textContent = avgRisk;
+}
+
+function countBy(values) {
+  return values.reduce((acc, value) => {
+    acc[value] = (acc[value] || 0) + 1;
+    return acc;
+  }, {});
+}
+
+function renderBars(target, entries, maxValue) {
+  const container = document.querySelector(target);
+  container.innerHTML = "";
+  entries.forEach(([label, value]) => {
+    const row = document.createElement("div");
+    row.className = "bar-row";
+    row.innerHTML = `
+      <span>${titleCase(label)}</span>
+      <span class="bar-track"><span class="bar-fill" style="width:${Math.max(8, (value / maxValue) * 100)}%"></span></span>
+      <strong>${value}</strong>
+    `;
+    container.append(row);
+  });
+}
+
+function renderEvaluationLens() {
+  const recommendations = Object.entries(countBy(cases.map((item) => item.recommendation)))
+    .sort((a, b) => b[1] - a[1]);
+  const findings = Object.entries(countBy(cases.flatMap((item) => item.findings)))
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5);
+
+  renderBars("#recommendation-bars", recommendations, Math.max(...recommendations.map((item) => item[1])));
+  renderBars("#finding-bars", findings, Math.max(...findings.map((item) => item[1])));
 }
 
 function renderFilters() {
@@ -204,7 +243,7 @@ function renderCase(item) {
 domainFilter.addEventListener("change", () => renderList());
 
 renderMetrics();
+renderEvaluationLens();
 renderFilters();
 renderList();
 renderCase(cases[0]);
-

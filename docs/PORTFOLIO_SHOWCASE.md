@@ -2,7 +2,7 @@
 
 Agent Trust Lab v0.1 demonstrates a synthetic case library and batch trust-report generation for risk-sensitive LLM output review.
 
-![Agent Trust Lab browser demo](../assets/agent-trust-lab-v02.png)
+![Agent Trust Lab browser demo](../assets/agent-trust-lab-v03.png)
 
 ## Demo Scope
 
@@ -13,6 +13,7 @@ Agent Trust Lab v0.1 demonstrates a synthetic case library and batch trust-repor
 | Batch trust reports | Implemented |
 | Markdown report output | Implemented |
 | JSON batch summary | Implemented |
+| Evaluation metrics summary | Implemented |
 | Static browser demo | Implemented |
 | Human-review recommendation | Implemented |
 | Patent-sensitive implementation details | Kept private |
@@ -45,6 +46,27 @@ Outputs:
 
 - `examples/reports/*.md`: one trust report per synthetic case
 - `examples/batch_summary.json`: machine-readable summary for dashboards or evaluation scripts
+
+## Evaluation Metrics
+
+```powershell
+python -m agent_trust_lab.cli summarize `
+  --summary examples\batch_summary.json `
+  --out examples\evaluation_metrics.json
+```
+
+Current v0.2 demo metrics:
+
+| Metric | Value |
+|---|---:|
+| Total synthetic cases | 10 |
+| Manual review cases | 8 |
+| Manual review rate | 80% |
+| Low-trust cases | 4 |
+| Low-trust rate | 40% |
+| Average risk score | 53.0 |
+
+See [EVALUATION_METRICS.md](EVALUATION_METRICS.md) for definitions, interpretation, and limitations.
 
 ## Web Demo
 

@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
+from .metrics import load_batch_summary, summarize_results
 from .reviewer import evaluate_case, load_case, render_markdown
 
 
@@ -20,6 +21,10 @@ def main() -> int:
     batch.add_argument("--cases-dir", required=True, help="Directory containing synthetic case JSON files")
     batch.add_argument("--out-dir", required=True, help="Directory for Markdown reports")
     batch.add_argument("--summary", required=True, help="JSON summary output path")
+
+    summarize = subparsers.add_parser("summarize", help="Summarize a batch-review JSON file")
+    summarize.add_argument("--summary", required=True, help="Path to batch summary JSON")
+    summarize.add_argument("--out", required=True, help="Path for evaluation metrics JSON")
 
     args = parser.parse_args()
     if args.command == "review":
@@ -52,6 +57,11 @@ def main() -> int:
                 }
             )
         Path(args.summary).write_text(json.dumps(summary, indent=2), encoding="utf-8")
+        return 0
+    if args.command == "summarize":
+        results = load_batch_summary(args.summary)
+        metrics = summarize_results(results)
+        Path(args.out).write_text(json.dumps(metrics, indent=2), encoding="utf-8")
         return 0
     return 1
 

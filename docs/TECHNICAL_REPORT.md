@@ -54,6 +54,23 @@ The batch review command generates one Markdown trust report per case and a JSON
 
 The v0.2 demo adds a static browser review console under `web/`. The console presents aggregate risk metrics, a filterable synthetic case queue, trust levels, findings, recommendations, and a trust-report preview. It is intentionally static so it can be hosted easily while keeping patent-sensitive implementation details outside the public interface.
 
+## 4.3 Evaluation Metrics Summary
+
+The public demo includes a reproducible metrics summary generated from the 10-case synthetic review library. The summary is intentionally focused on review-routing behavior rather than generic accuracy.
+
+| Metric | Value |
+|---|---:|
+| Total synthetic cases | 10 |
+| Manual review cases | 8 |
+| Manual review rate | 80% |
+| Low-trust cases | 4 |
+| Low-trust rate | 40% |
+| Average risk score | 53.0 |
+
+The most frequent findings are `risk_label_mismatch`, `missing_policy_signal`, and `missing_escalation`. This reflects the central design principle of the prototype: in risk-sensitive AI workflows, escalation is a valid safety outcome when evidence, policy support, or uncertainty handling is weak.
+
+See `docs/EVALUATION_METRICS.md` and `examples/evaluation_metrics.json`.
+
 ## 5. Relationship To Portfolio Projects
 
 - `llm-proxy-auditor` checks whether an LLM gateway can be trusted.

@@ -29,14 +29,38 @@
         <article class="metric">
           <span class="metric-label">Manual review</span>
           <strong id="metric-review">0</strong>
+          <small id="metric-review-rate">0%</small>
         </article>
         <article class="metric">
           <span class="metric-label">Low trust</span>
           <strong id="metric-low">0</strong>
+          <small id="metric-low-rate">0%</small>
         </article>
         <article class="metric">
           <span class="metric-label">Avg risk</span>
           <strong id="metric-risk">0</strong>
+        </article>
+      </section>
+
+      <section class="evaluation-lens" aria-label="Evaluation metrics">
+        <article>
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Evaluation lens</p>
+              <h2>Review-routing metrics</h2>
+            </div>
+            <a href="../docs/EVALUATION_METRICS.md">Metric definitions</a>
+          </div>
+          <div class="distribution-grid">
+            <div>
+              <h3>Recommendations</h3>
+              <div id="recommendation-bars"></div>
+            </div>
+            <div>
+              <h3>Top findings</h3>
+              <div id="finding-bars"></div>
+            </div>
+          </div>
         </article>
       </section>
 

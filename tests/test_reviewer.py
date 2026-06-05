@@ -1,7 +1,9 @@
 from pathlib import Path
+import json
 import subprocess
 import sys
 
+from agent_trust_lab.metrics import summarize_results
 from agent_trust_lab.reviewer import evaluate_case, load_case, render_markdown
 
 
@@ -55,3 +57,37 @@ def test_batch_review_cli_generates_summary(tmp_path: Path) -> None:
     assert completed.returncode == 0, completed.stderr
     assert summary.exists()
     assert len(list(out_dir.glob("*.md"))) >= 10
+
+
+def test_metrics_summary_counts_review_risk() -> None:
+    batch_summary = json.loads(Path("examples/batch_summary.json").read_text(encoding="utf-8"))
+    metrics = summarize_results(batch_summary)
+
+    assert metrics["total_cases"] == 10
+    assert metrics["manual_review_cases"] == 8
+    assert metrics["low_trust_cases"] == 4
+    assert metrics["average_risk_score"] == 53.0
+    assert metrics["finding_distribution"]["risk_label_mismatch"] == 9
+
+
+def test_summarize_cli_generates_metrics_file(tmp_path: Path) -> None:
+    metrics_path = tmp_path / "evaluation_metrics.json"
+    completed = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "agent_trust_lab.cli",
+            "summarize",
+            "--summary",
+            "examples/batch_summary.json",
+            "--out",
+            str(metrics_path),
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert completed.returncode == 0, completed.stderr
+    metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+    assert metrics["manual_review_rate"] == 0.8
