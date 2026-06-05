@@ -1,0 +1,31 @@
+{
+  "case_id": "SYN-SAFE-001",
+  "domain": "low_risk_control",
+  "user_question": "Can this synthetic case be accepted with notes?",
+  "expected_risk_level": "low",
+  "llm_output": "The case appears low risk based on the provided evidence. No sanction indicator is present in the evidence, and the transaction volume matches the stated business profile. Accept with notes and keep routine monitoring.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_profile",
+      "text": "The business profile and transaction volume are consistent."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_screening",
+      "text": "No sanction indicator is present in the evidence."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Low-risk cases can be accepted with notes when evidence is consistent.",
+      "required_terms": ["low risk", "evidence"]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "safe accept"
+  }
+}
+
