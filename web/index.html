@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Agent Trust Lab</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="topbar" aria-label="Project summary">
+        <div>
+          <p class="eyebrow">Agent Trust Lab</p>
+          <h1>Risk-sensitive LLM review console</h1>
+        </div>
+        <div class="status-strip" aria-label="Demo status">
+          <span>10 synthetic cases</span>
+          <span>5 finding types</span>
+          <span>Human review first</span>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Trust metrics">
+        <article class="metric">
+          <span class="metric-label">Cases</span>
+          <strong id="metric-cases">0</strong>
+        </article>
+        <article class="metric">
+          <span class="metric-label">Manual review</span>
+          <strong id="metric-review">0</strong>
+        </article>
+        <article class="metric">
+          <span class="metric-label">Low trust</span>
+          <strong id="metric-low">0</strong>
+        </article>
+        <article class="metric">
+          <span class="metric-label">Avg risk</span>
+          <strong id="metric-risk">0</strong>
+        </article>
+      </section>
+
+      <section class="workbench">
+        <aside class="case-list" aria-label="Synthetic cases">
+          <div class="panel-header">
+            <h2>Case Queue</h2>
+            <select id="domain-filter" aria-label="Filter by domain">
+              <option value="all">All domains</option>
+            </select>
+          </div>
+          <div id="case-list"></div>
+        </aside>
+
+        <section class="review-panel" aria-label="Selected case review">
+          <div class="review-heading">
+            <div>
+              <p class="eyebrow" id="case-domain">Domain</p>
+              <h2 id="case-title">Select a case</h2>
+            </div>
+            <span class="trust-pill" id="trust-pill">Trust</span>
+          </div>
+
+          <div class="score-row">
+            <div class="risk-meter" aria-label="Risk score">
+              <div class="risk-fill" id="risk-fill"></div>
+            </div>
+            <strong id="risk-score">0/100</strong>
+          </div>
+
+          <div class="detail-grid">
+            <article>
+              <h3>Recommendation</h3>
+              <p id="recommendation">-</p>
+            </article>
+            <article>
+              <h3>Human Review</h3>
+              <p id="human-review">-</p>
+            </article>
+          </div>
+
+          <section class="findings-section">
+            <h3>Findings</h3>
+            <div id="findings"></div>
+          </section>
+
+          <section class="report-box">
+            <h3>Trust Report Preview</h3>
+            <pre id="report-preview"></pre>
+          </section>
+        </section>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
