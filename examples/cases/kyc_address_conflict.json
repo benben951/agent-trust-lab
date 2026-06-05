@@ -1,0 +1,31 @@
+{
+  "case_id": "SYN-KYC-001",
+  "domain": "kyc_review",
+  "user_question": "Is the identity verification output acceptable?",
+  "expected_risk_level": "medium",
+  "llm_output": "The identity verification is low risk and can be accepted. The address appears consistent.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_document_check",
+      "text": "The identity document address differs from the submitted onboarding address."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_user_profile",
+      "text": "The user updated the address twice during the onboarding flow."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Address conflict requires manual review.",
+      "required_terms": ["address", "manual review"]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "risk label mismatch"
+  }
+}
+
