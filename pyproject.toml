@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-trust-lab"
+version = "0.1.0"
+description = "Risk-sensitive LLM output review and trust-report generation system"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Zhaojie Guo" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+agent-trust-lab = "agent_trust_lab.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
