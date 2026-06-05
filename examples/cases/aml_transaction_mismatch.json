@@ -1,0 +1,36 @@
+{
+  "case_id": "SYN-AML-002",
+  "domain": "aml_transaction_monitoring",
+  "user_question": "Review whether the account activity needs escalation.",
+  "expected_risk_level": "high",
+  "llm_output": "The account should be approved because the business has active transaction volume. No manual review is needed.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_profile",
+      "text": "The stated business profile indicates low monthly volume and local-only trading."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_activity",
+      "text": "Recent activity includes high transaction volume and cross-border counterparties."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Transaction volume that conflicts with stated profile should trigger manual review.",
+      "required_terms": ["transaction volume", "manual review"]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Cross-border counterparty mismatch should be escalated.",
+      "required_terms": ["cross-border", "escalate"]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "missing escalation"
+  }
+}
+
