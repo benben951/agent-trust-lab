@@ -6,6 +6,14 @@ Risk-sensitive LLM output review and trust-report generation system.
 
 Live demo: [https://benben951.github.io/agent-trust-lab/](https://benben951.github.io/agent-trust-lab/)
 
+## Start Here
+
+For a recruiter/interviewer review path, start with:
+
+- [Review Packet](docs/REVIEW_PACKET.md): three-minute project summary, case library, metrics, reports, reproduction steps, and interview pitch.
+- [Portfolio Showcase](docs/PORTFOLIO_SHOWCASE.md): demo scope, case table, browser console, and resume angle.
+- [Evaluation Metrics](docs/EVALUATION_METRICS.md): metric definitions, current values, interpretation, and limitations.
+
 ## Portfolio Snapshot
 
 Agent Trust Lab is a public-safe portfolio project for evaluating LLM and agent outputs in risk-sensitive workflows such as AML review, compliance QA, due diligence, trust and safety, and AI data-quality calibration.
@@ -131,6 +139,7 @@ See:
 
 - [examples/synthetic_aml_case.json](examples/synthetic_aml_case.json)
 - [examples/trust_report_sample.md](examples/trust_report_sample.md)
+- [docs/REVIEW_PACKET.md](docs/REVIEW_PACKET.md)
 - [docs/PORTFOLIO_SHOWCASE.md](docs/PORTFOLIO_SHOWCASE.md)
 - [docs/EVALUATION_METRICS.md](docs/EVALUATION_METRICS.md)
 - [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
