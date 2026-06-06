@@ -17,6 +17,8 @@ Agent Trust Lab is a public-safe prototype for reviewing LLM and agent outputs i
 
 Live demo: [https://benben951.github.io/agent-trust-lab/](https://benben951.github.io/agent-trust-lab/)
 
+Fast walkthrough: [CASE_WALKTHROUGH.md](CASE_WALKTHROUGH.md)
+
 ## 2. Why This Is Relevant To LLM Evaluation Roles
 
 | Hiring Signal | Project Evidence |
@@ -120,6 +122,7 @@ Representative generated reports:
 | [`SYN-AML-001`](../examples/reports/SYN-AML-001.md) | Detects unsafe low-risk approval and unsupported risk claims in an AML onboarding-style case. |
 | [`SYN-AGENT-001`](../examples/reports/SYN-AGENT-001.md) | Detects a final agent answer that ignores a failed lookup tool call. |
 | [`Workflow trace: SYN-AGENT-001`](../examples/workflow_report_agent_tool_failure.md) | Shows evidence, policy, risk, escalation, and final reviewer role notes for an ignored tool failure. |
+| [`Case walkthrough: SYN-AGENT-001`](CASE_WALKTHROUGH.md) | Explains the input, evidence package, role trace, final routing, and safety boundary in recruiter-friendly form. |
 | [`SYN-SAN-001`](../examples/reports/SYN-SAN-001.md) | Detects overconfident sanctions-screening handling and false-positive risk. |
 | [`SYN-SAFE-001`](../examples/reports/SYN-SAFE-001.md) | Shows that the system can accept a low-risk control case with notes. |
 
@@ -184,6 +187,7 @@ Chinese version:
 - Built Agent Trust Lab, a public-safe LLM output review prototype for AML/KYC, due diligence, trust and safety, AI data-quality, and agent-output evaluation scenarios.
 - Designed a 10-case synthetic evaluation library and generated structured Markdown/JSON trust reports with risk findings, trust levels, escalation recommendations, and aggregate review-routing metrics.
 - Added a public-safe multi-role workflow trace covering evidence, policy, risk, escalation, and final reviewer notes for agent-output review.
+- Published a recruiter-friendly case walkthrough for a synthetic tool-failure scenario, connecting the input evidence, policy rule, role-level failures, final routing, and safety boundary.
 - Implemented human-in-the-loop governance boundaries to avoid automated high-risk approval and make unsafe certainty, unsupported claims, missing policy signals, and missing escalation visible to reviewers.
 
 ## 10. Public-Safe Boundary

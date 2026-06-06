@@ -27,6 +27,8 @@ Markdown / JSON report
 human reviewer
 ```
 
+The recruiter-readable version of this flow is documented in [CASE_WALKTHROUGH.md](CASE_WALKTHROUGH.md).
+
 ## Review Roles
 
 | Role | Responsibility | Public demo status |
@@ -36,6 +38,7 @@ human reviewer
 | Evidence verifier | Flag unsupported risk claims. | Implemented with synthetic evidence matching. |
 | Risk scorer | Convert findings into a risk-sensitive score. | Implemented with transparent weights. |
 | Reporter | Produce human-readable trust reports. | Implemented as Markdown output. |
+| Final reviewer | Combine role findings into a human-in-the-loop recommendation. | Implemented in public workflow traces. |
 
 ## Design Boundary
 
@@ -51,4 +54,3 @@ Future private or post-filing versions can add:
 - workflow-level evaluation with `agent-workflow-bench`
 - proxy trust checks from `llm-proxy-auditor`
 - AML RAG evidence from `gemma-aml-assistant`
-

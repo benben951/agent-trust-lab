@@ -133,11 +133,13 @@ h3 {
   font-weight: 700;
 }
 
-.evaluation-lens {
+.evaluation-lens,
+.workflow-lens {
   margin: 0 0 18px;
 }
 
-.evaluation-lens article {
+.evaluation-lens article,
+.workflow-lens article {
   padding: 18px;
   background: rgba(255, 253, 248, 0.88);
   border: 1px solid var(--line);
@@ -145,11 +147,51 @@ h3 {
   box-shadow: var(--shadow);
 }
 
-.evaluation-lens a {
+.evaluation-lens a,
+.workflow-lens a {
   color: var(--teal);
   font-size: 13px;
   font-weight: 800;
   text-decoration: none;
+}
+
+.workflow-steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.workflow-steps div {
+  min-height: 128px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.workflow-steps span {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: white;
+  font-weight: 900;
+}
+
+.workflow-steps strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.workflow-steps p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .distribution-grid {
@@ -344,7 +386,8 @@ pre {
   .topbar,
   .workbench,
   .detail-grid,
-  .distribution-grid {
+  .distribution-grid,
+  .workflow-steps {
     grid-template-columns: 1fr;
     display: grid;
   }

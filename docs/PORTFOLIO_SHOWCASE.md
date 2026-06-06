@@ -15,6 +15,7 @@ Agent Trust Lab v0.1 demonstrates a synthetic case library and batch trust-repor
 | JSON batch summary | Implemented |
 | Evaluation metrics summary | Implemented |
 | Multi-role workflow trace | Implemented |
+| Recruiter case walkthrough | Implemented |
 | Static browser demo | Implemented |
 | Human-review recommendation | Implemented |
 | Patent-sensitive implementation details | Kept private |
@@ -66,6 +67,17 @@ The public workflow trace decomposes a synthetic agent-output review into:
 - final reviewer
 
 See [`examples/workflow_report_agent_tool_failure.md`](../examples/workflow_report_agent_tool_failure.md).
+
+## Case Walkthrough
+
+The fastest way to understand the product flow is:
+
+1. Open [`docs/CASE_WALKTHROUGH.md`](CASE_WALKTHROUGH.md).
+2. Compare the synthetic evidence package with the final LLM/agent output.
+3. Inspect the role-level failures: policy, risk, escalation, and final review.
+4. Confirm the system routes the case to human review rather than automatic approval.
+
+This is the recruiter-facing story: input evidence becomes a trust report, workflow trace, and human-in-the-loop recommendation.
 
 ## Evaluation Metrics
 
@@ -129,6 +141,7 @@ This project shows more than prompt use. It demonstrates a measurable AI review 
 
 - synthetic case design
 - evidence and rule checks
+- recruiter-readable case walkthrough
 - structured failure taxonomy
 - public-safe multi-role workflow trace
 - human-review routing

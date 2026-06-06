@@ -11,6 +11,7 @@ Live demo: [https://benben951.github.io/agent-trust-lab/](https://benben951.gith
 For a recruiter/interviewer review path, start with:
 
 - [Review Packet](docs/REVIEW_PACKET.md): three-minute project summary, case library, metrics, reports, reproduction steps, and interview pitch.
+- [Case Walkthrough](docs/CASE_WALKTHROUGH.md): step-by-step demo flow for an agent tool-failure review.
 - [Portfolio Showcase](docs/PORTFOLIO_SHOWCASE.md): demo scope, case table, browser console, and resume angle.
 - [Evaluation Metrics](docs/EVALUATION_METRICS.md): metric definitions, current values, interpretation, and limitations.
 
@@ -163,6 +164,7 @@ See:
 - [examples/synthetic_aml_case.json](examples/synthetic_aml_case.json)
 - [examples/trust_report_sample.md](examples/trust_report_sample.md)
 - [docs/REVIEW_PACKET.md](docs/REVIEW_PACKET.md)
+- [docs/CASE_WALKTHROUGH.md](docs/CASE_WALKTHROUGH.md)
 - [docs/PORTFOLIO_SHOWCASE.md](docs/PORTFOLIO_SHOWCASE.md)
 - [docs/EVALUATION_METRICS.md](docs/EVALUATION_METRICS.md)
 - [examples/workflow_report_agent_tool_failure.md](examples/workflow_report_agent_tool_failure.md)
