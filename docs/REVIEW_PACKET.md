@@ -10,6 +10,7 @@ Agent Trust Lab is a public-safe prototype for reviewing LLM and agent outputs i
 |---|---|
 | What problem does it solve? | Risk-sensitive LLM outputs can sound confident while missing evidence, policy signals, or required escalation. |
 | What does the system produce? | Markdown and JSON trust reports for each reviewed case, plus aggregate evaluation metrics. |
+| What workflow evidence is included? | A public-safe multi-role workflow trace with evidence, policy, risk, escalation, and final reviewer notes. |
 | What domains are simulated? | AML, KYC, due diligence, trust and safety, customer support compliance, agent output review, AI data quality, sanctions screening, and low-risk control. |
 | What is the decision boundary? | The system recommends accept, escalate, or reject/escalate. It does not automate high-risk approval decisions. |
 | What data is used? | Synthetic public-safe cases only. No customer data, private policy, internal labels, secrets, or patent claim text. |
@@ -24,6 +25,7 @@ Live demo: [https://benben951.github.io/agent-trust-lab/](https://benben951.gith
 | Human-in-the-loop review | Medium/high-risk or uncertain cases are routed to manual review. |
 | Risk and compliance judgment | Findings include unsafe certainty, unsupported claim, missing policy signal, missing escalation, and risk-label mismatch. |
 | Evaluation artifacts | Each case generates a Markdown trust report and machine-readable JSON summary. |
+| Agent workflow thinking | `workflow-review` decomposes one case into evidence, policy, risk, escalation, and final reviewer roles. |
 | Metrics thinking | Batch metrics track manual-review rate, low-trust rate, risk-score distribution, recommendations, and finding frequencies. |
 | Governance awareness | The repository explicitly documents data, decision, logging, and public-demo boundaries. |
 
@@ -50,6 +52,8 @@ Markdown / JSON trust report
         v
 batch evaluation metrics
 ```
+
+The public workflow trace intentionally shows role-level review notes without exposing private scoring formulas, dynamic weighting, or patent-facing orchestration details.
 
 ## 4. Case Library
 
@@ -115,6 +119,7 @@ Representative generated reports:
 |---|---|
 | [`SYN-AML-001`](../examples/reports/SYN-AML-001.md) | Detects unsafe low-risk approval and unsupported risk claims in an AML onboarding-style case. |
 | [`SYN-AGENT-001`](../examples/reports/SYN-AGENT-001.md) | Detects a final agent answer that ignores a failed lookup tool call. |
+| [`Workflow trace: SYN-AGENT-001`](../examples/workflow_report_agent_tool_failure.md) | Shows evidence, policy, risk, escalation, and final reviewer role notes for an ignored tool failure. |
 | [`SYN-SAN-001`](../examples/reports/SYN-SAN-001.md) | Detects overconfident sanctions-screening handling and false-positive risk. |
 | [`SYN-SAFE-001`](../examples/reports/SYN-SAFE-001.md) | Shows that the system can accept a low-risk control case with notes. |
 
@@ -143,6 +148,15 @@ python -m agent_trust_lab.cli summarize `
   --out examples\evaluation_metrics.json
 ```
 
+Generate a multi-role workflow trace:
+
+```powershell
+python -m agent_trust_lab.cli workflow-review `
+  --case examples\cases\agent_tool_failure.json `
+  --out examples\workflow_report_agent_tool_failure.md `
+  --json-out examples\workflow_report_agent_tool_failure.json
+```
+
 Run the local web demo:
 
 ```powershell
@@ -159,7 +173,7 @@ http://localhost:8765/web/
 
 Short version:
 
-> I built Agent Trust Lab to evaluate whether LLM or agent outputs are safe enough to accept, escalate, or reject in risk-sensitive workflows. The prototype uses synthetic AML, KYC, due-diligence, trust-and-safety, and agent-review cases. It generates trust reports, routes risky outputs to human review, and summarizes evaluation metrics such as manual-review rate, low-trust rate, recommendation distribution, and recurring failure types.
+> I built Agent Trust Lab to evaluate whether LLM or agent outputs are safe enough to accept, escalate, or reject in risk-sensitive workflows. The prototype uses synthetic AML, KYC, due-diligence, trust-and-safety, and agent-review cases. It generates trust reports, multi-role workflow traces, human-review routing decisions, and evaluation metrics such as manual-review rate, low-trust rate, recommendation distribution, and recurring failure types.
 
 Chinese version:
 
@@ -169,6 +183,7 @@ Chinese version:
 
 - Built Agent Trust Lab, a public-safe LLM output review prototype for AML/KYC, due diligence, trust and safety, AI data-quality, and agent-output evaluation scenarios.
 - Designed a 10-case synthetic evaluation library and generated structured Markdown/JSON trust reports with risk findings, trust levels, escalation recommendations, and aggregate review-routing metrics.
+- Added a public-safe multi-role workflow trace covering evidence, policy, risk, escalation, and final reviewer notes for agent-output review.
 - Implemented human-in-the-loop governance boundaries to avoid automated high-risk approval and make unsafe certainty, unsupported claims, missing policy signals, and missing escalation visible to reviewers.
 
 ## 10. Public-Safe Boundary

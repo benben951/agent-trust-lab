@@ -14,6 +14,7 @@ Agent Trust Lab v0.1 demonstrates a synthetic case library and batch trust-repor
 | Markdown report output | Implemented |
 | JSON batch summary | Implemented |
 | Evaluation metrics summary | Implemented |
+| Multi-role workflow trace | Implemented |
 | Static browser demo | Implemented |
 | Human-review recommendation | Implemented |
 | Patent-sensitive implementation details | Kept private |
@@ -46,6 +47,25 @@ Outputs:
 
 - `examples/reports/*.md`: one trust report per synthetic case
 - `examples/batch_summary.json`: machine-readable summary for dashboards or evaluation scripts
+
+## Multi-Role Workflow Trace
+
+```powershell
+python -m agent_trust_lab.cli workflow-review `
+  --case examples\cases\agent_tool_failure.json `
+  --out examples\workflow_report_agent_tool_failure.md `
+  --json-out examples\workflow_report_agent_tool_failure.json
+```
+
+The public workflow trace decomposes a synthetic agent-output review into:
+
+- evidence reviewer
+- policy reviewer
+- risk reviewer
+- escalation reviewer
+- final reviewer
+
+See [`examples/workflow_report_agent_tool_failure.md`](../examples/workflow_report_agent_tool_failure.md).
 
 ## Evaluation Metrics
 
@@ -110,6 +130,7 @@ This project shows more than prompt use. It demonstrates a measurable AI review 
 - synthetic case design
 - evidence and rule checks
 - structured failure taxonomy
+- public-safe multi-role workflow trace
 - human-review routing
 - report generation
 - governance boundary

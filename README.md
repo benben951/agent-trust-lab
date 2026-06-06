@@ -29,6 +29,7 @@ The project focuses on one practical question:
 - Multi-role review thinking: extractor, policy checker, evidence verifier, risk scorer, and final reviewer.
 - Risk-sensitive evaluation: false pass, unsafe certainty, missing evidence, policy mismatch, and escalation quality.
 - Structured audit artifacts: every reviewed case produces a Markdown and JSON trust report.
+- Public-safe multi-role workflow traces: evidence, policy, risk, escalation, and final reviewer roles produce inspectable notes.
 - Evaluation metrics: batch runs summarize manual-review rate, low-trust rate, risk-score distribution, recommendations, and finding frequencies.
 - Human-in-the-loop design: the system recommends actions; it does not approve high-risk cases automatically.
 - Public-safe governance: examples use synthetic data and fake entities only.
@@ -42,6 +43,7 @@ This public repository intentionally exposes only the demo-safe layer:
 - sample LLM outputs and review reports
 - a 10-case synthetic risk review library
 - batch report generation
+- public-safe multi-role workflow report generation
 - a static browser review console
 - public architecture and governance notes
 - a technical-report draft
@@ -79,6 +81,15 @@ python -m agent_trust_lab.cli summarize `
   --out examples\evaluation_metrics.json
 ```
 
+Generate a public-safe multi-role workflow trace:
+
+```powershell
+python -m agent_trust_lab.cli workflow-review `
+  --case examples\cases\agent_tool_failure.json `
+  --out examples\workflow_report_agent_tool_failure.md `
+  --json-out examples\workflow_report_agent_tool_failure.json
+```
+
 Open the browser demo:
 
 ```powershell
@@ -108,6 +119,18 @@ Markdown / JSON trust report
         |
         v
 batch metrics summary
+```
+
+Multi-role workflow reports expose a public-safe role trace:
+
+```text
+case package
+  -> evidence reviewer
+  -> policy reviewer
+  -> risk reviewer
+  -> escalation reviewer
+  -> final reviewer
+  -> human-in-the-loop routing
 ```
 
 ## v0.2 Evaluation Snapshot
@@ -142,6 +165,8 @@ See:
 - [docs/REVIEW_PACKET.md](docs/REVIEW_PACKET.md)
 - [docs/PORTFOLIO_SHOWCASE.md](docs/PORTFOLIO_SHOWCASE.md)
 - [docs/EVALUATION_METRICS.md](docs/EVALUATION_METRICS.md)
+- [examples/workflow_report_agent_tool_failure.md](examples/workflow_report_agent_tool_failure.md)
+- [examples/workflow_report_agent_tool_failure.json](examples/workflow_report_agent_tool_failure.json)
 - [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
 - [examples/batch_summary.json](examples/batch_summary.json)
 - [examples/evaluation_metrics.json](examples/evaluation_metrics.json)
@@ -157,7 +182,7 @@ Agent Trust Lab is designed as the umbrella product layer for:
 
 ## Resume Angle
 
-Built Agent Trust Lab, a risk-sensitive LLM output review system with a static browser review console, a 10-case synthetic AML/KYC/due-diligence/trust-and-safety library, batch trust-report generation, JSON summaries, escalation recommendations, and human-in-the-loop governance for AI evaluation workflows.
+Built Agent Trust Lab, a risk-sensitive LLM output review system with a static browser review console, a 10-case synthetic AML/KYC/due-diligence/trust-and-safety library, batch trust-report generation, JSON summaries, public-safe multi-role workflow traces, escalation recommendations, and human-in-the-loop governance for AI evaluation workflows.
 
 ## Safety Boundary
 

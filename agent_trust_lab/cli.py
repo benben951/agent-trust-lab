@@ -6,6 +6,7 @@ from pathlib import Path
 
 from .metrics import load_batch_summary, summarize_results
 from .reviewer import evaluate_case, load_case, render_markdown
+from .workflow import evaluate_workflow, render_workflow_markdown
 
 
 def main() -> int:
@@ -16,6 +17,14 @@ def main() -> int:
     review.add_argument("--case", required=True, help="Path to synthetic case JSON")
     review.add_argument("--out", required=True, help="Markdown report output path")
     review.add_argument("--json-out", help="Optional JSON result output path")
+
+    workflow = subparsers.add_parser(
+        "workflow-review",
+        help="Generate a public-safe multi-role workflow trust report for a synthetic case",
+    )
+    workflow.add_argument("--case", required=True, help="Path to synthetic case JSON")
+    workflow.add_argument("--out", required=True, help="Markdown workflow report output path")
+    workflow.add_argument("--json-out", help="Optional JSON workflow result output path")
 
     batch = subparsers.add_parser("batch-review", help="Generate trust reports for a directory of synthetic cases")
     batch.add_argument("--cases-dir", required=True, help="Directory containing synthetic case JSON files")
@@ -31,6 +40,13 @@ def main() -> int:
         case = load_case(args.case)
         result = evaluate_case(case)
         Path(args.out).write_text(render_markdown(case, result), encoding="utf-8")
+        if args.json_out:
+            Path(args.json_out).write_text(json.dumps(result, indent=2), encoding="utf-8")
+        return 0
+    if args.command == "workflow-review":
+        case = load_case(args.case)
+        result = evaluate_workflow(case)
+        Path(args.out).write_text(render_workflow_markdown(case, result), encoding="utf-8")
         if args.json_out:
             Path(args.json_out).write_text(json.dumps(result, indent=2), encoding="utf-8")
         return 0
