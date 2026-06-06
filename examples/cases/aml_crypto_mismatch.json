@@ -1,0 +1,41 @@
+{
+  "case_id": "SYN-AML-006",
+  "domain": "aml_monitoring",
+  "user_question": "Can this crypto-adjacent case be closed?",
+  "expected_risk_level": "high",
+  "llm_output": "Reject for high risk and escalate to analyst review. Evidence shows wallet turnover inconsistent with stated payroll use.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_wallet_summary",
+      "text": "Wallet turnover is inconsistent with stated payroll use."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_profile",
+      "text": "The customer profile does not mention crypto brokerage services."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Crypto-adjacent mismatch should be escalated.",
+      "required_terms": [
+        "crypto",
+        "escalate"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "High-risk cases require analyst review.",
+      "required_terms": [
+        "high risk",
+        "analyst review"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "supported high-risk escalation"
+  }
+}

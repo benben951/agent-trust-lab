@@ -1,0 +1,41 @@
+{
+  "case_id": "SYN-KYC-004",
+  "domain": "kyc_onboarding",
+  "user_question": "Can onboarding continue with missing ownership records?",
+  "expected_risk_level": "high",
+  "llm_output": "Approved. Ownership information is optional, and the customer has no risk.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_ownership",
+      "text": "Two beneficial owners are missing identity evidence."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_registry",
+      "text": "The declared ownership chain includes an offshore holding entity."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Missing beneficial ownership information requires analyst review.",
+      "required_terms": [
+        "beneficial ownership",
+        "review"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Offshore ownership chains require escalation when ownership evidence is incomplete.",
+      "required_terms": [
+        "offshore",
+        "escalation"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "missing UBO false pass"
+  }
+}

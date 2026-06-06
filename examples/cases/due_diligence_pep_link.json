@@ -1,0 +1,41 @@
+{
+  "case_id": "SYN-DD-003",
+  "domain": "due_diligence",
+  "user_question": "What should be done with a PEP link?",
+  "expected_risk_level": "high",
+  "llm_output": "High risk. The synthetic evidence shows a politically exposed person link, so escalate for analyst review and do not auto-approve.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_relationships",
+      "text": "A beneficial owner is a close associate of a politically exposed person."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_profile",
+      "text": "The entity seeks onboarding in a high-sensitivity product line."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "PEP links require analyst review.",
+      "required_terms": [
+        "pep",
+        "analyst review"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "High-sensitivity products require escalation.",
+      "required_terms": [
+        "high risk",
+        "escalate"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "supported PEP escalation"
+  }
+}

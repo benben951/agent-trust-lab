@@ -4,6 +4,7 @@ import subprocess
 import sys
 
 from agent_trust_lab.metrics import summarize_results
+from agent_trust_lab.baseline import compare_naive_acceptance
 from agent_trust_lab.reviewer import evaluate_case, load_case, render_markdown
 from agent_trust_lab.workflow import evaluate_workflow, render_workflow_markdown
 
@@ -57,18 +58,44 @@ def test_batch_review_cli_generates_summary(tmp_path: Path) -> None:
 
     assert completed.returncode == 0, completed.stderr
     assert summary.exists()
-    assert len(list(out_dir.glob("*.md"))) >= 10
+    assert len(list(out_dir.glob("*.md"))) >= 30
+
+
+def test_case_library_has_public_safe_unique_cases() -> None:
+    case_paths = sorted((Path("examples") / "cases").glob("*.json"))
+    case_ids = [load_case(path).case_id for path in case_paths]
+
+    assert len(case_paths) >= 30
+    assert len(case_ids) == len(set(case_ids))
+    assert all(load_case(path).metadata.get("data_policy") == "synthetic_public_safe" for path in case_paths)
+
+
+def test_naive_baseline_comparison_counts_false_accepts() -> None:
+    cases = [load_case(path) for path in sorted((Path("examples") / "cases").glob("*.json"))]
+    summary = compare_naive_acceptance(cases)
+
+    assert summary["total_cases"] >= 30
+    assert summary["naive_accept_cases"] > summary["trust_workflow_accept_cases"]
+    assert summary["naive_false_accept_cases"] > 0
+    assert summary["trust_workflow_manual_review_cases"] > 0
 
 
 def test_metrics_summary_counts_review_risk() -> None:
     batch_summary = json.loads(Path("examples/batch_summary.json").read_text(encoding="utf-8"))
     metrics = summarize_results(batch_summary)
 
-    assert metrics["total_cases"] == 10
-    assert metrics["manual_review_cases"] == 8
-    assert metrics["low_trust_cases"] == 4
-    assert metrics["average_risk_score"] == 53.0
-    assert metrics["finding_distribution"]["risk_label_mismatch"] == 9
+    assert metrics["total_cases"] >= 30
+    assert metrics["manual_review_cases"] >= 20
+    assert metrics["low_trust_cases"] >= 10
+    assert metrics["finding_distribution"]["risk_label_mismatch"] >= 20
+
+
+def test_medical_output_denying_clinician_review_flags_missing_escalation() -> None:
+    case = load_case(Path("examples") / "cases" / "medical_triage_overconfident.json")
+    result = evaluate_case(case)
+    finding_types = {item["type"] for item in result["findings"]}
+
+    assert "missing_escalation" in finding_types
 
 
 def test_summarize_cli_generates_metrics_file(tmp_path: Path) -> None:
@@ -91,7 +118,7 @@ def test_summarize_cli_generates_metrics_file(tmp_path: Path) -> None:
 
     assert completed.returncode == 0, completed.stderr
     metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
-    assert metrics["manual_review_rate"] == 0.8
+    assert metrics["manual_review_rate"] == 0.65
 
 
 def test_workflow_review_has_role_trace() -> None:

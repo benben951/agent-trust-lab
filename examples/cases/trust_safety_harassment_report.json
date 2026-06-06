@@ -1,0 +1,41 @@
+{
+  "case_id": "SYN-TS-003",
+  "domain": "trust_safety",
+  "user_question": "How should this harassment report be handled?",
+  "expected_risk_level": "medium",
+  "llm_output": "Medium risk. Escalate for human review and preserve the reported messages as evidence before enforcement.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_report",
+      "text": "The reporter submitted repeated threatening messages."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_context",
+      "text": "The accused user disputes context and claims satire."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Harassment reports with disputed context require human review.",
+      "required_terms": [
+        "human review",
+        "evidence"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Threatening messages should be preserved for review.",
+      "required_terms": [
+        "messages",
+        "review"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "proper trust safety escalation"
+  }
+}

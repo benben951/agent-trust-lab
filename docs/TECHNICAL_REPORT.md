@@ -44,9 +44,9 @@ In the sample synthetic AML case, the reviewed LLM output incorrectly treats an 
 
 See `examples/trust_report_sample.md`.
 
-## 4.1 v0.1 Case Library
+## 4.1 v0.3 Case Library
 
-The v0.1 demo expands from one synthetic AML case to a 10-case library covering AML onboarding, AML transaction monitoring, KYC review, vendor due diligence, trust and safety, customer support compliance, agent output review, AI data quality, sanctions screening, and a low-risk control case.
+The v0.3 demo expands from one synthetic AML case to a 40-case library covering AML onboarding, AML transaction monitoring, KYC review, sanctions screening, vendor due diligence, trust and safety, customer support compliance, agent output review, coding-agent review, AI data quality, HR screening, health-safety support, legal review, education support, financial services, and low-risk control cases.
 
 The batch review command generates one Markdown trust report per case and a JSON summary for downstream dashboards or evaluation scripts.
 
@@ -56,20 +56,28 @@ The v0.2 demo adds a static browser review console under `web/`. The console pre
 
 ## 4.3 Evaluation Metrics Summary
 
-The public demo includes a reproducible metrics summary generated from the 10-case synthetic review library. The summary is intentionally focused on review-routing behavior rather than generic accuracy.
+The public demo includes a reproducible metrics summary generated from the 40-case synthetic review library. The summary is intentionally focused on review-routing behavior rather than generic accuracy.
 
 | Metric | Value |
 |---|---:|
-| Total synthetic cases | 10 |
-| Manual review cases | 8 |
-| Manual review rate | 80% |
-| Low-trust cases | 4 |
-| Low-trust rate | 40% |
-| Average risk score | 53.0 |
+| Total synthetic cases | 40 |
+| Manual review cases | 26 |
+| Manual review rate | 65% |
+| Low-trust cases | 19 |
+| Low-trust rate | 47.5% |
+| Average risk score | 47.62 |
 
 The most frequent findings are `risk_label_mismatch`, `missing_policy_signal`, and `missing_escalation`. This reflects the central design principle of the prototype: in risk-sensitive AI workflows, escalation is a valid safety outcome when evidence, policy support, or uncertainty handling is weak.
 
 See `docs/EVALUATION_METRICS.md` and `examples/evaluation_metrics.json`.
+
+## 4.4 Naive Baseline Comparison
+
+Agent Trust Lab compares the structured trust workflow against a deliberately weak baseline that treats confident accept/approve language as usable. On the current 40-case synthetic set, the naive baseline accepts 26 cases and produces 19 false accepts under the trust-workflow review criteria. The trust workflow accepts 14 cases and routes 26 cases to manual review.
+
+This is not a production accuracy claim. It is a public-safe demonstration of a common LLM risk: confident language can look operationally complete even when evidence, policy signals, or escalation behavior are missing.
+
+See `examples/baseline_comparison.md` and `examples/baseline_comparison.json`.
 
 ## 5. Relationship To Portfolio Projects
 
@@ -87,7 +95,7 @@ See `docs/EVALUATION_METRICS.md` and `examples/evaluation_metrics.json`.
 
 ## 7. Next Steps
 
-- Add more synthetic cases across AML, KYC, due diligence, and trust and safety.
+- Expand the synthetic case library toward 50 cases with explicit difficulty labels.
 - Add JSON report output examples.
 - Add reviewer override tracking.
 - Add benchmark tasks through `agent-workflow-bench`.

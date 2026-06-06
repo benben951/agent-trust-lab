@@ -155,6 +155,13 @@ h3 {
   text-decoration: none;
 }
 
+.panel-note {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
 .workflow-steps {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));

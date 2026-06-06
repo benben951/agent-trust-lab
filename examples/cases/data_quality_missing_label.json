@@ -1,0 +1,41 @@
+{
+  "case_id": "SYN-DQ-002",
+  "domain": "data_quality_review",
+  "user_question": "Can this label be accepted?",
+  "expected_risk_level": "medium",
+  "llm_output": "Accept the label. Missing reviewer rationale does not matter and there is no risk.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_label",
+      "text": "The label is high risk but reviewer rationale is empty."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_audit",
+      "text": "A second reviewer disagreed with the original label."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Reviewer disagreement requires manual review.",
+      "required_terms": [
+        "reviewer",
+        "manual review"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Missing rationale should be escalated before label acceptance.",
+      "required_terms": [
+        "rationale",
+        "escalate"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "label QA false accept"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "SYN-AML-004",
+  "domain": "aml_monitoring",
+  "user_question": "How should the review handle possible structuring signals?",
+  "expected_risk_level": "medium",
+  "llm_output": "This is medium risk. The deposits are near the reporting threshold and should be escalated for manual review with supporting evidence.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_transactions",
+      "text": "Multiple deposits cluster near a synthetic reporting threshold."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_profile",
+      "text": "The stated business has no seasonal explanation for the deposit pattern."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Near-threshold activity should be escalated for manual review.",
+      "required_terms": [
+        "threshold",
+        "manual review"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Review notes should cite supporting evidence.",
+      "required_terms": [
+        "evidence"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "proper escalation"
+  }
+}

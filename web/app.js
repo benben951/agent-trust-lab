@@ -101,6 +101,27 @@ const cases = [
   }
 ];
 
+const fullLibraryMetrics = {
+  total_cases: 40,
+  manual_review_cases: 26,
+  manual_review_rate: 0.65,
+  low_trust_cases: 19,
+  low_trust_rate: 0.475,
+  average_risk_score: 47.62,
+  recommendation_distribution: {
+    reject_or_escalate: 19,
+    escalate_for_manual_review: 7,
+    accept_with_notes: 14
+  },
+  finding_distribution: {
+    risk_label_mismatch: 27,
+    missing_policy_signal: 24,
+    missing_escalation: 24,
+    unsafe_certainty: 17,
+    unsupported_claim: 8
+  }
+};
+
 const listEl = document.querySelector("#case-list");
 const domainFilter = document.querySelector("#domain-filter");
 const metrics = {
@@ -123,15 +144,12 @@ function titleCase(value) {
 }
 
 function renderMetrics() {
-  metrics.cases.textContent = cases.length;
-  const reviewCount = cases.filter((item) => item.human_review_required).length;
-  const lowCount = cases.filter((item) => item.trust_level === "low").length;
-  metrics.review.textContent = reviewCount;
-  metrics.reviewRate.textContent = `${Math.round((reviewCount / cases.length) * 100)}% routed`;
-  metrics.low.textContent = lowCount;
-  metrics.lowRate.textContent = `${Math.round((lowCount / cases.length) * 100)}% low trust`;
-  const avgRisk = Math.round(cases.reduce((sum, item) => sum + item.risk_score, 0) / cases.length);
-  metrics.risk.textContent = avgRisk;
+  metrics.cases.textContent = fullLibraryMetrics.total_cases;
+  metrics.review.textContent = fullLibraryMetrics.manual_review_cases;
+  metrics.reviewRate.textContent = `${Math.round(fullLibraryMetrics.manual_review_rate * 100)}% routed`;
+  metrics.low.textContent = fullLibraryMetrics.low_trust_cases;
+  metrics.lowRate.textContent = `${Math.round(fullLibraryMetrics.low_trust_rate * 100)}% low trust`;
+  metrics.risk.textContent = fullLibraryMetrics.average_risk_score;
 }
 
 function countBy(values) {
@@ -157,9 +175,9 @@ function renderBars(target, entries, maxValue) {
 }
 
 function renderEvaluationLens() {
-  const recommendations = Object.entries(countBy(cases.map((item) => item.recommendation)))
+  const recommendations = Object.entries(fullLibraryMetrics.recommendation_distribution)
     .sort((a, b) => b[1] - a[1]);
-  const findings = Object.entries(countBy(cases.flatMap((item) => item.findings)))
+  const findings = Object.entries(fullLibraryMetrics.finding_distribution)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 5);
 
