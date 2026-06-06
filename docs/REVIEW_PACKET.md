@@ -19,6 +19,8 @@ Live demo: [https://benben951.github.io/agent-trust-lab/](https://benben951.gith
 
 Fast walkthrough: [CASE_WALKTHROUGH.md](CASE_WALKTHROUGH.md)
 
+Context engineering note: [CONTEXT_ENGINEERING.md](CONTEXT_ENGINEERING.md)
+
 ## 2. Why This Is Relevant To LLM Evaluation Roles
 
 | Hiring Signal | Project Evidence |
@@ -28,6 +30,7 @@ Fast walkthrough: [CASE_WALKTHROUGH.md](CASE_WALKTHROUGH.md)
 | Risk and compliance judgment | Findings include unsafe certainty, unsupported claim, missing policy signal, missing escalation, and risk-label mismatch. |
 | Evaluation artifacts | Each case generates a Markdown trust report and machine-readable JSON summary. |
 | Agent workflow thinking | `workflow-review` decomposes one case into evidence, policy, risk, escalation, and final reviewer roles. |
+| Context engineering | Docs, generated reports, CLI commands, tests, and browser checks make AI-assisted changes reviewable. |
 | Metrics thinking | Batch metrics track manual-review rate, low-trust rate, risk-score distribution, recommendations, and finding frequencies. |
 | Governance awareness | The repository explicitly documents data, decision, logging, and public-demo boundaries. |
 
@@ -188,6 +191,7 @@ Chinese version:
 - Designed a 10-case synthetic evaluation library and generated structured Markdown/JSON trust reports with risk findings, trust levels, escalation recommendations, and aggregate review-routing metrics.
 - Added a public-safe multi-role workflow trace covering evidence, policy, risk, escalation, and final reviewer notes for agent-output review.
 - Published a recruiter-friendly case walkthrough for a synthetic tool-failure scenario, connecting the input evidence, policy rule, role-level failures, final routing, and safety boundary.
+- Documented a Codex-first context-engineering workflow using explicit project memory, generated artifacts, CLI reproduction commands, tests, and browser-demo checks.
 - Implemented human-in-the-loop governance boundaries to avoid automated high-risk approval and make unsafe certainty, unsupported claims, missing policy signals, and missing escalation visible to reviewers.
 
 ## 10. Public-Safe Boundary

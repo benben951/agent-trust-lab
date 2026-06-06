@@ -12,6 +12,7 @@ For a recruiter/interviewer review path, start with:
 
 - [Review Packet](docs/REVIEW_PACKET.md): three-minute project summary, case library, metrics, reports, reproduction steps, and interview pitch.
 - [Case Walkthrough](docs/CASE_WALKTHROUGH.md): step-by-step demo flow for an agent tool-failure review.
+- [Context Engineering](docs/CONTEXT_ENGINEERING.md): how the project is maintained with Codex-first context, verification gates, and public-safe boundaries.
 - [Portfolio Showcase](docs/PORTFOLIO_SHOWCASE.md): demo scope, case table, browser console, and resume angle.
 - [Evaluation Metrics](docs/EVALUATION_METRICS.md): metric definitions, current values, interpretation, and limitations.
 
@@ -31,6 +32,7 @@ The project focuses on one practical question:
 - Risk-sensitive evaluation: false pass, unsafe certainty, missing evidence, policy mismatch, and escalation quality.
 - Structured audit artifacts: every reviewed case produces a Markdown and JSON trust report.
 - Public-safe multi-role workflow traces: evidence, policy, risk, escalation, and final reviewer roles produce inspectable notes.
+- Context engineering: project memory, CLI artifacts, browser checks, and tests keep AI-assisted changes reviewable.
 - Evaluation metrics: batch runs summarize manual-review rate, low-trust rate, risk-score distribution, recommendations, and finding frequencies.
 - Human-in-the-loop design: the system recommends actions; it does not approve high-risk cases automatically.
 - Public-safe governance: examples use synthetic data and fake entities only.
@@ -165,6 +167,7 @@ See:
 - [examples/trust_report_sample.md](examples/trust_report_sample.md)
 - [docs/REVIEW_PACKET.md](docs/REVIEW_PACKET.md)
 - [docs/CASE_WALKTHROUGH.md](docs/CASE_WALKTHROUGH.md)
+- [docs/CONTEXT_ENGINEERING.md](docs/CONTEXT_ENGINEERING.md)
 - [docs/PORTFOLIO_SHOWCASE.md](docs/PORTFOLIO_SHOWCASE.md)
 - [docs/EVALUATION_METRICS.md](docs/EVALUATION_METRICS.md)
 - [examples/workflow_report_agent_tool_failure.md](examples/workflow_report_agent_tool_failure.md)

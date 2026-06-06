@@ -16,6 +16,7 @@ Agent Trust Lab v0.1 demonstrates a synthetic case library and batch trust-repor
 | Evaluation metrics summary | Implemented |
 | Multi-role workflow trace | Implemented |
 | Recruiter case walkthrough | Implemented |
+| Context-engineering note | Implemented |
 | Static browser demo | Implemented |
 | Human-review recommendation | Implemented |
 | Patent-sensitive implementation details | Kept private |
@@ -78,6 +79,17 @@ The fastest way to understand the product flow is:
 4. Confirm the system routes the case to human review rather than automatic approval.
 
 This is the recruiter-facing story: input evidence becomes a trust report, workflow trace, and human-in-the-loop recommendation.
+
+## Context Engineering
+
+See [`docs/CONTEXT_ENGINEERING.md`](CONTEXT_ENGINEERING.md) for how the project is maintained with:
+
+- explicit project memory in docs and generated artifacts
+- bounded AI-assisted changes
+- CLI reproduction commands
+- tests and metrics checks
+- browser-demo inspection when UI changes
+- public-safe data and governance boundaries
 
 ## Evaluation Metrics
 
@@ -142,6 +154,7 @@ This project shows more than prompt use. It demonstrates a measurable AI review 
 - synthetic case design
 - evidence and rule checks
 - recruiter-readable case walkthrough
+- context-engineering workflow
 - structured failure taxonomy
 - public-safe multi-role workflow trace
 - human-review routing
