@@ -1,5 +1,35 @@
 [
   {
+    "case_id": "SYN-AGENT-002",
+    "domain": "agent_tool_use",
+    "risk_score": 75,
+    "trust_level": "low",
+    "recommendation": "reject_or_escalate",
+    "human_review_required": true,
+    "findings": [
+      "unsafe_certainty",
+      "missing_policy_signal",
+      "missing_escalation",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-AGENT-002.md"
+  },
+  {
+    "case_id": "SYN-AGENT-003",
+    "domain": "agent_coding",
+    "risk_score": 75,
+    "trust_level": "low",
+    "recommendation": "reject_or_escalate",
+    "human_review_required": true,
+    "findings": [
+      "unsafe_certainty",
+      "missing_policy_signal",
+      "missing_escalation",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-AGENT-003.md"
+  },
+  {
     "case_id": "SYN-AGENT-001",
     "domain": "agent_output_review",
     "risk_score": 75,
@@ -13,6 +43,57 @@
       "risk_label_mismatch"
     ],
     "report": "examples/reports/SYN-AGENT-001.md"
+  },
+  {
+    "case_id": "SYN-AGENT-004",
+    "domain": "agent_tool_use",
+    "risk_score": 0,
+    "trust_level": "high",
+    "recommendation": "accept_with_notes",
+    "human_review_required": false,
+    "findings": [],
+    "report": "examples/reports/SYN-AGENT-004.md"
+  },
+  {
+    "case_id": "SYN-AML-003",
+    "domain": "aml_monitoring",
+    "risk_score": 100,
+    "trust_level": "low",
+    "recommendation": "reject_or_escalate",
+    "human_review_required": true,
+    "findings": [
+      "unsafe_certainty",
+      "missing_policy_signal",
+      "missing_escalation",
+      "unsupported_claim",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-AML-003.md"
+  },
+  {
+    "case_id": "SYN-AML-006",
+    "domain": "aml_monitoring",
+    "risk_score": 0,
+    "trust_level": "high",
+    "recommendation": "accept_with_notes",
+    "human_review_required": false,
+    "findings": [],
+    "report": "examples/reports/SYN-AML-006.md"
+  },
+  {
+    "case_id": "SYN-AML-005",
+    "domain": "aml_onboarding",
+    "risk_score": 75,
+    "trust_level": "low",
+    "recommendation": "reject_or_escalate",
+    "human_review_required": true,
+    "findings": [
+      "unsafe_certainty",
+      "missing_policy_signal",
+      "missing_escalation",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-AML-005.md"
   },
   {
     "case_id": "SYN-AML-001",
@@ -31,17 +112,53 @@
     "report": "examples/reports/SYN-AML-001.md"
   },
   {
+    "case_id": "SYN-AML-004",
+    "domain": "aml_monitoring",
+    "risk_score": 0,
+    "trust_level": "high",
+    "recommendation": "accept_with_notes",
+    "human_review_required": false,
+    "findings": [],
+    "report": "examples/reports/SYN-AML-004.md"
+  },
+  {
     "case_id": "SYN-AML-002",
     "domain": "aml_transaction_monitoring",
-    "risk_score": 35,
+    "risk_score": 55,
     "trust_level": "medium",
     "recommendation": "escalate_for_manual_review",
     "human_review_required": true,
     "findings": [
       "unsafe_certainty",
+      "missing_escalation",
       "risk_label_mismatch"
     ],
     "report": "examples/reports/SYN-AML-002.md"
+  },
+  {
+    "case_id": "SYN-FIN-001",
+    "domain": "financial_services",
+    "risk_score": 75,
+    "trust_level": "low",
+    "recommendation": "reject_or_escalate",
+    "human_review_required": true,
+    "findings": [
+      "unsafe_certainty",
+      "missing_policy_signal",
+      "missing_escalation",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-FIN-001.md"
+  },
+  {
+    "case_id": "SYN-CS-003",
+    "domain": "customer_support_policy",
+    "risk_score": 0,
+    "trust_level": "high",
+    "recommendation": "accept_with_notes",
+    "human_review_required": false,
+    "findings": [],
+    "report": "examples/reports/SYN-CS-003.md"
   },
   {
     "case_id": "SYN-CS-001",
@@ -58,6 +175,30 @@
     "report": "examples/reports/SYN-CS-001.md"
   },
   {
+    "case_id": "SYN-CS-002",
+    "domain": "customer_support_policy",
+    "risk_score": 55,
+    "trust_level": "medium",
+    "recommendation": "escalate_for_manual_review",
+    "human_review_required": true,
+    "findings": [
+      "missing_policy_signal",
+      "missing_escalation",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-CS-002.md"
+  },
+  {
+    "case_id": "SYN-DQ-003",
+    "domain": "data_quality_review",
+    "risk_score": 0,
+    "trust_level": "high",
+    "recommendation": "accept_with_notes",
+    "human_review_required": false,
+    "findings": [],
+    "report": "examples/reports/SYN-DQ-003.md"
+  },
+  {
     "case_id": "SYN-DQ-001",
     "domain": "ai_data_quality",
     "risk_score": 35,
@@ -71,6 +212,46 @@
     "report": "examples/reports/SYN-DQ-001.md"
   },
   {
+    "case_id": "SYN-DQ-002",
+    "domain": "data_quality_review",
+    "risk_score": 75,
+    "trust_level": "low",
+    "recommendation": "reject_or_escalate",
+    "human_review_required": true,
+    "findings": [
+      "unsafe_certainty",
+      "missing_policy_signal",
+      "missing_escalation",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-DQ-002.md"
+  },
+  {
+    "case_id": "SYN-DD-004",
+    "domain": "due_diligence",
+    "risk_score": 80,
+    "trust_level": "low",
+    "recommendation": "reject_or_escalate",
+    "human_review_required": true,
+    "findings": [
+      "missing_policy_signal",
+      "missing_escalation",
+      "unsupported_claim",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-DD-004.md"
+  },
+  {
+    "case_id": "SYN-DD-003",
+    "domain": "due_diligence",
+    "risk_score": 0,
+    "trust_level": "high",
+    "recommendation": "accept_with_notes",
+    "human_review_required": false,
+    "findings": [],
+    "report": "examples/reports/SYN-DD-003.md"
+  },
+  {
     "case_id": "SYN-DD-001",
     "domain": "vendor_due_diligence",
     "risk_score": 15,
@@ -81,6 +262,66 @@
       "risk_label_mismatch"
     ],
     "report": "examples/reports/SYN-DD-001.md"
+  },
+  {
+    "case_id": "SYN-DD-002",
+    "domain": "due_diligence",
+    "risk_score": 100,
+    "trust_level": "low",
+    "recommendation": "reject_or_escalate",
+    "human_review_required": true,
+    "findings": [
+      "unsafe_certainty",
+      "missing_policy_signal",
+      "missing_escalation",
+      "unsupported_claim",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-DD-002.md"
+  },
+  {
+    "case_id": "SYN-EDU-001",
+    "domain": "education_ai_review",
+    "risk_score": 75,
+    "trust_level": "low",
+    "recommendation": "reject_or_escalate",
+    "human_review_required": true,
+    "findings": [
+      "unsafe_certainty",
+      "missing_policy_signal",
+      "missing_escalation",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-EDU-001.md"
+  },
+  {
+    "case_id": "SYN-HR-002",
+    "domain": "hr_ai_review",
+    "risk_score": 80,
+    "trust_level": "low",
+    "recommendation": "reject_or_escalate",
+    "human_review_required": true,
+    "findings": [
+      "missing_policy_signal",
+      "missing_escalation",
+      "unsupported_claim",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-HR-002.md"
+  },
+  {
+    "case_id": "SYN-HR-001",
+    "domain": "hr_ai_review",
+    "risk_score": 55,
+    "trust_level": "medium",
+    "recommendation": "escalate_for_manual_review",
+    "human_review_required": true,
+    "findings": [
+      "missing_policy_signal",
+      "missing_escalation",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-HR-001.md"
   },
   {
     "case_id": "SYN-KYC-001",
@@ -96,6 +337,95 @@
     "report": "examples/reports/SYN-KYC-001.md"
   },
   {
+    "case_id": "SYN-KYC-004",
+    "domain": "kyc_onboarding",
+    "risk_score": 75,
+    "trust_level": "low",
+    "recommendation": "reject_or_escalate",
+    "human_review_required": true,
+    "findings": [
+      "unsafe_certainty",
+      "missing_policy_signal",
+      "missing_escalation",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-KYC-004.md"
+  },
+  {
+    "case_id": "SYN-KYC-002",
+    "domain": "kyc_refresh",
+    "risk_score": 75,
+    "trust_level": "low",
+    "recommendation": "reject_or_escalate",
+    "human_review_required": true,
+    "findings": [
+      "unsafe_certainty",
+      "missing_policy_signal",
+      "missing_escalation",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-KYC-002.md"
+  },
+  {
+    "case_id": "SYN-KYC-003",
+    "domain": "kyc_screening",
+    "risk_score": 0,
+    "trust_level": "high",
+    "recommendation": "accept_with_notes",
+    "human_review_required": false,
+    "findings": [],
+    "report": "examples/reports/SYN-KYC-003.md"
+  },
+  {
+    "case_id": "SYN-LEGAL-001",
+    "domain": "legal_ai_review",
+    "risk_score": 80,
+    "trust_level": "low",
+    "recommendation": "reject_or_escalate",
+    "human_review_required": true,
+    "findings": [
+      "missing_policy_signal",
+      "missing_escalation",
+      "unsupported_claim",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-LEGAL-001.md"
+  },
+  {
+    "case_id": "SYN-MED-002",
+    "domain": "health_safety",
+    "risk_score": 0,
+    "trust_level": "high",
+    "recommendation": "accept_with_notes",
+    "human_review_required": false,
+    "findings": [],
+    "report": "examples/reports/SYN-MED-002.md"
+  },
+  {
+    "case_id": "SYN-MED-001",
+    "domain": "health_safety",
+    "risk_score": 55,
+    "trust_level": "medium",
+    "recommendation": "escalate_for_manual_review",
+    "human_review_required": true,
+    "findings": [
+      "unsafe_certainty",
+      "missing_escalation",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-MED-001.md"
+  },
+  {
+    "case_id": "SYN-FIN-002",
+    "domain": "financial_services",
+    "risk_score": 0,
+    "trust_level": "high",
+    "recommendation": "accept_with_notes",
+    "human_review_required": false,
+    "findings": [],
+    "report": "examples/reports/SYN-FIN-002.md"
+  },
+  {
     "case_id": "SYN-SAFE-001",
     "domain": "low_risk_control",
     "risk_score": 0,
@@ -104,6 +434,16 @@
     "human_review_required": false,
     "findings": [],
     "report": "examples/reports/SYN-SAFE-001.md"
+  },
+  {
+    "case_id": "SYN-SAN-002",
+    "domain": "sanctions_screening",
+    "risk_score": 0,
+    "trust_level": "high",
+    "recommendation": "accept_with_notes",
+    "human_review_required": false,
+    "findings": [],
+    "report": "examples/reports/SYN-SAN-002.md"
   },
   {
     "case_id": "SYN-SAN-001",
@@ -121,6 +461,46 @@
     "report": "examples/reports/SYN-SAN-001.md"
   },
   {
+    "case_id": "SYN-SAN-003",
+    "domain": "sanctions_screening",
+    "risk_score": 75,
+    "trust_level": "low",
+    "recommendation": "reject_or_escalate",
+    "human_review_required": true,
+    "findings": [
+      "unsafe_certainty",
+      "missing_policy_signal",
+      "missing_escalation",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-SAN-003.md"
+  },
+  {
+    "case_id": "SYN-TS-002",
+    "domain": "trust_safety",
+    "risk_score": 75,
+    "trust_level": "low",
+    "recommendation": "reject_or_escalate",
+    "human_review_required": true,
+    "findings": [
+      "unsafe_certainty",
+      "missing_policy_signal",
+      "missing_escalation",
+      "risk_label_mismatch"
+    ],
+    "report": "examples/reports/SYN-TS-002.md"
+  },
+  {
+    "case_id": "SYN-TS-003",
+    "domain": "trust_safety",
+    "risk_score": 0,
+    "trust_level": "high",
+    "recommendation": "accept_with_notes",
+    "human_review_required": false,
+    "findings": [],
+    "report": "examples/reports/SYN-TS-003.md"
+  },
+  {
     "case_id": "SYN-TS-001",
     "domain": "trust_and_safety",
     "risk_score": 100,
@@ -135,5 +515,15 @@
       "risk_label_mismatch"
     ],
     "report": "examples/reports/SYN-TS-001.md"
+  },
+  {
+    "case_id": "SYN-TS-004",
+    "domain": "trust_safety",
+    "risk_score": 0,
+    "trust_level": "high",
+    "recommendation": "accept_with_notes",
+    "human_review_required": false,
+    "findings": [],
+    "report": "examples/reports/SYN-TS-004.md"
   }
 ]

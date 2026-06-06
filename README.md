@@ -15,6 +15,10 @@ For a recruiter/interviewer review path, start with:
 - [Context Engineering](docs/CONTEXT_ENGINEERING.md): how the project is maintained with Codex-first context, verification gates, and public-safe boundaries.
 - [Portfolio Showcase](docs/PORTFOLIO_SHOWCASE.md): demo scope, case table, browser console, and resume angle.
 - [Evaluation Metrics](docs/EVALUATION_METRICS.md): metric definitions, current values, interpretation, and limitations.
+- [Human Spot-Check Protocol](docs/HUMAN_SPOT_CHECK_PROTOCOL.md): public-safe manual review protocol for auditing synthetic-case outputs.
+- [Human Spot-Check Log](docs/HUMAN_SPOT_CHECK_LOG.md): 15-case author spot-check draft and regression-fix note.
+- [Demo Script](docs/DEMO_SCRIPT.md): three-minute walkthrough for recruiters, portfolio review, or system-demo submission.
+- [EMNLP Demo Draft](docs/EMNLP_DEMO_DRAFT.md): working system-demonstration paper draft.
 
 ## Portfolio Snapshot
 
@@ -34,6 +38,7 @@ The project focuses on one practical question:
 - Public-safe multi-role workflow traces: evidence, policy, risk, escalation, and final reviewer roles produce inspectable notes.
 - Context engineering: project memory, CLI artifacts, browser checks, and tests keep AI-assisted changes reviewable.
 - Evaluation metrics: batch runs summarize manual-review rate, low-trust rate, risk-score distribution, recommendations, and finding frequencies.
+- Human spot-check protocol: sampled reports can be manually audited for route agreement, over-triggered findings, and missed findings.
 - Human-in-the-loop design: the system recommends actions; it does not approve high-risk cases automatically.
 - Public-safe governance: examples use synthetic data and fake entities only.
 
@@ -44,8 +49,9 @@ This public repository intentionally exposes only the demo-safe layer:
 - a synthetic case schema
 - a deterministic trust-report generator
 - sample LLM outputs and review reports
-- a 10-case synthetic risk review library
+- a 40-case synthetic risk review library
 - batch report generation
+- naive-baseline versus trust-workflow comparison
 - public-safe multi-role workflow report generation
 - a static browser review console
 - public architecture and governance notes
@@ -74,6 +80,15 @@ python -m agent_trust_lab.cli batch-review `
   --cases-dir examples\cases `
   --out-dir examples\reports `
   --summary examples\batch_summary.json
+```
+
+Compare a naive confident-output acceptance baseline with the trust workflow:
+
+```powershell
+python -m agent_trust_lab.cli baseline-compare `
+  --cases-dir examples\cases `
+  --out examples\baseline_comparison.json `
+  --markdown-out examples\baseline_comparison.md
 ```
 
 Summarize evaluation metrics:
@@ -136,18 +151,28 @@ case package
   -> human-in-the-loop routing
 ```
 
-## v0.2 Evaluation Snapshot
+## v0.3 Evaluation Snapshot
 
-The 10-case synthetic evaluation set currently produces:
+The 40-case synthetic evaluation set currently produces:
 
 | Metric | Value |
 |---|---:|
-| Total cases | 10 |
-| Manual review cases | 8 |
-| Manual review rate | 80% |
-| Low-trust cases | 4 |
-| Low-trust rate | 40% |
-| Average risk score | 53.0 |
+| Total cases | 40 |
+| Manual review cases | 26 |
+| Manual review rate | 65% |
+| Low-trust cases | 19 |
+| Low-trust rate | 47.5% |
+| Average risk score | 47.62 |
+
+The baseline comparison shows why a structured trust workflow matters:
+
+| Metric | Value |
+|---|---:|
+| Naive accept cases | 26 |
+| Naive false accept cases | 19 |
+| Naive false accept rate | 48% |
+| Trust workflow accept cases | 14 |
+| Trust workflow manual review cases | 26 |
 
 The most frequent findings are `risk_label_mismatch`, `missing_policy_signal`, and `missing_escalation`. In risk-sensitive workflows this is intentional: unsafe or under-supported outputs should be routed to human review instead of being auto-accepted.
 
@@ -170,6 +195,11 @@ See:
 - [docs/CONTEXT_ENGINEERING.md](docs/CONTEXT_ENGINEERING.md)
 - [docs/PORTFOLIO_SHOWCASE.md](docs/PORTFOLIO_SHOWCASE.md)
 - [docs/EVALUATION_METRICS.md](docs/EVALUATION_METRICS.md)
+- [docs/HUMAN_SPOT_CHECK_PROTOCOL.md](docs/HUMAN_SPOT_CHECK_PROTOCOL.md)
+- [docs/HUMAN_SPOT_CHECK_LOG.md](docs/HUMAN_SPOT_CHECK_LOG.md)
+- [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md)
+- [docs/EMNLP_DEMO_DRAFT.md](docs/EMNLP_DEMO_DRAFT.md)
+- [examples/baseline_comparison.md](examples/baseline_comparison.md)
 - [examples/workflow_report_agent_tool_failure.md](examples/workflow_report_agent_tool_failure.md)
 - [examples/workflow_report_agent_tool_failure.json](examples/workflow_report_agent_tool_failure.json)
 - [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
@@ -187,7 +217,7 @@ Agent Trust Lab is designed as the umbrella product layer for:
 
 ## Resume Angle
 
-Built Agent Trust Lab, a risk-sensitive LLM output review system with a static browser review console, a 10-case synthetic AML/KYC/due-diligence/trust-and-safety library, batch trust-report generation, JSON summaries, public-safe multi-role workflow traces, escalation recommendations, and human-in-the-loop governance for AI evaluation workflows.
+Built Agent Trust Lab, a risk-sensitive LLM output review system with a static browser review console, a 40-case synthetic AML/KYC/due-diligence/trust-and-safety/agent-review library, batch trust-report generation, naive-baseline comparison, JSON summaries, public-safe multi-role workflow traces, escalation recommendations, and human-in-the-loop governance for AI evaluation workflows.
 
 ## Safety Boundary
 

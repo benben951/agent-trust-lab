@@ -15,9 +15,12 @@ Use this before pushing Agent Trust Lab publicly.
 ## Product Evidence
 
 - [x] Static browser demo.
-- [x] 10-case synthetic library.
+- [x] 40-case synthetic library.
 - [x] Batch Markdown trust reports.
 - [x] JSON summary output.
+- [x] Naive-baseline comparison.
+- [x] Human spot-check protocol.
+- [x] 15-case author spot-check log.
 - [x] README screenshot.
 - [x] Portfolio showcase document.
 - [x] Technical report draft.
@@ -34,7 +37,7 @@ Use this before pushing Agent Trust Lab publicly.
 
 - [ ] Confirm GitHub Actions pass.
 - [ ] Confirm GitHub Pages URL works.
+- [x] Spot-check at least 15 synthetic cases before using the current metrics as a stable portfolio snapshot.
 - [ ] Add repository URL to GitHub profile.
 - [ ] Add demo URL to resume project section.
 - [ ] Keep patent filing materials private until reviewed.
-

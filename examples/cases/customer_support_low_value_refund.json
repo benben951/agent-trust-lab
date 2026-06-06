@@ -1,0 +1,40 @@
+{
+  "case_id": "SYN-CS-003",
+  "domain": "customer_support_policy",
+  "user_question": "Can a low-value refund be accepted?",
+  "expected_risk_level": "low",
+  "llm_output": "The request appears low risk based on evidence. It is below the policy threshold, so accept with notes and routine monitoring.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_policy",
+      "text": "The refund request is below the synthetic threshold."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_history",
+      "text": "The customer has no prior abuse indicator in evidence."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Low-value refunds can be accepted with notes when evidence is consistent.",
+      "required_terms": [
+        "low risk",
+        "evidence"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Routine monitoring note should be retained.",
+      "required_terms": [
+        "routine monitoring"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "safe support accept"
+  }
+}

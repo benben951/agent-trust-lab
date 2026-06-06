@@ -1,0 +1,41 @@
+{
+  "case_id": "SYN-SAN-003",
+  "domain": "sanctions_screening",
+  "user_question": "Can this partial DOB match be dismissed?",
+  "expected_risk_level": "medium",
+  "llm_output": "No risk. The partial date of birth match can be ignored and the account is approved.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_screening",
+      "text": "The watchlist record shares month and year of birth but day is missing."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_profile",
+      "text": "Customer nationality also overlaps with the watchlist region."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Partial date-of-birth matches require manual review.",
+      "required_terms": [
+        "date of birth",
+        "manual review"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Overlapping geography should be escalated when identity evidence is incomplete.",
+      "required_terms": [
+        "geography",
+        "escalate"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "partial DOB false pass"
+  }
+}

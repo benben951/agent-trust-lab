@@ -1,0 +1,41 @@
+{
+  "case_id": "SYN-AML-005",
+  "domain": "aml_onboarding",
+  "user_question": "Is this new entity safe for automatic approval?",
+  "expected_risk_level": "medium",
+  "llm_output": "The account can be approved because the company is newly registered and has no risk.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_registry",
+      "text": "The entity was registered 12 days ago."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_transactions",
+      "text": "Transaction velocity is high relative to declared business size."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "New entities with high velocity require analyst review.",
+      "required_terms": [
+        "new",
+        "review"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Velocity mismatch should be escalated.",
+      "required_terms": [
+        "velocity",
+        "escalate"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "new entity false pass"
+  }
+}

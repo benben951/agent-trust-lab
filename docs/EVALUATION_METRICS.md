@@ -4,20 +4,16 @@ Agent Trust Lab is designed as a public-safe evaluation prototype for risk-sensi
 
 ## Evaluation Set
 
-The current public demo uses a 10-case synthetic evaluation set:
+The current public demo uses a 40-case synthetic evaluation set:
 
 | Domain | Case count | Purpose |
 |---|---:|---|
-| AML onboarding | 1 | Detect unsafe low-risk approval in incomplete onboarding evidence. |
-| AML transaction monitoring | 1 | Detect missing escalation in transaction-behavior mismatch. |
-| KYC review | 1 | Detect conflict handling problems in identity/address evidence. |
-| Vendor due diligence | 1 | Check acceptable review with notes. |
-| Trust and safety | 1 | Detect unsupported fraud claims and unsafe blocking. |
-| Customer support compliance | 1 | Detect unsupported compensation or policy promises. |
-| Agent output review | 1 | Detect tool failure ignored by final agent output. |
-| AI data quality | 1 | Detect label conflict and calibration risk. |
-| Sanctions screening | 1 | Detect false-positive risk and overconfident match handling. |
-| Low-risk control | 1 | Confirm the system can route safe cases without over-escalation. |
+| AML / KYC / sanctions | 13 | Detect unsafe low-risk approval, missing UBO review, structuring signals, and screening ambiguity. |
+| Due diligence / legal / vendor review | 5 | Detect unsupported adverse claims, PEP links, litigation signals, and evidence gaps. |
+| Trust and safety / customer support | 6 | Detect unsafe user-impacting decisions, policy-threshold gaps, and disputed context. |
+| Agent output and coding-agent review | 4 | Detect ignored tool failures, unsupported test claims, and tool-result mismatch. |
+| Data quality / HR / health / education / financial services | 11 | Detect sensitive-attribute misuse, unsafe certainty, label conflict, and financial false-pass risk. |
+| Low-risk controls | 1 | Confirm the system can route safe cases without over-escalation. |
 
 All cases are synthetic and public-safe. They do not contain real customer data, internal company policies, private labels, or credentials.
 
@@ -31,19 +27,20 @@ All cases are synthetic and public-safe. They do not contain real customer data,
 | Trust-level distribution | Count of low, medium, and high trust cases. | Shows whether the system can separate risky, ambiguous, and acceptable outputs. |
 | Recommendation distribution | Count of `reject_or_escalate`, `escalate_for_manual_review`, and `accept_with_notes`. | Converts model-output review into an operational routing decision. |
 | Finding distribution | Frequency of failure types such as `unsafe_certainty` or `unsupported_claim`. | Helps identify recurring weaknesses in LLM or agent outputs. |
+| Naive false accept rate | Share of cases where confident accept/approve wording would be accepted by a weak baseline even though the trust workflow requires review. | Highlights the risk of treating fluent LLM outputs as verified decisions. |
 
-## v0.2 Demo Metrics
+## v0.3 Demo Metrics
 
 Generated from `examples/batch_summary.json`:
 
 | Metric | Value |
 |---|---:|
-| Total synthetic cases | 10 |
-| Manual review cases | 8 |
-| Manual review rate | 80% |
-| Low-trust cases | 4 |
-| Low-trust rate | 40% |
-| Average risk score | 53.0 |
+| Total synthetic cases | 40 |
+| Manual review cases | 26 |
+| Manual review rate | 65% |
+| Low-trust cases | 19 |
+| Low-trust rate | 47.5% |
+| Average risk score | 47.62 |
 | Max risk score | 100 |
 | Min risk score | 0 |
 
@@ -51,27 +48,43 @@ Trust-level distribution:
 
 | Trust level | Count |
 |---|---:|
-| Low | 4 |
-| Medium | 4 |
-| High | 2 |
+| Low | 19 |
+| Medium | 7 |
+| High | 14 |
 
 Recommendation distribution:
 
 | Recommendation | Count |
 |---|---:|
-| `reject_or_escalate` | 4 |
-| `escalate_for_manual_review` | 4 |
-| `accept_with_notes` | 2 |
+| `reject_or_escalate` | 19 |
+| `escalate_for_manual_review` | 7 |
+| `accept_with_notes` | 14 |
 
 Finding distribution:
 
 | Finding | Count |
 |---|---:|
-| `risk_label_mismatch` | 9 |
-| `missing_policy_signal` | 7 |
-| `missing_escalation` | 5 |
-| `unsafe_certainty` | 4 |
-| `unsupported_claim` | 3 |
+| `risk_label_mismatch` | 27 |
+| `missing_policy_signal` | 24 |
+| `missing_escalation` | 24 |
+| `unsafe_certainty` | 17 |
+| `unsupported_claim` | 8 |
+
+## Naive Baseline Comparison
+
+Generated from `examples/baseline_comparison.json`:
+
+| Metric | Value |
+|---|---:|
+| Total synthetic cases | 40 |
+| Naive accept cases | 26 |
+| Naive accept rate | 65% |
+| Naive false accept cases | 19 |
+| Naive false accept rate | 48% |
+| Trust workflow accept cases | 14 |
+| Trust workflow accept rate | 35% |
+| Trust workflow manual review cases | 26 |
+| Trust workflow manual review rate | 65% |
 
 ## How To Reproduce
 
@@ -92,6 +105,15 @@ python -m agent_trust_lab.cli summarize `
   --out examples\evaluation_metrics.json
 ```
 
+Generate the naive-baseline comparison:
+
+```powershell
+python -m agent_trust_lab.cli baseline-compare `
+  --cases-dir examples\cases `
+  --out examples\baseline_comparison.json `
+  --markdown-out examples\baseline_comparison.md
+```
+
 ## How To Interpret The Metrics
 
 For risk-sensitive workflows, a high manual-review rate is not necessarily a weakness. It can be a sign that the system is correctly refusing to auto-accept ambiguous, unsupported, or high-impact outputs.
@@ -100,7 +122,7 @@ The most important failure mode is the unsafe false pass: an LLM output that sou
 
 ## Current Limitations
 
-- The evaluation set is synthetic and intentionally small.
+- The evaluation set is synthetic and intentionally small compared with a production review queue.
 - The public implementation uses deterministic checks for inspectability.
 - The metrics are demo metrics, not production model-performance claims.
 - The public repository does not include patent-facing claim details or private implementation ideas.
@@ -112,4 +134,3 @@ The most important failure mode is the unsafe false pass: an LLM output that sou
 - Add drift checks across model versions or prompt variants.
 - Add case difficulty labels and coverage buckets.
 - Add latency and review-time-saved estimates after a real workflow simulation is available.
-

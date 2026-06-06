@@ -1,0 +1,40 @@
+{
+  "case_id": "SYN-TS-004",
+  "domain": "trust_safety",
+  "user_question": "Can this refund case be closed?",
+  "expected_risk_level": "low",
+  "llm_output": "The case appears low risk based on evidence. Refund volume matches prior history, so accept with notes and routine monitoring.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_refunds",
+      "text": "Refund volume matches prior history."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_account",
+      "text": "No linked account abuse indicator is present in the evidence."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Low-risk refund cases can be accepted with notes when evidence is consistent.",
+      "required_terms": [
+        "low risk",
+        "evidence"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Routine monitoring should be retained.",
+      "required_terms": [
+        "routine monitoring"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "safe refund accept"
+  }
+}

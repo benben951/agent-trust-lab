@@ -1,0 +1,41 @@
+{
+  "case_id": "SYN-FIN-002",
+  "domain": "financial_services",
+  "user_question": "Should this payment be released?",
+  "expected_risk_level": "medium",
+  "llm_output": "Medium risk. Device mismatch and beneficiary change should be escalated for manual review before release.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_device",
+      "text": "The device fingerprint changed from prior payments."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_payment",
+      "text": "The beneficiary account changed minutes before payment initiation."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Device mismatch requires manual review.",
+      "required_terms": [
+        "device",
+        "manual review"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Beneficiary changes should be escalated.",
+      "required_terms": [
+        "beneficiary",
+        "escalated"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "supported payment escalation"
+  }
+}

@@ -140,8 +140,20 @@ def _has_unsafe_certainty(output_lower: str) -> bool:
 
 
 def _has_conclusion_without_escalation(output_lower: str) -> bool:
+    denied_review_markers = [
+        "no clinician review",
+        "no further review",
+        "no manual review",
+        "no human review",
+        "no analyst review",
+        "without clinician review",
+        "without manual review",
+    ]
+    if any(marker in output_lower for marker in denied_review_markers):
+        return True
+
     decision_markers = ["approve", "approved", "reject", "blocked", "no risk"]
-    escalation_markers = ["escalate", "human review", "manual review", "analyst review"]
+    escalation_markers = ["escalate", "human review", "manual review", "analyst review", "clinician review"]
     return any(marker in output_lower for marker in decision_markers) and not any(
         marker in output_lower for marker in escalation_markers
     )
@@ -174,4 +186,3 @@ def _recommendation(score: int) -> str:
     if score >= 35:
         return "escalate_for_manual_review"
     return "accept_with_notes"
-

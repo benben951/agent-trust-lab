@@ -1,39 +1,54 @@
 {
-  "total_cases": 10,
-  "manual_review_cases": 8,
-  "manual_review_rate": 0.8,
-  "low_trust_cases": 4,
-  "low_trust_rate": 0.4,
-  "average_risk_score": 53.0,
+  "total_cases": 40,
+  "manual_review_cases": 26,
+  "manual_review_rate": 0.65,
+  "low_trust_cases": 19,
+  "low_trust_rate": 0.475,
+  "average_risk_score": 47.62,
   "max_risk_score": 100,
   "min_risk_score": 0,
   "trust_level_distribution": {
-    "low": 4,
-    "medium": 4,
-    "high": 2
+    "low": 19,
+    "high": 14,
+    "medium": 7
   },
   "recommendation_distribution": {
-    "reject_or_escalate": 4,
-    "escalate_for_manual_review": 4,
-    "accept_with_notes": 2
+    "reject_or_escalate": 19,
+    "accept_with_notes": 14,
+    "escalate_for_manual_review": 7
   },
   "finding_distribution": {
-    "unsafe_certainty": 4,
-    "missing_policy_signal": 7,
-    "missing_escalation": 5,
-    "risk_label_mismatch": 9,
-    "unsupported_claim": 3
+    "unsafe_certainty": 17,
+    "missing_policy_signal": 24,
+    "missing_escalation": 24,
+    "risk_label_mismatch": 27,
+    "unsupported_claim": 8
   },
   "domain_distribution": {
+    "agent_tool_use": 2,
+    "agent_coding": 1,
     "agent_output_review": 1,
-    "aml_onboarding": 1,
+    "aml_monitoring": 3,
+    "aml_onboarding": 2,
     "aml_transaction_monitoring": 1,
+    "financial_services": 2,
+    "customer_support_policy": 2,
     "customer_support_compliance": 1,
+    "data_quality_review": 2,
     "ai_data_quality": 1,
+    "due_diligence": 3,
     "vendor_due_diligence": 1,
+    "education_ai_review": 1,
+    "hr_ai_review": 2,
     "kyc_review": 1,
+    "kyc_onboarding": 1,
+    "kyc_refresh": 1,
+    "kyc_screening": 1,
+    "legal_ai_review": 1,
+    "health_safety": 2,
     "low_risk_control": 1,
-    "sanctions_screening": 1,
+    "sanctions_screening": 3,
+    "trust_safety": 3,
     "trust_and_safety": 1
   }
 }

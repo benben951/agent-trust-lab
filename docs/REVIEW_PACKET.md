@@ -21,17 +21,23 @@ Fast walkthrough: [CASE_WALKTHROUGH.md](CASE_WALKTHROUGH.md)
 
 Context engineering note: [CONTEXT_ENGINEERING.md](CONTEXT_ENGINEERING.md)
 
+Human spot-check protocol: [HUMAN_SPOT_CHECK_PROTOCOL.md](HUMAN_SPOT_CHECK_PROTOCOL.md)
+
+Human spot-check log: [HUMAN_SPOT_CHECK_LOG.md](HUMAN_SPOT_CHECK_LOG.md)
+
 ## 2. Why This Is Relevant To LLM Evaluation Roles
 
 | Hiring Signal | Project Evidence |
 |---|---|
-| LLM output evaluation | 10 synthetic cases with failure findings and trust levels. |
+| LLM output evaluation | 40 synthetic cases with failure findings and trust levels. |
 | Human-in-the-loop review | Medium/high-risk or uncertain cases are routed to manual review. |
 | Risk and compliance judgment | Findings include unsafe certainty, unsupported claim, missing policy signal, missing escalation, and risk-label mismatch. |
 | Evaluation artifacts | Each case generates a Markdown trust report and machine-readable JSON summary. |
 | Agent workflow thinking | `workflow-review` decomposes one case into evidence, policy, risk, escalation, and final reviewer roles. |
 | Context engineering | Docs, generated reports, CLI commands, tests, and browser checks make AI-assisted changes reviewable. |
-| Metrics thinking | Batch metrics track manual-review rate, low-trust rate, risk-score distribution, recommendations, and finding frequencies. |
+| Metrics thinking | Batch metrics track manual-review rate, low-trust rate, risk-score distribution, recommendations, finding frequencies, and naive false-accept behavior. |
+| Human spot-check readiness | A public-safe protocol defines sampled manual review, route agreement, over-trigger checks, missed-finding checks, and release gates. |
+| Quality loop | A 15-case author spot-check found a missing-escalation edge case, added a regression test, and regenerated reports. |
 | Governance awareness | The repository explicitly documents data, decision, logging, and public-demo boundaries. |
 
 ## 3. System Flow
@@ -62,6 +68,8 @@ The public workflow trace intentionally shows role-level review notes without ex
 
 ## 4. Case Library
 
+The public case library currently contains 40 synthetic public-safe cases. The table below shows representative examples rather than every case.
+
 | Case ID | Domain | Scenario | Trust Level | Recommendation |
 |---|---|---|---|---|
 | `SYN-AML-001` | AML onboarding | Unsafe false pass in incomplete onboarding evidence. | Low | Reject or escalate |
@@ -81,12 +89,12 @@ Generated from `examples/batch_summary.json` and `examples/evaluation_metrics.js
 
 | Metric | Value |
 |---|---:|
-| Total synthetic cases | 10 |
-| Manual review cases | 8 |
-| Manual review rate | 80% |
-| Low-trust cases | 4 |
-| Low-trust rate | 40% |
-| Average risk score | 53.0 |
+| Total synthetic cases | 40 |
+| Manual review cases | 26 |
+| Manual review rate | 65% |
+| Low-trust cases | 19 |
+| Low-trust rate | 47.5% |
+| Average risk score | 47.62 |
 | Max risk score | 100 |
 | Min risk score | 0 |
 
@@ -94,27 +102,37 @@ Trust distribution:
 
 | Trust level | Count |
 |---|---:|
-| Low | 4 |
-| Medium | 4 |
-| High | 2 |
+| Low | 19 |
+| Medium | 7 |
+| High | 14 |
 
 Recommendation distribution:
 
 | Recommendation | Count |
 |---|---:|
-| `reject_or_escalate` | 4 |
-| `escalate_for_manual_review` | 4 |
-| `accept_with_notes` | 2 |
+| `reject_or_escalate` | 19 |
+| `escalate_for_manual_review` | 7 |
+| `accept_with_notes` | 14 |
 
 Finding distribution:
 
 | Finding | Count |
 |---|---:|
-| `risk_label_mismatch` | 9 |
-| `missing_policy_signal` | 7 |
-| `missing_escalation` | 5 |
-| `unsafe_certainty` | 4 |
-| `unsupported_claim` | 3 |
+| `risk_label_mismatch` | 27 |
+| `missing_policy_signal` | 24 |
+| `missing_escalation` | 24 |
+| `unsafe_certainty` | 17 |
+| `unsupported_claim` | 8 |
+
+Naive baseline comparison:
+
+| Metric | Value |
+|---|---:|
+| Naive accept cases | 26 |
+| Naive false accept cases | 19 |
+| Naive false accept rate | 48% |
+| Trust workflow accept cases | 14 |
+| Trust workflow manual review cases | 26 |
 
 ## 6. Example Reports
 
@@ -154,6 +172,15 @@ python -m agent_trust_lab.cli summarize `
   --out examples\evaluation_metrics.json
 ```
 
+Generate the naive-baseline comparison:
+
+```powershell
+python -m agent_trust_lab.cli baseline-compare `
+  --cases-dir examples\cases `
+  --out examples\baseline_comparison.json `
+  --markdown-out examples\baseline_comparison.md
+```
+
 Generate a multi-role workflow trace:
 
 ```powershell
@@ -179,19 +206,21 @@ http://localhost:8765/web/
 
 Short version:
 
-> I built Agent Trust Lab to evaluate whether LLM or agent outputs are safe enough to accept, escalate, or reject in risk-sensitive workflows. The prototype uses synthetic AML, KYC, due-diligence, trust-and-safety, and agent-review cases. It generates trust reports, multi-role workflow traces, human-review routing decisions, and evaluation metrics such as manual-review rate, low-trust rate, recommendation distribution, and recurring failure types.
+> I built Agent Trust Lab to evaluate whether LLM or agent outputs are safe enough to accept, escalate, or reject in risk-sensitive workflows. The prototype uses 40 synthetic AML, KYC, due-diligence, trust-and-safety, and agent-review cases. It generates trust reports, multi-role workflow traces, human-review routing decisions, naive-baseline comparisons, and evaluation metrics such as manual-review rate, low-trust rate, recommendation distribution, and recurring failure types.
 
 Chinese version:
 
-> 我做的 Agent Trust Lab 是一个面向风险敏感场景的大模型输出复审与信任报告系统。它不是让模型直接替人做高风险决策，而是把模型输出拆成证据支持、政策信号、确定性控制、升级建议和风险标签一致性几个维度，生成可审计的 trust report，并把不确定或高风险输出路由给人工复审。
+> 鎴戝仛鐨?Agent Trust Lab 鏄竴涓潰鍚戦闄╂晱鎰熷満鏅殑澶фā鍨嬭緭鍑哄瀹′笌淇′换鎶ュ憡绯荤粺銆傚畠涓嶆槸璁╂ā鍨嬬洿鎺ユ浛浜哄仛楂橀闄╁喅绛栵紝鑰屾槸鎶婃ā鍨嬭緭鍑烘媶鎴愯瘉鎹敮鎸併€佹斂绛栦俊鍙枫€佺‘瀹氭€ф帶鍒躲€佸崌绾у缓璁拰椋庨櫓鏍囩涓€鑷存€у嚑涓淮搴︼紝鐢熸垚鍙璁＄殑 trust report锛屽苟鎶婁笉纭畾鎴栭珮椋庨櫓杈撳嚭璺敱缁欎汉宸ュ瀹°€?
 
 ## 9. Resume Bullets
 
 - Built Agent Trust Lab, a public-safe LLM output review prototype for AML/KYC, due diligence, trust and safety, AI data-quality, and agent-output evaluation scenarios.
-- Designed a 10-case synthetic evaluation library and generated structured Markdown/JSON trust reports with risk findings, trust levels, escalation recommendations, and aggregate review-routing metrics.
+- Designed a 40-case synthetic evaluation library and generated structured Markdown/JSON trust reports with risk findings, trust levels, escalation recommendations, baseline comparison, and aggregate review-routing metrics.
 - Added a public-safe multi-role workflow trace covering evidence, policy, risk, escalation, and final reviewer notes for agent-output review.
 - Published a recruiter-friendly case walkthrough for a synthetic tool-failure scenario, connecting the input evidence, policy rule, role-level failures, final routing, and safety boundary.
 - Documented a Codex-first context-engineering workflow using explicit project memory, generated artifacts, CLI reproduction commands, tests, and browser-demo checks.
+- Defined a public-safe human spot-check protocol for sampling synthetic cases, recording route agreement, identifying over-triggered findings, and tracking missed findings before public sharing.
+- Ran a 15-case author spot-check, identified a denied-clinician-review escalation edge case, added a regression test, and regenerated trust reports and metrics.
 - Implemented human-in-the-loop governance boundaries to avoid automated high-risk approval and make unsafe certainty, unsupported claims, missing policy signals, and missing escalation visible to reviewers.
 
 ## 10. Public-Safe Boundary

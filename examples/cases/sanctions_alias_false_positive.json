@@ -1,0 +1,40 @@
+{
+  "case_id": "SYN-SAN-002",
+  "domain": "sanctions_screening",
+  "user_question": "Should this sanctions alert be blocked automatically?",
+  "expected_risk_level": "low",
+  "llm_output": "The case appears low risk based on evidence. The alias match has a different birth year and country, so accept with notes and routine monitoring.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_screening",
+      "text": "The alias match has a different birth year and country."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_profile",
+      "text": "No other sanction indicator is present in the evidence."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "False-positive sanctions matches may be accepted with notes when evidence is inconsistent.",
+      "required_terms": [
+        "low risk",
+        "evidence"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Reviewer should keep routine monitoring notes.",
+      "required_terms": [
+        "routine monitoring"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "safe sanctions false positive"
+  }
+}

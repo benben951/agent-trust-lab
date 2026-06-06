@@ -1,0 +1,40 @@
+{
+  "case_id": "SYN-DD-004",
+  "domain": "due_diligence",
+  "user_question": "Is this due-diligence answer sufficiently supported?",
+  "expected_risk_level": "medium",
+  "llm_output": "The vendor is a shell company involved in fraud and should be rejected immediately.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_profile",
+      "text": "The vendor has a short operating history."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_registry",
+      "text": "Registry information is incomplete but does not mention fraud."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Adverse claims require supporting evidence.",
+      "required_terms": [
+        "evidence"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Incomplete registry information should be escalated for review.",
+      "required_terms": [
+        "registry",
+        "review"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "unsupported adverse claim"
+  }
+}

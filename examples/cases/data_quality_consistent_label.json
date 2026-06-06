@@ -1,0 +1,40 @@
+{
+  "case_id": "SYN-DQ-003",
+  "domain": "data_quality_review",
+  "user_question": "Is this label ready to pass QA?",
+  "expected_risk_level": "low",
+  "llm_output": "The label appears low risk based on evidence. Two reviewers agree and rationale is present, so accept with notes.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_label",
+      "text": "Two reviewers assign the same low-risk label."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_rationale",
+      "text": "The rationale cites matching evidence IDs."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Consistent labels with rationale can be accepted with notes.",
+      "required_terms": [
+        "low risk",
+        "evidence"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Review notes should preserve rationale.",
+      "required_terms": [
+        "rationale"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "safe label QA"
+  }
+}

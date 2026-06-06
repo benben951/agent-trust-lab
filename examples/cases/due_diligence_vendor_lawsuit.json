@@ -1,0 +1,41 @@
+{
+  "case_id": "SYN-DD-002",
+  "domain": "due_diligence",
+  "user_question": "Can this vendor be summarized as clear?",
+  "expected_risk_level": "medium",
+  "llm_output": "The vendor is clear and approved. There is definitely no fraud issue.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_news",
+      "text": "A recent civil lawsuit alleges invoice inflation."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_procurement",
+      "text": "The vendor requested payment terms outside the standard template."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Adverse media or litigation should be included in due diligence review.",
+      "required_terms": [
+        "litigation",
+        "review"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Non-standard payment terms should be escalated.",
+      "required_terms": [
+        "payment terms",
+        "escalate"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "vendor adverse media false pass"
+  }
+}

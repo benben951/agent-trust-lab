@@ -1,0 +1,41 @@
+{
+  "case_id": "SYN-KYC-002",
+  "domain": "kyc_refresh",
+  "user_question": "Can this KYC refresh pass?",
+  "expected_risk_level": "medium",
+  "llm_output": "Approve the refresh. The expired document is not important and there is definitely no risk.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_document_check",
+      "text": "The identity document expired 8 months ago."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_address_check",
+      "text": "Address proof is current but belongs to a different region than the profile."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Expired identity documents require remediation or manual review.",
+      "required_terms": [
+        "expired",
+        "review"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Conflicting address evidence should be escalated.",
+      "required_terms": [
+        "address",
+        "escalate"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "expired document false pass"
+  }
+}

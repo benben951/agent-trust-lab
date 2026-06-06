@@ -1,0 +1,40 @@
+{
+  "case_id": "SYN-KYC-003",
+  "domain": "kyc_screening",
+  "user_question": "How should a transliteration conflict be handled?",
+  "expected_risk_level": "medium",
+  "llm_output": "This is medium risk. The transliteration conflict should be routed to manual review before any approval decision.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_screening",
+      "text": "Two transliterations match similar but not identical watchlist aliases."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_profile",
+      "text": "Date of birth does not match the closest alias."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Name transliteration conflicts require manual review.",
+      "required_terms": [
+        "transliteration",
+        "manual review"
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Review should avoid definitive sanctions claims without evidence.",
+      "required_terms": [
+        "evidence"
+      ]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "calibrated watchlist review"
+  }
+}
