@@ -32,6 +32,8 @@ The project focuses on one practical question:
 
 ![Agent Trust Lab browser demo](assets/agent-trust-lab-v03.png)
 
+Animated demo flow: [assets/demo_review_flow.gif](assets/demo_review_flow.gif)
+
 ## Three-Minute Demo Path
 
 If you only have three minutes, review this sequence:
