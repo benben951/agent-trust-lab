@@ -4,6 +4,8 @@ This is the shortest recruiter- and interviewer-facing path through Agent Trust 
 
 Live demo: [https://benben951.github.io/agent-trust-lab/](https://benben951.github.io/agent-trust-lab/)
 
+Screenshots: [DEMO_SCREENSHOTS.md](DEMO_SCREENSHOTS.md)
+
 ## 1. Thirty-Second Positioning
 
 Agent Trust Lab reviews whether an LLM or agent output is safe enough to accept, escalate, or reject in a risk-sensitive workflow.
