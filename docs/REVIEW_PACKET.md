@@ -19,6 +19,8 @@ Live demo: [https://benben951.github.io/agent-trust-lab/](https://benben951.gith
 
 Fast walkthrough: [CASE_WALKTHROUGH.md](CASE_WALKTHROUGH.md)
 
+Three-minute demo path: [DEMO_WALKTHROUGH.md](DEMO_WALKTHROUGH.md)
+
 Context engineering note: [CONTEXT_ENGINEERING.md](CONTEXT_ENGINEERING.md)
 
 Human spot-check protocol: [HUMAN_SPOT_CHECK_PROTOCOL.md](HUMAN_SPOT_CHECK_PROTOCOL.md)
@@ -210,7 +212,7 @@ Short version:
 
 Chinese version:
 
-> 鎴戝仛鐨?Agent Trust Lab 鏄竴涓潰鍚戦闄╂晱鎰熷満鏅殑澶фā鍨嬭緭鍑哄瀹′笌淇′换鎶ュ憡绯荤粺銆傚畠涓嶆槸璁╂ā鍨嬬洿鎺ユ浛浜哄仛楂橀闄╁喅绛栵紝鑰屾槸鎶婃ā鍨嬭緭鍑烘媶鎴愯瘉鎹敮鎸併€佹斂绛栦俊鍙枫€佺‘瀹氭€ф帶鍒躲€佸崌绾у缓璁拰椋庨櫓鏍囩涓€鑷存€у嚑涓淮搴︼紝鐢熸垚鍙璁＄殑 trust report锛屽苟鎶婁笉纭畾鎴栭珮椋庨櫓杈撳嚭璺敱缁欎汉宸ュ瀹°€?
+> 我做 Agent Trust Lab 的核心原因是：在风控、合规、Trust & Safety 和 Agent 输出复审场景里，模型回答得流畅不代表可以被信任。这个项目用 40 个公开安全的 synthetic cases，把 LLM 或 Agent 输出转成可审计的 trust report，检查证据支撑、规则信号、风险标签、升级处理和最终路由，并通过 naive baseline 对比说明“自信输出直接接受”会带来的 false-accept 风险。
 
 ## 9. Resume Bullets
 

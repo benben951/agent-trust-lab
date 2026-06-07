@@ -7,3 +7,4 @@ build/
 *.egg-info/
 examples/generated_*.md
 examples/generated_*.json
+tmp/

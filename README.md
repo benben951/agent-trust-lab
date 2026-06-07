@@ -10,6 +10,7 @@ Live demo: [https://benben951.github.io/agent-trust-lab/](https://benben951.gith
 
 For a recruiter/interviewer review path, start with:
 
+- [Demo Walkthrough](docs/DEMO_WALKTHROUGH.md): shortest three-minute path through the live demo, metrics, baseline comparison, workflow trace, and governance boundary.
 - [Review Packet](docs/REVIEW_PACKET.md): three-minute project summary, case library, metrics, reports, reproduction steps, and interview pitch.
 - [Case Walkthrough](docs/CASE_WALKTHROUGH.md): step-by-step demo flow for an agent tool-failure review.
 - [Context Engineering](docs/CONTEXT_ENGINEERING.md): how the project is maintained with Codex-first context, verification gates, and public-safe boundaries.
@@ -29,6 +30,18 @@ The project focuses on one practical question:
 > Can a human reviewer trust this LLM or agent output enough to use it, escalate it, or reject it?
 
 ![Agent Trust Lab browser demo](assets/agent-trust-lab-v03.png)
+
+## Three-Minute Demo Path
+
+If you only have three minutes, review this sequence:
+
+| Step | Link | What to look for |
+|---:|---|---|
+| 1 | [Live demo](https://benben951.github.io/agent-trust-lab/) | Browser review queue, findings, risk score, recommendation, and human-review flag. |
+| 2 | [Demo Walkthrough](docs/DEMO_WALKTHROUGH.md) | Recruiter-facing explanation of the project, metrics, baseline, workflow trace, and governance boundary. |
+| 3 | [Baseline Comparison](examples/baseline_comparison.md) | Naive baseline creates 19 false accepts on the 40-case synthetic set. |
+| 4 | [Agent Tool-Failure Workflow](examples/workflow_report_agent_tool_failure.md) | Multi-role review catches a confident final answer after a failed tool call. |
+| 5 | [Evaluation Metrics](docs/EVALUATION_METRICS.md) | Manual-review rate, low-trust rate, finding distribution, and limitations. |
 
 ## What It Demonstrates
 
@@ -191,6 +204,7 @@ See:
 - [examples/synthetic_aml_case.json](examples/synthetic_aml_case.json)
 - [examples/trust_report_sample.md](examples/trust_report_sample.md)
 - [docs/REVIEW_PACKET.md](docs/REVIEW_PACKET.md)
+- [docs/DEMO_WALKTHROUGH.md](docs/DEMO_WALKTHROUGH.md)
 - [docs/CASE_WALKTHROUGH.md](docs/CASE_WALKTHROUGH.md)
 - [docs/CONTEXT_ENGINEERING.md](docs/CONTEXT_ENGINEERING.md)
 - [docs/PORTFOLIO_SHOWCASE.md](docs/PORTFOLIO_SHOWCASE.md)
