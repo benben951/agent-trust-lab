@@ -6,6 +6,35 @@ Risk-sensitive LLM output review and trust-report generation system.
 
 Live demo: [https://benben951.github.io/agent-trust-lab/](https://benben951.github.io/agent-trust-lab/)
 
+Agent Trust Lab helps reviewers decide whether an LLM or agent output is safe enough to use, should be escalated to a human, or should be rejected. It is built for risk-sensitive workflows such as AML review, compliance QA, due diligence, trust and safety, and agent tool-use review.
+
+## What You Can Do With It
+
+- Turn a synthetic LLM/agent output into a Markdown and JSON trust report.
+- Flag unsafe certainty, unsupported claims, missing evidence, missing escalation, and risk-label mismatch.
+- Compare a naive "accept confident output" baseline against a structured trust-review workflow.
+- Inspect a public-safe multi-role review trace across evidence, policy, risk, escalation, and final-review roles.
+- Open a static browser demo to review cases without sending data to any external service.
+
+## 60-Second Quickstart
+
+```powershell
+git clone https://github.com/benben951/agent-trust-lab.git
+cd agent-trust-lab
+python -m pip install -e ".[dev]"
+
+python -m agent_trust_lab.cli workflow-review `
+  --case examples\cases\agent_tool_failure.json `
+  --out examples\workflow_report_agent_tool_failure.md `
+  --json-out examples\workflow_report_agent_tool_failure.json
+```
+
+Then open [examples/workflow_report_agent_tool_failure.md](examples/workflow_report_agent_tool_failure.md) to see the generated role trace and human-review recommendation.
+
+## Why Star This Repo
+
+Star it if you are interested in practical LLM evaluation, human-in-the-loop AI review, agent safety, trust reports, or reproducible examples of how to turn vague model-quality concerns into inspectable artifacts.
+
 ## Start Here
 
 For a recruiter/interviewer review path, start with:
