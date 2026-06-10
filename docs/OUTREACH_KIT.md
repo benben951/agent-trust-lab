@@ -143,3 +143,8 @@ Okay:
 Avoid:
 
 > Please star my repo.
+
+## Outreach Log
+
+Record public feedback actions in [`OUTREACH_LOG.md`](OUTREACH_LOG.md) so
+feedback requests, responses, and follow-up work remain auditable.

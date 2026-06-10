@@ -83,6 +83,7 @@ For a recruiter/interviewer review path, start with:
 - [Paper Strategy](docs/PAPER_STRATEGY.md): system-demo positioning, submission readiness, and claim boundaries.
 - [Impact Roadmap](docs/IMPACT_ROADMAP.md): visibility, citation, external-feedback, and star-conversion plan.
 - [Outreach Kit](docs/OUTREACH_KIT.md): recruiter pitch, LinkedIn draft, feedback prompt, and anti-spam rules.
+- [Outreach Log](docs/OUTREACH_LOG.md): public feedback requests and follow-up evidence.
 - [Reusable Trust Workflows Post Draft](docs/POST_REUSABLE_TRUST_WORKFLOWS.md): shareable GitHub/LinkedIn post draft for feedback and visibility.
 - [GitHub Proxy Push Tip](docs/GITHUB_PROXY_PUSH_TIP.md): small Windows note for pushing through a local proxy when direct GitHub HTTPS fails.
 
