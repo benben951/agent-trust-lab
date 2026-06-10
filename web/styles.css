@@ -64,6 +64,15 @@ h1 {
   letter-spacing: 0;
 }
 
+.hero-copy {
+  max-width: 720px;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: clamp(15px, 1.6vw, 18px);
+  font-weight: 650;
+  line-height: 1.5;
+}
+
 h2 {
   margin-bottom: 0;
   font-size: 22px;
@@ -94,6 +103,57 @@ h3 {
   padding: 8px 11px;
   color: var(--muted);
   font-size: 13px;
+}
+
+.proof-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0 0;
+}
+
+.proof-card {
+  min-height: 132px;
+  padding: 16px;
+  color: var(--ink);
+  text-decoration: none;
+  background:
+    linear-gradient(145deg, rgba(255, 253, 248, 0.96), rgba(235, 229, 216, 0.82));
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.proof-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(43, 120, 127, 0.45);
+  background:
+    linear-gradient(145deg, rgba(255, 253, 248, 1), rgba(226, 238, 235, 0.86));
+}
+
+.proof-card span {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.proof-card strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 17px;
+  line-height: 1.18;
+}
+
+.proof-card small {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
 .metrics {
@@ -394,7 +454,8 @@ pre {
   .workbench,
   .detail-grid,
   .distribution-grid,
-  .workflow-steps {
+  .workflow-steps,
+  .proof-strip {
     grid-template-columns: 1fr;
     display: grid;
   }
