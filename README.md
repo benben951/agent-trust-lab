@@ -8,6 +8,33 @@ Live demo: [https://benben951.github.io/agent-trust-lab/](https://benben951.gith
 
 Agent Trust Lab helps reviewers decide whether an LLM or agent output is safe enough to use, should be escalated to a human, or should be rejected. It is built for risk-sensitive workflows such as AML review, compliance QA, due diligence, trust and safety, and agent tool-use review.
 
+## At A Glance
+
+Agent Trust Lab is a public-safe proof project for one core capability:
+
+> Turn risky LLM and agent outputs into structured, auditable trust reports with human-in-the-loop routing.
+
+| Proof point | Artifact |
+|---|---|
+| Browser demo | [Live GitHub Pages demo](https://benben951.github.io/agent-trust-lab/) |
+| Reproducible CLI | [60-second quickstart](#60-second-quickstart) |
+| 52-case synthetic evaluation set | [Evaluation metrics](docs/EVALUATION_METRICS.md) |
+| Naive baseline comparison | [Baseline comparison](examples/baseline_comparison.md) |
+| Multi-role agent review trace | [Agent tool-failure workflow](examples/workflow_report_agent_tool_failure.md) |
+| Reusable review workflows | [Workflow recipes](docs/WORKFLOW_RECIPES.md) |
+| Recruiter-facing evidence packet | [Review packet](docs/REVIEW_PACKET.md) |
+
+```mermaid
+flowchart LR
+    A["Synthetic case + LLM/agent output"] --> B["Evidence and policy checks"]
+    B --> C["Failure finding taxonomy"]
+    C --> D["Risk score + trust level"]
+    D --> E["Human route: accept, escalate, or reject"]
+    E --> F["Markdown + JSON trust report"]
+    F --> G["Batch metrics + baseline comparison"]
+    G --> H["Reusable workflow recipes"]
+```
+
 ## What You Can Do With It
 
 - Turn a synthetic LLM/agent output into a Markdown and JSON trust report.
