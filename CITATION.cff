@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If Agent Trust Lab helps your work, please cite it using the metadata below."
+title: "Agent Trust Lab: Human-in-the-Loop Trust Reports for Risk-Sensitive LLM Outputs"
+version: "0.1.0"
+date-released: "2026-06-09"
+type: software
+authors:
+  - family-names: "Guo"
+    given-names: "Zhaojie"
+repository-code: "https://github.com/benben951/agent-trust-lab"
+url: "https://benben951.github.io/agent-trust-lab/"
+abstract: >-
+  Agent Trust Lab is a public-safe prototype for generating structured trust
+  reports for risk-sensitive LLM and agent outputs. It includes synthetic review
+  cases, deterministic findings, Markdown and JSON reports, baseline comparison,
+  metrics summaries, and human-in-the-loop routing recommendations.
+keywords:
+  - llm-evaluation
+  - agent-evaluation
+  - trust-and-safety
+  - human-in-the-loop
+  - aml
+  - compliance
+  - risk-review
