@@ -18,6 +18,7 @@ Agent Trust Lab already has:
 - Markdown and JSON trust reports
 - baseline comparison
 - evaluation metrics
+- reusable review workflow recipes
 - a working system-demonstration draft
 - public-safe governance and human-review boundaries
 
@@ -49,6 +50,7 @@ Near-term work:
 - Add a formal error taxonomy.
 - Add case-family metrics.
 - Add a baseline comparison table by case family.
+- Add reusable workflow recipes for common review scenarios.
 - Add a short reproducibility appendix for the technical report.
 - Add one "known limitations" table that makes the public-safe boundary obvious.
 
@@ -118,7 +120,7 @@ Avoid:
 |---|---|---|
 | 1 | Error taxonomy and case-family metrics | README snapshot, metrics JSON, report appendix |
 | 2 | 50+ case library and stronger baseline comparison | updated examples and evaluation table |
-| 3 | Demo-paper draft v0.2 | demo draft and reproducibility appendix |
+| 3 | Reusable workflow recipes and demo-paper draft v0.2 | workflow recipe docs, demo draft, reproducibility appendix |
 | 4 | Outreach post and feedback request | LinkedIn/GitHub post, discussion links |
 | 5 | External contribution or issue feedback | merged PR, issue thread, or maintainer response |
 | 6 | Resume-ready release | release notes, screenshots, final one-pager |
@@ -129,8 +131,9 @@ Use this as the central proof project:
 
 > Built Agent Trust Lab, a public-safe LLM output review system that converts
 > risky model and agent outputs into structured trust reports with synthetic
-> risk cases, baseline comparison, case-level findings, Markdown/JSON artifacts,
-> and human-in-the-loop escalation recommendations.
+> risk cases, reusable workflow recipes, baseline comparison, case-level
+> findings, Markdown/JSON artifacts, and human-in-the-loop escalation
+> recommendations.
 
 Supporting projects should point back to this narrative instead of competing
 with it for attention.

@@ -29,6 +29,8 @@ Human spot-check log: [HUMAN_SPOT_CHECK_LOG.md](HUMAN_SPOT_CHECK_LOG.md)
 
 Error taxonomy: [ERROR_TAXONOMY.md](ERROR_TAXONOMY.md)
 
+Reusable workflow recipes: [WORKFLOW_RECIPES.md](WORKFLOW_RECIPES.md)
+
 ## 2. Why This Is Relevant To LLM Evaluation Roles
 
 | Hiring Signal | Project Evidence |
@@ -38,6 +40,7 @@ Error taxonomy: [ERROR_TAXONOMY.md](ERROR_TAXONOMY.md)
 | Risk and compliance judgment | Findings include unsafe certainty, unsupported claim, missing policy signal, missing escalation, and risk-label mismatch. |
 | Evaluation artifacts | Each case generates a Markdown trust report and machine-readable JSON summary. |
 | Agent workflow thinking | `workflow-review` decomposes one case into evidence, policy, risk, escalation, and final reviewer roles. |
+| Reusable workflow design | `WORKFLOW_RECIPES.md` converts common review scenarios into repeatable recipes with triggers, inputs, roles, findings, artifacts, and human routes. |
 | Context engineering | Docs, generated reports, CLI commands, tests, and browser checks make AI-assisted changes reviewable. |
 | Metrics thinking | Batch metrics track manual-review rate, low-trust rate, risk-score distribution, recommendations, finding frequencies, and naive false-accept behavior. |
 | Error analysis | Formal taxonomy maps raw findings into evidence grounding, policy alignment, calibration, human escalation, and risk routing. |
@@ -71,6 +74,10 @@ batch evaluation metrics
 ```
 
 The public workflow trace intentionally shows role-level review notes without exposing private scoring formulas, dynamic weighting, or patent-facing orchestration details.
+
+Reusable workflow recipes document how to apply the same review pattern across
+AML false-pass, agent tool-failure, financial advice, health-safety escalation,
+and low-risk control scenarios.
 
 ## 4. Case Library
 
@@ -172,6 +179,7 @@ Representative generated reports:
 | [`SYN-AML-001`](../examples/reports/SYN-AML-001.md) | Detects unsafe low-risk approval and unsupported risk claims in an AML onboarding-style case. |
 | [`SYN-AGENT-001`](../examples/reports/SYN-AGENT-001.md) | Detects a final agent answer that ignores a failed lookup tool call. |
 | [`Workflow trace: SYN-AGENT-001`](../examples/workflow_report_agent_tool_failure.md) | Shows evidence, policy, risk, escalation, and final reviewer role notes for an ignored tool failure. |
+| [`Workflow recipes`](WORKFLOW_RECIPES.md) | Shows how one-off LLM review prompts become reusable, auditable review workflows. |
 | [`Case walkthrough: SYN-AGENT-001`](CASE_WALKTHROUGH.md) | Explains the input, evidence package, role trace, final routing, and safety boundary in recruiter-friendly form. |
 | [`SYN-SAN-001`](../examples/reports/SYN-SAN-001.md) | Detects overconfident sanctions-screening handling and false-positive risk. |
 | [`SYN-SAFE-001`](../examples/reports/SYN-SAFE-001.md) | Shows that the system can accept a low-risk control case with notes. |

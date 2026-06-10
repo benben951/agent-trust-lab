@@ -14,6 +14,7 @@ Agent Trust Lab helps reviewers decide whether an LLM or agent output is safe en
 - Flag unsafe certainty, unsupported claims, missing evidence, missing escalation, and risk-label mismatch.
 - Compare a naive "accept confident output" baseline against a structured trust-review workflow.
 - Inspect a public-safe multi-role review trace across evidence, policy, risk, escalation, and final-review roles.
+- Reuse review workflow recipes for AML, agent tool-failure, financial, health-safety, and low-risk control scenarios.
 - Open a static browser demo to review cases without sending data to any external service.
 
 ## 60-Second Quickstart
@@ -42,6 +43,7 @@ For a recruiter/interviewer review path, start with:
 - [Demo Walkthrough](docs/DEMO_WALKTHROUGH.md): shortest three-minute path through the live demo, metrics, baseline comparison, workflow trace, and governance boundary.
 - [Demo Screenshots](docs/DEMO_SCREENSHOTS.md): desktop and narrow-layout screenshots for portfolio and recruiter review.
 - [Review Packet](docs/REVIEW_PACKET.md): three-minute project summary, case library, metrics, reports, reproduction steps, and interview pitch.
+- [Workflow Recipes](docs/WORKFLOW_RECIPES.md): reusable review recipes that turn one-off LLM review prompts into auditable workflows.
 - [Case Walkthrough](docs/CASE_WALKTHROUGH.md): step-by-step demo flow for an agent tool-failure review.
 - [Context Engineering](docs/CONTEXT_ENGINEERING.md): how the project is maintained with Codex-first context, verification gates, and public-safe boundaries.
 - [Portfolio Showcase](docs/PORTFOLIO_SHOWCASE.md): demo scope, case table, browser console, and resume angle.
@@ -54,6 +56,7 @@ For a recruiter/interviewer review path, start with:
 - [Paper Strategy](docs/PAPER_STRATEGY.md): system-demo positioning, submission readiness, and claim boundaries.
 - [Impact Roadmap](docs/IMPACT_ROADMAP.md): visibility, citation, external-feedback, and star-conversion plan.
 - [Outreach Kit](docs/OUTREACH_KIT.md): recruiter pitch, LinkedIn draft, feedback prompt, and anti-spam rules.
+- [Reusable Trust Workflows Post Draft](docs/POST_REUSABLE_TRUST_WORKFLOWS.md): shareable GitHub/LinkedIn post draft for feedback and visibility.
 - [GitHub Proxy Push Tip](docs/GITHUB_PROXY_PUSH_TIP.md): small Windows note for pushing through a local proxy when direct GitHub HTTPS fails.
 
 ## Portfolio Snapshot
@@ -79,7 +82,8 @@ If you only have three minutes, review this sequence:
 | 3 | [Demo Screenshots](docs/DEMO_SCREENSHOTS.md) | Desktop and narrow-layout visual evidence for the review console. |
 | 4 | [Baseline Comparison](examples/baseline_comparison.md) | Naive baseline creates 25 false accepts on the 52-case synthetic set. |
 | 5 | [Agent Tool-Failure Workflow](examples/workflow_report_agent_tool_failure.md) | Multi-role review catches a confident final answer after a failed tool call. |
-| 6 | [Evaluation Metrics](docs/EVALUATION_METRICS.md) | Manual-review rate, low-trust rate, finding distribution, and limitations. |
+| 6 | [Workflow Recipes](docs/WORKFLOW_RECIPES.md) | Reusable review recipes for AML, agent tool-failure, financial, health-safety, and low-risk control cases. |
+| 7 | [Evaluation Metrics](docs/EVALUATION_METRICS.md) | Manual-review rate, low-trust rate, finding distribution, and limitations. |
 
 ## What It Demonstrates
 
@@ -87,6 +91,7 @@ If you only have three minutes, review this sequence:
 - Risk-sensitive evaluation: false pass, unsafe certainty, missing evidence, policy mismatch, and escalation quality.
 - Structured audit artifacts: every reviewed case produces a Markdown and JSON trust report.
 - Public-safe multi-role workflow traces: evidence, policy, risk, escalation, and final reviewer roles produce inspectable notes.
+- Reusable review recipes: common risk-sensitive scenarios are documented as repeatable workflows with triggers, inputs, review roles, failure signals, and human routes.
 - Context engineering: project memory, CLI artifacts, browser checks, and tests keep AI-assisted changes reviewable.
 - Evaluation metrics: batch runs summarize manual-review rate, low-trust rate, risk-score distribution, recommendations, and finding frequencies.
 - Human spot-check protocol: sampled reports can be manually audited for route agreement, over-triggered findings, and missed findings.
@@ -104,6 +109,7 @@ This public repository intentionally exposes only the demo-safe layer:
 - batch report generation
 - naive-baseline versus trust-workflow comparison
 - public-safe multi-role workflow report generation
+- reusable workflow recipes for common review scenarios
 - a static browser review console
 - public architecture and governance notes
 - a technical-report draft

@@ -16,6 +16,7 @@ Agent Trust Lab demonstrates a 52-case synthetic library, baseline comparison, a
 | Evaluation metrics summary | Implemented |
 | Naive-baseline comparison | Implemented |
 | Multi-role workflow trace | Implemented |
+| Reusable review workflow recipes | Implemented |
 | Recruiter case walkthrough | Implemented |
 | Context-engineering note | Implemented |
 | Static browser demo | Implemented |
@@ -90,6 +91,24 @@ The public workflow trace decomposes a synthetic agent-output review into:
 - final reviewer
 
 See [`examples/workflow_report_agent_tool_failure.md`](../examples/workflow_report_agent_tool_failure.md).
+
+## Reusable Workflow Recipes
+
+See [`docs/WORKFLOW_RECIPES.md`](WORKFLOW_RECIPES.md) for public-safe recipes
+that turn one-off LLM review prompts into repeatable review workflows.
+
+Current recipes cover:
+
+- AML false-pass review
+- agent tool-failure review
+- financial advice review
+- health-safety escalation review
+- low-risk control review
+
+Each recipe defines its trigger, inputs, review roles, failure signals, output
+artifact, and human route. This is the portfolio angle: the project is not only
+a set of reports, but a reusable operating pattern for reviewing risky LLM and
+agent outputs.
 
 ## Case Walkthrough
 
@@ -179,13 +198,14 @@ This project shows more than prompt use. It demonstrates a measurable AI review 
 - context-engineering workflow
 - structured failure taxonomy
 - public-safe multi-role workflow trace
+- reusable review workflow recipes
 - human-review routing
 - report generation
 - governance boundary
 
 Resume phrasing:
 
-> Built Agent Trust Lab, a risk-sensitive LLM output review prototype with a static browser review console, 52 synthetic AML/KYC/due-diligence/trust-and-safety/agent-review cases, batch trust-report generation, naive-baseline comparison, JSON summaries, and human-review recommendations for AI evaluation workflows.
+> Built Agent Trust Lab, a risk-sensitive LLM output review prototype with a static browser review console, 52 synthetic AML/KYC/due-diligence/trust-and-safety/agent-review cases, reusable review workflow recipes, batch trust-report generation, naive-baseline comparison, JSON summaries, and human-review recommendations for AI evaluation workflows.
 
 ## Public Safety Boundary
 
