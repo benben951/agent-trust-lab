@@ -23,6 +23,7 @@ Agent Trust Lab is a public-safe proof project for one core capability:
 | Multi-role agent review trace | [Agent tool-failure workflow](examples/workflow_report_agent_tool_failure.md) |
 | Reusable review workflows | [Workflow recipes](docs/WORKFLOW_RECIPES.md) |
 | Recruiter-facing evidence packet | [Review packet](docs/REVIEW_PACKET.md) |
+| Public feedback request | [Issue #2: feedback wanted](https://github.com/benben951/agent-trust-lab/issues/2) |
 
 ```mermaid
 flowchart LR
@@ -33,6 +34,7 @@ flowchart LR
     E --> F["Markdown + JSON trust report"]
     F --> G["Batch metrics + baseline comparison"]
     G --> H["Reusable workflow recipes"]
+    H --> I["Public feedback issue"]
 ```
 
 ## What You Can Do With It
@@ -95,7 +97,7 @@ The project focuses on one practical question:
 
 > Can a human reviewer trust this LLM or agent output enough to use it, escalate it, or reject it?
 
-![Agent Trust Lab browser demo](assets/agent-trust-lab-v04.png)
+![Agent Trust Lab browser demo](assets/agent-trust-lab-v05.png)
 
 Animated demo flow: [assets/demo_review_flow.gif](assets/demo_review_flow.gif)
 

@@ -22,7 +22,7 @@ Best use:
 
 ## 2. Desktop Review Console
 
-![Agent Trust Lab desktop console](../assets/agent-trust-lab-v04.png)
+![Agent Trust Lab desktop console](../assets/agent-trust-lab-v05.png)
 
 What it shows:
 
@@ -31,6 +31,7 @@ What it shows:
 - summary metrics
 - review-routing metrics
 - reusable workflow entry points
+- feedback issue entry point
 
 Best use:
 

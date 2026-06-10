@@ -1,5 +1,44 @@
 # Post Draft: From One-Off LLM Answers To Reusable Trust Workflows
 
+Use this document as a source for LinkedIn, GitHub profile updates, portfolio
+notes, or community feedback posts.
+
+Primary feedback thread:
+https://github.com/benben951/agent-trust-lab/issues/2
+
+## Short LinkedIn / GitHub Post
+
+I have been working on Agent Trust Lab, a public-safe demo for reviewing
+risk-sensitive LLM and agent outputs.
+
+The project asks a practical question:
+
+> Should this AI output be trusted, revised, escalated, or rejected?
+
+Current proof points:
+
+- 52 synthetic risk-review cases
+- Markdown and JSON trust reports
+- naive-baseline comparison
+- public-safe multi-role workflow traces
+- reusable review workflow recipes
+- static browser review console
+- CI and reproducible CLI commands
+
+I opened a feedback thread on the error taxonomy, workflow recipes, and metrics:
+https://github.com/benben951/agent-trust-lab/issues/2
+
+I would especially value feedback from people working on LLM evaluation, agent
+safety, Trust & Safety, compliance QA, or human-in-the-loop review.
+
+Repo:
+https://github.com/benben951/agent-trust-lab
+
+Live demo:
+https://benben951.github.io/agent-trust-lab/
+
+## Longer Post Draft
+
 Most LLM demos optimize for fluent answers.
 
 In risk-sensitive workflows, fluency is not enough.
@@ -83,3 +122,6 @@ Feedback I would value:
 2. Which risk-sensitive failure modes are missing?
 3. Are the workflow recipes concrete enough for another reviewer to run?
 4. What metrics would make the demo more credible?
+
+Feedback thread:
+https://github.com/benben951/agent-trust-lab/issues/2

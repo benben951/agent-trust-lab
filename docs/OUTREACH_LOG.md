@@ -7,7 +7,7 @@ turn sharing into reviewable project evidence, not vanity metrics.
 
 | Channel | Link | Purpose | Status |
 |---|---|---|---|
-| GitHub issue | https://github.com/benben951/agent-trust-lab/issues/2 | Request feedback on the risk-sensitive LLM output review taxonomy, reusable workflow recipes, and credibility metrics. | Open |
+| GitHub issue | https://github.com/benben951/agent-trust-lab/issues/2 | Request feedback on the risk-sensitive LLM output review taxonomy, reusable workflow recipes, and credibility metrics. | Open; linked from README and web demo. |
 
 ## Follow-Up Rules
 
