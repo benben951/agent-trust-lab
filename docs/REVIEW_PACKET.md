@@ -27,6 +27,8 @@ Human spot-check protocol: [HUMAN_SPOT_CHECK_PROTOCOL.md](HUMAN_SPOT_CHECK_PROTO
 
 Human spot-check log: [HUMAN_SPOT_CHECK_LOG.md](HUMAN_SPOT_CHECK_LOG.md)
 
+Error taxonomy: [ERROR_TAXONOMY.md](ERROR_TAXONOMY.md)
+
 ## 2. Why This Is Relevant To LLM Evaluation Roles
 
 | Hiring Signal | Project Evidence |
@@ -38,6 +40,8 @@ Human spot-check log: [HUMAN_SPOT_CHECK_LOG.md](HUMAN_SPOT_CHECK_LOG.md)
 | Agent workflow thinking | `workflow-review` decomposes one case into evidence, policy, risk, escalation, and final reviewer roles. |
 | Context engineering | Docs, generated reports, CLI commands, tests, and browser checks make AI-assisted changes reviewable. |
 | Metrics thinking | Batch metrics track manual-review rate, low-trust rate, risk-score distribution, recommendations, finding frequencies, and naive false-accept behavior. |
+| Error analysis | Formal taxonomy maps raw findings into evidence grounding, policy alignment, calibration, human escalation, and risk routing. |
+| Coverage analysis | Case-family metrics show routing behavior across AML/KYC/sanctions, trust and safety, data quality, due diligence, legal, financial, health-safety, and agent-reliability scenarios. |
 | Human spot-check readiness | A public-safe protocol defines sampled manual review, route agreement, over-trigger checks, missed-finding checks, and release gates. |
 | Quality loop | A 15-case author spot-check found a missing-escalation edge case, added a regression test, and regenerated reports. |
 | Governance awareness | The repository explicitly documents data, decision, logging, and public-demo boundaries. |
@@ -125,6 +129,26 @@ Finding distribution:
 | `missing_escalation` | 24 |
 | `unsafe_certainty` | 17 |
 | `unsupported_claim` | 8 |
+
+Taxonomy category distribution:
+
+| Category | Count |
+|---|---:|
+| `risk_routing` | 27 |
+| `policy_alignment` | 24 |
+| `human_escalation` | 24 |
+| `calibration` | 17 |
+| `evidence_grounding` | 8 |
+
+Representative case-family metrics:
+
+| Case family | Cases | Manual review rate | Low-trust rate |
+|---|---:|---:|---:|
+| `aml_kyc_sanctions` | 13 | 69.23% | 53.85% |
+| `trust_safety_support` | 7 | 57.14% | 28.57% |
+| `data_quality_hr_education` | 6 | 83.33% | 50.00% |
+| `due_diligence_legal` | 5 | 60.00% | 60.00% |
+| `agent_reliability` | 4 | 75.00% | 75.00% |
 
 Naive baseline comparison:
 
@@ -218,6 +242,7 @@ Chinese version:
 
 - Built Agent Trust Lab, a public-safe LLM output review prototype for AML/KYC, due diligence, trust and safety, AI data-quality, and agent-output evaluation scenarios.
 - Designed a 40-case synthetic evaluation library and generated structured Markdown/JSON trust reports with risk findings, trust levels, escalation recommendations, baseline comparison, and aggregate review-routing metrics.
+- Added a formal error taxonomy and case-family metrics to analyze evidence grounding, policy alignment, calibration, human escalation, risk routing, and scenario coverage across risk-sensitive domains.
 - Added a public-safe multi-role workflow trace covering evidence, policy, risk, escalation, and final reviewer notes for agent-output review.
 - Published a recruiter-friendly case walkthrough for a synthetic tool-failure scenario, connecting the input evidence, policy rule, role-level failures, final routing, and safety boundary.
 - Documented a Codex-first context-engineering workflow using explicit project memory, generated artifacts, CLI reproduction commands, tests, and browser-demo checks.

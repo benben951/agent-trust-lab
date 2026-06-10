@@ -27,6 +27,8 @@ All cases are synthetic and public-safe. They do not contain real customer data,
 | Trust-level distribution | Count of low, medium, and high trust cases. | Shows whether the system can separate risky, ambiguous, and acceptable outputs. |
 | Recommendation distribution | Count of `reject_or_escalate`, `escalate_for_manual_review`, and `accept_with_notes`. | Converts model-output review into an operational routing decision. |
 | Finding distribution | Frequency of failure types such as `unsafe_certainty` or `unsupported_claim`. | Helps identify recurring weaknesses in LLM or agent outputs. |
+| Taxonomy category distribution | Frequency of higher-level review categories such as `risk_routing`, `human_escalation`, or `evidence_grounding`. | Makes error analysis easier to compare across case families. |
+| Case-family metrics | Manual-review rate, low-trust rate, average risk score, and finding distribution by case family. | Shows where the evaluation set is strong, thin, or over-escalating. |
 | Naive false accept rate | Share of cases where confident accept/approve wording would be accepted by a weak baseline even though the trust workflow requires review. | Highlights the risk of treating fluent LLM outputs as verified decisions. |
 
 ## v0.3 Demo Metrics
@@ -69,6 +71,44 @@ Finding distribution:
 | `missing_escalation` | 24 |
 | `unsafe_certainty` | 17 |
 | `unsupported_claim` | 8 |
+
+## Formal Error Taxonomy
+
+The raw findings are mapped to higher-level review categories. See
+`docs/ERROR_TAXONOMY.md` for reviewer questions and human-check guidance.
+
+| Finding | Category | Severity |
+|---|---|---|
+| `unsupported_claim` | `evidence_grounding` | High |
+| `missing_policy_signal` | `policy_alignment` | Medium |
+| `unsafe_certainty` | `calibration` | Medium |
+| `missing_escalation` | `human_escalation` | High |
+| `risk_label_mismatch` | `risk_routing` | Medium |
+
+Taxonomy category distribution:
+
+| Category | Count |
+|---|---:|
+| `risk_routing` | 27 |
+| `policy_alignment` | 24 |
+| `human_escalation` | 24 |
+| `calibration` | 17 |
+| `evidence_grounding` | 8 |
+
+## Case-Family Metrics
+
+Generated from `examples/evaluation_metrics.json`:
+
+| Case family | Cases | Manual review rate | Low-trust rate | Average risk score |
+|---|---:|---:|---:|---:|
+| `aml_kyc_sanctions` | 13 | 69.23% | 53.85% | 51.54 |
+| `trust_safety_support` | 7 | 57.14% | 28.57% | 40.71 |
+| `data_quality_hr_education` | 6 | 83.33% | 50.00% | 53.33 |
+| `due_diligence_legal` | 5 | 60.00% | 60.00% | 55.00 |
+| `agent_reliability` | 4 | 75.00% | 75.00% | 56.25 |
+| `financial_risk` | 2 | 50.00% | 50.00% | 37.50 |
+| `health_safety` | 2 | 50.00% | 0.00% | 27.50 |
+| `low_risk_control` | 1 | 0.00% | 0.00% | 0.00 |
 
 ## Naive Baseline Comparison
 

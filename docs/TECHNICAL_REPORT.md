@@ -4,7 +4,7 @@ Working technical report draft for Agent Trust Lab.
 
 ## Abstract
 
-LLM and agent systems are increasingly used in workflows where incorrect confidence, missing evidence, or weak escalation behavior can create operational risk. This report introduces Agent Trust Lab, a public-safe evaluation prototype for reviewing LLM outputs in synthetic AML and compliance-style scenarios. The system generates structured trust reports that combine evidence checks, policy-signal checks, risk-language findings, and human-review recommendations.
+LLM and agent systems are increasingly used in workflows where incorrect confidence, missing evidence, or weak escalation behavior can create operational risk. This report introduces Agent Trust Lab, a public-safe evaluation prototype for reviewing LLM outputs in synthetic AML and compliance-style scenarios. The system generates structured trust reports that combine evidence checks, policy-signal checks, risk-language findings, formal error-taxonomy categories, case-family metrics, and human-review recommendations.
 
 ## 1. Motivation
 
@@ -37,6 +37,16 @@ The current public demo uses deterministic checks to produce a Markdown and JSON
 | Certainty control | Says "definitely no risk". | Reduces unsafe false pass. |
 | Escalation | Approves ambiguous case directly. | Keeps humans accountable. |
 | Risk alignment | Fails to mention expected medium risk. | Improves reviewer calibration. |
+
+The public finding names are intentionally simple. For analysis, they are mapped into higher-level review categories:
+
+| Finding | Taxonomy category | Reviewer question |
+|---|---|---|
+| `unsupported_claim` | `evidence_grounding` | Is the claim supported by the evidence packet? |
+| `missing_policy_signal` | `policy_alignment` | Did the output preserve required policy signals? |
+| `unsafe_certainty` | `calibration` | Is the output overconfident for the available evidence? |
+| `missing_escalation` | `human_escalation` | Did the output preserve human review for ambiguous or high-risk cases? |
+| `risk_label_mismatch` | `risk_routing` | Does the output align with the expected risk route? |
 
 ## 4. Demo Result
 
@@ -71,6 +81,10 @@ The most frequent findings are `risk_label_mismatch`, `missing_policy_signal`, a
 
 See `docs/EVALUATION_METRICS.md` and `examples/evaluation_metrics.json`.
 
+The same metrics file includes taxonomy category distribution and case-family metrics. On the current 40-case set, the largest taxonomy categories are `risk_routing` (27), `policy_alignment` (24), `human_escalation` (24), `calibration` (17), and `evidence_grounding` (8). The largest case family is `aml_kyc_sanctions` with 13 cases, followed by `trust_safety_support` with 7 cases and `data_quality_hr_education` with 6 cases.
+
+These additions make the evaluation more useful for project iteration. Aggregate metrics show the overall review posture, taxonomy metrics show recurring error classes, and case-family metrics show which scenario groups need more examples or reviewer calibration.
+
 ## 4.4 Naive Baseline Comparison
 
 Agent Trust Lab compares the structured trust workflow against a deliberately weak baseline that treats confident accept/approve language as usable. On the current 40-case synthetic set, the naive baseline accepts 26 cases and produces 19 false accepts under the trust-workflow review criteria. The trust workflow accepts 14 cases and routes 26 cases to manual review.
@@ -96,6 +110,7 @@ See `examples/baseline_comparison.md` and `examples/baseline_comparison.json`.
 ## 7. Next Steps
 
 - Expand the synthetic case library toward 50 cases with explicit difficulty labels.
+- Balance thin case families such as financial risk, health-safety, and low-risk controls.
 - Add JSON report output examples.
 - Add reviewer override tracking.
 - Add benchmark tasks through `agent-workflow-bench`.

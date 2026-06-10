@@ -46,6 +46,7 @@ For a recruiter/interviewer review path, start with:
 - [Context Engineering](docs/CONTEXT_ENGINEERING.md): how the project is maintained with Codex-first context, verification gates, and public-safe boundaries.
 - [Portfolio Showcase](docs/PORTFOLIO_SHOWCASE.md): demo scope, case table, browser console, and resume angle.
 - [Evaluation Metrics](docs/EVALUATION_METRICS.md): metric definitions, current values, interpretation, and limitations.
+- [Error Taxonomy](docs/ERROR_TAXONOMY.md): public finding categories, human-check guidance, and case-family metrics.
 - [Human Spot-Check Protocol](docs/HUMAN_SPOT_CHECK_PROTOCOL.md): public-safe manual review protocol for auditing synthetic-case outputs.
 - [Human Spot-Check Log](docs/HUMAN_SPOT_CHECK_LOG.md): 15-case author spot-check draft and regression-fix note.
 - [Demo Script](docs/DEMO_SCRIPT.md): three-minute walkthrough for recruiters, portfolio review, or system-demo submission.
@@ -226,6 +227,27 @@ The baseline comparison shows why a structured trust workflow matters:
 
 The most frequent findings are `risk_label_mismatch`, `missing_policy_signal`, and `missing_escalation`. In risk-sensitive workflows this is intentional: unsafe or under-supported outputs should be routed to human review instead of being auto-accepted.
 
+Findings are mapped into a public error taxonomy:
+
+| Taxonomy category | Count |
+|---|---:|
+| `risk_routing` | 27 |
+| `policy_alignment` | 24 |
+| `human_escalation` | 24 |
+| `calibration` | 17 |
+| `evidence_grounding` | 8 |
+
+The case-family metrics show where the current synthetic set has the most
+coverage:
+
+| Case family | Cases | Manual review rate | Low-trust rate |
+|---|---:|---:|---:|
+| `aml_kyc_sanctions` | 13 | 69.23% | 53.85% |
+| `trust_safety_support` | 7 | 57.14% | 28.57% |
+| `data_quality_hr_education` | 6 | 83.33% | 50.00% |
+| `due_diligence_legal` | 5 | 60.00% | 60.00% |
+| `agent_reliability` | 4 | 75.00% | 75.00% |
+
 ## Public Demo Case
 
 The included synthetic case simulates an AML-style review where an LLM response must be checked for:
@@ -269,7 +291,7 @@ Agent Trust Lab is designed as the umbrella product layer for:
 
 ## Resume Angle
 
-Built Agent Trust Lab, a risk-sensitive LLM output review system with a static browser review console, a 40-case synthetic AML/KYC/due-diligence/trust-and-safety/agent-review library, batch trust-report generation, naive-baseline comparison, JSON summaries, public-safe multi-role workflow traces, escalation recommendations, and human-in-the-loop governance for AI evaluation workflows.
+Built Agent Trust Lab, a risk-sensitive LLM output review system with a static browser review console, a 40-case synthetic AML/KYC/due-diligence/trust-and-safety/agent-review library, formal error taxonomy, case-family metrics, batch trust-report generation, naive-baseline comparison, JSON summaries, public-safe multi-role workflow traces, escalation recommendations, and human-in-the-loop governance for AI evaluation workflows.
 
 ## Safety Boundary
 

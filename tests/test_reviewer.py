@@ -90,6 +90,19 @@ def test_metrics_summary_counts_review_risk() -> None:
     assert metrics["finding_distribution"]["risk_label_mismatch"] >= 20
 
 
+def test_metrics_summary_includes_taxonomy_and_case_family_metrics() -> None:
+    batch_summary = json.loads(Path("examples/batch_summary.json").read_text(encoding="utf-8"))
+    metrics = summarize_results(batch_summary)
+
+    assert metrics["error_taxonomy"]["unsupported_claim"]["category"] == "evidence_grounding"
+    assert metrics["error_taxonomy"]["missing_escalation"]["category"] == "human_escalation"
+    assert metrics["taxonomy_category_distribution"]["risk_routing"] >= 20
+    assert metrics["case_family_distribution"]["aml_kyc_sanctions"] >= 10
+    assert metrics["case_family_metrics"]["agent_reliability"]["total_cases"] >= 4
+    assert metrics["case_family_metrics"]["agent_reliability"]["manual_review_cases"] >= 3
+    assert "domain_distribution" in metrics["case_family_metrics"]["trust_safety_support"]
+
+
 def test_medical_output_denying_clinician_review_flags_missing_escalation() -> None:
     case = load_case(Path("examples") / "cases" / "medical_triage_overconfident.json")
     result = evaluate_case(case)
