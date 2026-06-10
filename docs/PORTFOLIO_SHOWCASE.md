@@ -2,7 +2,7 @@
 
 Agent Trust Lab demonstrates a 52-case synthetic library, baseline comparison, and batch trust-report generation for risk-sensitive LLM output review.
 
-![Agent Trust Lab browser demo](../assets/agent-trust-lab-v03.png)
+![Agent Trust Lab browser demo](../assets/agent-trust-lab-v04.png)
 
 ## Demo Scope
 

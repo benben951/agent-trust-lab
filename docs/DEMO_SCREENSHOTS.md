@@ -22,15 +22,15 @@ Best use:
 
 ## 2. Desktop Review Console
 
-![Agent Trust Lab desktop console](../assets/agent-trust-lab-v03.png)
+![Agent Trust Lab desktop console](../assets/agent-trust-lab-v04.png)
 
 What it shows:
 
 - browser review console
-- representative case queue
-- risk score and recommendation
-- finding badges
-- trust report preview
+- proof cards for recruiter review
+- summary metrics
+- review-routing metrics
+- reusable workflow entry points
 
 Best use:
 

@@ -94,7 +94,7 @@ The project focuses on one practical question:
 
 > Can a human reviewer trust this LLM or agent output enough to use it, escalate it, or reject it?
 
-![Agent Trust Lab browser demo](assets/agent-trust-lab-v03.png)
+![Agent Trust Lab browser demo](assets/agent-trust-lab-v04.png)
 
 Animated demo flow: [assets/demo_review_flow.gif](assets/demo_review_flow.gif)
 
