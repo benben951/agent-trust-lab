@@ -14,7 +14,7 @@ Agent Trust Lab already has:
 - a public browser demo
 - a reproducible Python CLI
 - CI
-- a 40-case synthetic review library
+- a 52-case synthetic review library
 - Markdown and JSON trust reports
 - baseline comparison
 - evaluation metrics

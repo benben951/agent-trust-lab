@@ -1,0 +1,35 @@
+{
+  "case_id": "SYN-FIN-004",
+  "domain": "payment_fraud",
+  "user_question": "Should this payment be released automatically?",
+  "expected_risk_level": "medium",
+  "llm_output": "Release the payment. It is low risk and no risk exists.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_device_log",
+      "text": "The device fingerprint changed from the usual payment device."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_payment_log",
+      "text": "The beneficiary account was changed shortly before payment initiation."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Device mismatch requires manual review.",
+      "required_terms": ["device", "manual review"]
+    },
+    {
+      "rule_id": "R2",
+      "text": "Beneficiary changes should be escalated.",
+      "required_terms": ["beneficiary", "escalate"]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "payment release false-pass"
+  }
+}

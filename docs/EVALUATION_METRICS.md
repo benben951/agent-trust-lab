@@ -4,16 +4,16 @@ Agent Trust Lab is designed as a public-safe evaluation prototype for risk-sensi
 
 ## Evaluation Set
 
-The current public demo uses a 40-case synthetic evaluation set:
+The current public demo uses a 52-case synthetic evaluation set:
 
 | Domain | Case count | Purpose |
 |---|---:|---|
 | AML / KYC / sanctions | 13 | Detect unsafe low-risk approval, missing UBO review, structuring signals, and screening ambiguity. |
 | Due diligence / legal / vendor review | 5 | Detect unsupported adverse claims, PEP links, litigation signals, and evidence gaps. |
-| Trust and safety / customer support | 6 | Detect unsafe user-impacting decisions, policy-threshold gaps, and disputed context. |
-| Agent output and coding-agent review | 4 | Detect ignored tool failures, unsupported test claims, and tool-result mismatch. |
-| Data quality / HR / health / education / financial services | 11 | Detect sensitive-attribute misuse, unsafe certainty, label conflict, and financial false-pass risk. |
-| Low-risk controls | 1 | Confirm the system can route safe cases without over-escalation. |
+| Trust and safety / customer support | 7 | Detect unsafe user-impacting decisions, policy-threshold gaps, and disputed context. |
+| Agent output and coding-agent review | 7 | Detect ignored tool failures, unsupported test claims, and tool-result mismatch. |
+| Data quality / HR / health / education / financial services | 16 | Detect sensitive-attribute misuse, unsafe certainty, label conflict, and financial false-pass risk. |
+| Low-risk controls | 4 | Confirm the system can route safe cases without over-escalation. |
 
 All cases are synthetic and public-safe. They do not contain real customer data, internal company policies, private labels, or credentials.
 
@@ -31,18 +31,18 @@ All cases are synthetic and public-safe. They do not contain real customer data,
 | Case-family metrics | Manual-review rate, low-trust rate, average risk score, and finding distribution by case family. | Shows where the evaluation set is strong, thin, or over-escalating. |
 | Naive false accept rate | Share of cases where confident accept/approve wording would be accepted by a weak baseline even though the trust workflow requires review. | Highlights the risk of treating fluent LLM outputs as verified decisions. |
 
-## v0.3 Demo Metrics
+## v0.4 Demo Metrics
 
 Generated from `examples/batch_summary.json`:
 
 | Metric | Value |
 |---|---:|
-| Total synthetic cases | 40 |
-| Manual review cases | 26 |
-| Manual review rate | 65% |
-| Low-trust cases | 19 |
-| Low-trust rate | 47.5% |
-| Average risk score | 47.62 |
+| Total synthetic cases | 52 |
+| Manual review cases | 32 |
+| Manual review rate | 61.5% |
+| Low-trust cases | 25 |
+| Low-trust rate | 48.1% |
+| Average risk score | 45.77 |
 | Max risk score | 100 |
 | Min risk score | 0 |
 
@@ -50,27 +50,27 @@ Trust-level distribution:
 
 | Trust level | Count |
 |---|---:|
-| Low | 19 |
+| Low | 25 |
 | Medium | 7 |
-| High | 14 |
+| High | 20 |
 
 Recommendation distribution:
 
 | Recommendation | Count |
 |---|---:|
-| `reject_or_escalate` | 19 |
+| `reject_or_escalate` | 25 |
 | `escalate_for_manual_review` | 7 |
-| `accept_with_notes` | 14 |
+| `accept_with_notes` | 20 |
 
 Finding distribution:
 
 | Finding | Count |
 |---|---:|
-| `risk_label_mismatch` | 27 |
-| `missing_policy_signal` | 24 |
-| `missing_escalation` | 24 |
-| `unsafe_certainty` | 17 |
-| `unsupported_claim` | 8 |
+| `risk_label_mismatch` | 33 |
+| `missing_policy_signal` | 30 |
+| `missing_escalation` | 30 |
+| `unsafe_certainty` | 23 |
+| `unsupported_claim` | 9 |
 
 ## Formal Error Taxonomy
 
@@ -89,11 +89,11 @@ Taxonomy category distribution:
 
 | Category | Count |
 |---|---:|
-| `risk_routing` | 27 |
-| `policy_alignment` | 24 |
-| `human_escalation` | 24 |
-| `calibration` | 17 |
-| `evidence_grounding` | 8 |
+| `risk_routing` | 33 |
+| `policy_alignment` | 30 |
+| `human_escalation` | 30 |
+| `calibration` | 23 |
+| `evidence_grounding` | 9 |
 
 ## Case-Family Metrics
 
@@ -102,13 +102,13 @@ Generated from `examples/evaluation_metrics.json`:
 | Case family | Cases | Manual review rate | Low-trust rate | Average risk score |
 |---|---:|---:|---:|---:|
 | `aml_kyc_sanctions` | 13 | 69.23% | 53.85% | 51.54 |
+| `agent_reliability` | 7 | 71.43% | 71.43% | 53.57 |
 | `trust_safety_support` | 7 | 57.14% | 28.57% | 40.71 |
 | `data_quality_hr_education` | 6 | 83.33% | 50.00% | 53.33 |
 | `due_diligence_legal` | 5 | 60.00% | 60.00% | 55.00 |
-| `agent_reliability` | 4 | 75.00% | 75.00% | 56.25 |
-| `financial_risk` | 2 | 50.00% | 50.00% | 37.50 |
-| `health_safety` | 2 | 50.00% | 0.00% | 27.50 |
-| `low_risk_control` | 1 | 0.00% | 0.00% | 0.00 |
+| `financial_risk` | 5 | 60.00% | 60.00% | 50.00 |
+| `health_safety` | 5 | 60.00% | 40.00% | 41.00 |
+| `low_risk_control` | 4 | 0.00% | 0.00% | 0.00 |
 
 ## Naive Baseline Comparison
 
@@ -116,15 +116,15 @@ Generated from `examples/baseline_comparison.json`:
 
 | Metric | Value |
 |---|---:|
-| Total synthetic cases | 40 |
-| Naive accept cases | 26 |
-| Naive accept rate | 65% |
-| Naive false accept cases | 19 |
+| Total synthetic cases | 52 |
+| Naive accept cases | 38 |
+| Naive accept rate | 73.1% |
+| Naive false accept cases | 25 |
 | Naive false accept rate | 48% |
-| Trust workflow accept cases | 14 |
-| Trust workflow accept rate | 35% |
-| Trust workflow manual review cases | 26 |
-| Trust workflow manual review rate | 65% |
+| Trust workflow accept cases | 20 |
+| Trust workflow accept rate | 38.5% |
+| Trust workflow manual review cases | 32 |
+| Trust workflow manual review rate | 61.5% |
 
 ## How To Reproduce
 

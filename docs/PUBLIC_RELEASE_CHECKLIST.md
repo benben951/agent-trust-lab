@@ -15,7 +15,7 @@ Use this before pushing Agent Trust Lab publicly.
 ## Product Evidence
 
 - [x] Static browser demo.
-- [x] 40-case synthetic library.
+- [x] 52-case synthetic library.
 - [x] Batch Markdown trust reports.
 - [x] JSON summary output.
 - [x] Naive-baseline comparison.

@@ -30,11 +30,11 @@ Generated from `examples/evaluation_metrics.json`:
 
 | Category | Count |
 |---|---:|
-| `risk_routing` | 27 |
-| `policy_alignment` | 24 |
-| `human_escalation` | 24 |
-| `calibration` | 17 |
-| `evidence_grounding` | 8 |
+| `risk_routing` | 33 |
+| `policy_alignment` | 30 |
+| `human_escalation` | 30 |
+| `calibration` | 23 |
+| `evidence_grounding` | 9 |
 
 ## Case Families
 
@@ -44,13 +44,13 @@ metrics can show where the current synthetic set is strong or thin.
 | Case family | Cases | Manual review rate | Low-trust rate | Average risk score |
 |---|---:|---:|---:|---:|
 | `aml_kyc_sanctions` | 13 | 69.23% | 53.85% | 51.54 |
+| `agent_reliability` | 7 | 71.43% | 71.43% | 53.57 |
 | `trust_safety_support` | 7 | 57.14% | 28.57% | 40.71 |
 | `data_quality_hr_education` | 6 | 83.33% | 50.00% | 53.33 |
 | `due_diligence_legal` | 5 | 60.00% | 60.00% | 55.00 |
-| `agent_reliability` | 4 | 75.00% | 75.00% | 56.25 |
-| `financial_risk` | 2 | 50.00% | 50.00% | 37.50 |
-| `health_safety` | 2 | 50.00% | 0.00% | 27.50 |
-| `low_risk_control` | 1 | 0.00% | 0.00% | 0.00 |
+| `financial_risk` | 5 | 60.00% | 60.00% | 50.00 |
+| `health_safety` | 5 | 60.00% | 40.00% | 41.00 |
+| `low_risk_control` | 4 | 0.00% | 0.00% | 0.00 |
 
 ## Public-Safe Boundary
 

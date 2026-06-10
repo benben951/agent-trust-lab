@@ -102,23 +102,23 @@ const cases = [
 ];
 
 const fullLibraryMetrics = {
-  total_cases: 40,
-  manual_review_cases: 26,
-  manual_review_rate: 0.65,
-  low_trust_cases: 19,
-  low_trust_rate: 0.475,
-  average_risk_score: 47.62,
+  total_cases: 52,
+  manual_review_cases: 32,
+  manual_review_rate: 0.6154,
+  low_trust_cases: 25,
+  low_trust_rate: 0.4808,
+  average_risk_score: 45.77,
   recommendation_distribution: {
-    reject_or_escalate: 19,
+    reject_or_escalate: 25,
     escalate_for_manual_review: 7,
-    accept_with_notes: 14
+    accept_with_notes: 20
   },
   finding_distribution: {
-    risk_label_mismatch: 27,
-    missing_policy_signal: 24,
-    missing_escalation: 24,
-    unsafe_certainty: 17,
-    unsupported_claim: 8
+    risk_label_mismatch: 33,
+    missing_policy_signal: 30,
+    missing_escalation: 30,
+    unsafe_certainty: 23,
+    unsupported_claim: 9
   }
 };
 

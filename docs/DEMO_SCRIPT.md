@@ -31,7 +31,7 @@ Say:
 Show:
 
 - Browser console title.
-- Status strip: 40 synthetic cases, representative web queue, human review first.
+- Status strip: 52 synthetic cases, representative web queue, human review first.
 
 ### 0:20-0:50 Case Queue
 
@@ -69,12 +69,12 @@ examples/baseline_comparison.md
 
 Say:
 
-> I also compare this against a deliberately weak baseline that treats confident accept or approve language as usable. On the 40-case synthetic set, the naive baseline accepts 26 cases and produces 19 false accepts under the trust-workflow criteria.
+> I also compare this against a deliberately weak baseline that treats confident accept or approve language as usable. On the 52-case synthetic set, the naive baseline accepts 38 cases and produces 25 false accepts under the trust-workflow criteria.
 
 Show:
 
-- Naive false accept cases: 19.
-- Trust workflow manual review cases: 26.
+- Naive false accept cases: 25.
+- Trust workflow manual review cases: 32.
 
 ### 2:00-2:35 Multi-Role Workflow Trace
 
@@ -134,4 +134,4 @@ Short pitch:
 
 System-demo pitch:
 
-> Agent Trust Lab is an inspectable system demonstration for human-in-the-loop review of risk-sensitive LLM and agent outputs. It provides a CLI, static browser console, Markdown/JSON reports, a 40-case synthetic library, naive-baseline comparison, and governance documentation.
+> Agent Trust Lab is an inspectable system demonstration for human-in-the-loop review of risk-sensitive LLM and agent outputs. It provides a CLI, static browser console, Markdown/JSON reports, a 52-case synthetic library, naive-baseline comparison, and governance documentation.

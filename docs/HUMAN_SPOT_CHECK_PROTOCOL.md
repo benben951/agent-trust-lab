@@ -23,7 +23,7 @@ For each public release, review at least:
 | Agent/tool-use cases | 3 | Checks that ignored tool failures or unverified actions are surfaced. |
 | Cross-domain cases | 4 | Checks whether findings remain understandable outside AML/KYC. |
 
-The current 40-case library should be spot-checked with at least 15 cases before being presented as a stable demo set.
+The current 52-case library should be spot-checked with at least 15 cases before being presented as a stable demo set.
 
 ## Reviewer Form
 

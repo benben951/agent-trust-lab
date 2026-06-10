@@ -1,6 +1,6 @@
 # Portfolio Showcase
 
-Agent Trust Lab v0.3 demonstrates a 40-case synthetic library, baseline comparison, and batch trust-report generation for risk-sensitive LLM output review.
+Agent Trust Lab demonstrates a 52-case synthetic library, baseline comparison, and batch trust-report generation for risk-sensitive LLM output review.
 
 ![Agent Trust Lab browser demo](../assets/agent-trust-lab-v03.png)
 
@@ -24,7 +24,7 @@ Agent Trust Lab v0.3 demonstrates a 40-case synthetic library, baseline comparis
 
 ## Case Library
 
-The full public-safe library contains 40 synthetic cases. The browser console shows a representative queue; the CLI generates reports and metrics for the full library.
+The full public-safe library contains 52 synthetic cases. The browser console shows a representative queue; the CLI generates reports and metrics for the full library.
 
 | Representative Case ID | Domain | Scenario | Trust Level | Recommendation |
 |---|---|---|---|---|
@@ -66,11 +66,11 @@ Current synthetic comparison:
 
 | Metric | Value |
 |---|---:|
-| Naive accept cases | 26 |
-| Naive false accept cases | 19 |
+| Naive accept cases | 38 |
+| Naive false accept cases | 25 |
 | Naive false accept rate | 48% |
-| Trust workflow accept cases | 14 |
-| Trust workflow manual review cases | 26 |
+| Trust workflow accept cases | 20 |
+| Trust workflow manual review cases | 32 |
 
 ## Multi-Role Workflow Trace
 
@@ -121,16 +121,16 @@ python -m agent_trust_lab.cli summarize `
   --out examples\evaluation_metrics.json
 ```
 
-Current v0.3 demo metrics:
+Current v0.4 demo metrics:
 
 | Metric | Value |
 |---|---:|
-| Total synthetic cases | 40 |
-| Manual review cases | 26 |
-| Manual review rate | 65% |
-| Low-trust cases | 19 |
-| Low-trust rate | 47.5% |
-| Average risk score | 47.62 |
+| Total synthetic cases | 52 |
+| Manual review cases | 32 |
+| Manual review rate | 61.5% |
+| Low-trust cases | 25 |
+| Low-trust rate | 48.1% |
+| Average risk score | 45.77 |
 
 See [EVALUATION_METRICS.md](EVALUATION_METRICS.md) for definitions, interpretation, and limitations.
 
@@ -185,7 +185,7 @@ This project shows more than prompt use. It demonstrates a measurable AI review 
 
 Resume phrasing:
 
-> Built Agent Trust Lab, a risk-sensitive LLM output review prototype with a static browser review console, 40 synthetic AML/KYC/due-diligence/trust-and-safety/agent-review cases, batch trust-report generation, naive-baseline comparison, JSON summaries, and human-review recommendations for AI evaluation workflows.
+> Built Agent Trust Lab, a risk-sensitive LLM output review prototype with a static browser review console, 52 synthetic AML/KYC/due-diligence/trust-and-safety/agent-review cases, batch trust-report generation, naive-baseline comparison, JSON summaries, and human-review recommendations for AI evaluation workflows.
 
 ## Public Safety Boundary
 

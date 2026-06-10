@@ -77,7 +77,7 @@ If you only have three minutes, review this sequence:
 | 1 | [Live demo](https://benben951.github.io/agent-trust-lab/) | Browser review queue, findings, risk score, recommendation, and human-review flag. |
 | 2 | [Demo Walkthrough](docs/DEMO_WALKTHROUGH.md) | Recruiter-facing explanation of the project, metrics, baseline, workflow trace, and governance boundary. |
 | 3 | [Demo Screenshots](docs/DEMO_SCREENSHOTS.md) | Desktop and narrow-layout visual evidence for the review console. |
-| 4 | [Baseline Comparison](examples/baseline_comparison.md) | Naive baseline creates 19 false accepts on the 40-case synthetic set. |
+| 4 | [Baseline Comparison](examples/baseline_comparison.md) | Naive baseline creates 25 false accepts on the 52-case synthetic set. |
 | 5 | [Agent Tool-Failure Workflow](examples/workflow_report_agent_tool_failure.md) | Multi-role review catches a confident final answer after a failed tool call. |
 | 6 | [Evaluation Metrics](docs/EVALUATION_METRICS.md) | Manual-review rate, low-trust rate, finding distribution, and limitations. |
 
@@ -100,7 +100,7 @@ This public repository intentionally exposes only the demo-safe layer:
 - a synthetic case schema
 - a deterministic trust-report generator
 - sample LLM outputs and review reports
-- a 40-case synthetic risk review library
+- a 52-case synthetic risk review library
 - batch report generation
 - naive-baseline versus trust-workflow comparison
 - public-safe multi-role workflow report generation
@@ -202,28 +202,28 @@ case package
   -> human-in-the-loop routing
 ```
 
-## v0.3 Evaluation Snapshot
+## v0.4 Evaluation Snapshot
 
-The 40-case synthetic evaluation set currently produces:
+The 52-case synthetic evaluation set currently produces:
 
 | Metric | Value |
 |---|---:|
-| Total cases | 40 |
-| Manual review cases | 26 |
-| Manual review rate | 65% |
-| Low-trust cases | 19 |
-| Low-trust rate | 47.5% |
-| Average risk score | 47.62 |
+| Total cases | 52 |
+| Manual review cases | 32 |
+| Manual review rate | 61.5% |
+| Low-trust cases | 25 |
+| Low-trust rate | 48.1% |
+| Average risk score | 45.77 |
 
 The baseline comparison shows why a structured trust workflow matters:
 
 | Metric | Value |
 |---|---:|
-| Naive accept cases | 26 |
-| Naive false accept cases | 19 |
+| Naive accept cases | 38 |
+| Naive false accept cases | 25 |
 | Naive false accept rate | 48% |
-| Trust workflow accept cases | 14 |
-| Trust workflow manual review cases | 26 |
+| Trust workflow accept cases | 20 |
+| Trust workflow manual review cases | 32 |
 
 The most frequent findings are `risk_label_mismatch`, `missing_policy_signal`, and `missing_escalation`. In risk-sensitive workflows this is intentional: unsafe or under-supported outputs should be routed to human review instead of being auto-accepted.
 
@@ -231,11 +231,11 @@ Findings are mapped into a public error taxonomy:
 
 | Taxonomy category | Count |
 |---|---:|
-| `risk_routing` | 27 |
-| `policy_alignment` | 24 |
-| `human_escalation` | 24 |
-| `calibration` | 17 |
-| `evidence_grounding` | 8 |
+| `risk_routing` | 33 |
+| `policy_alignment` | 30 |
+| `human_escalation` | 30 |
+| `calibration` | 23 |
+| `evidence_grounding` | 9 |
 
 The case-family metrics show where the current synthetic set has the most
 coverage:
@@ -243,10 +243,13 @@ coverage:
 | Case family | Cases | Manual review rate | Low-trust rate |
 |---|---:|---:|---:|
 | `aml_kyc_sanctions` | 13 | 69.23% | 53.85% |
+| `agent_reliability` | 7 | 71.43% | 71.43% |
 | `trust_safety_support` | 7 | 57.14% | 28.57% |
 | `data_quality_hr_education` | 6 | 83.33% | 50.00% |
 | `due_diligence_legal` | 5 | 60.00% | 60.00% |
-| `agent_reliability` | 4 | 75.00% | 75.00% |
+| `financial_risk` | 5 | 60.00% | 60.00% |
+| `health_safety` | 5 | 60.00% | 40.00% |
+| `low_risk_control` | 4 | 0.00% | 0.00% |
 
 ## Public Demo Case
 
@@ -291,7 +294,7 @@ Agent Trust Lab is designed as the umbrella product layer for:
 
 ## Resume Angle
 
-Built Agent Trust Lab, a risk-sensitive LLM output review system with a static browser review console, a 40-case synthetic AML/KYC/due-diligence/trust-and-safety/agent-review library, formal error taxonomy, case-family metrics, batch trust-report generation, naive-baseline comparison, JSON summaries, public-safe multi-role workflow traces, escalation recommendations, and human-in-the-loop governance for AI evaluation workflows.
+Built Agent Trust Lab, a risk-sensitive LLM output review system with a static browser review console, a 52-case synthetic AML/KYC/due-diligence/trust-and-safety/agent-review library, formal error taxonomy, case-family metrics, batch trust-report generation, naive-baseline comparison, JSON summaries, public-safe multi-role workflow traces, escalation recommendations, and human-in-the-loop governance for AI evaluation workflows.
 
 ## Safety Boundary
 

@@ -1,37 +1,37 @@
 {
-  "total_cases": 40,
-  "manual_review_cases": 26,
-  "manual_review_rate": 0.65,
-  "low_trust_cases": 19,
-  "low_trust_rate": 0.475,
-  "average_risk_score": 47.62,
+  "total_cases": 52,
+  "manual_review_cases": 32,
+  "manual_review_rate": 0.6154,
+  "low_trust_cases": 25,
+  "low_trust_rate": 0.4808,
+  "average_risk_score": 45.77,
   "max_risk_score": 100,
   "min_risk_score": 0,
   "trust_level_distribution": {
-    "low": 19,
-    "high": 14,
+    "low": 25,
+    "high": 20,
     "medium": 7
   },
   "recommendation_distribution": {
-    "reject_or_escalate": 19,
-    "accept_with_notes": 14,
+    "reject_or_escalate": 25,
+    "accept_with_notes": 20,
     "escalate_for_manual_review": 7
   },
   "finding_distribution": {
-    "unsafe_certainty": 17,
-    "missing_policy_signal": 24,
-    "missing_escalation": 24,
-    "risk_label_mismatch": 27,
-    "unsupported_claim": 8
+    "unsafe_certainty": 23,
+    "missing_policy_signal": 30,
+    "missing_escalation": 30,
+    "risk_label_mismatch": 33,
+    "unsupported_claim": 9
   },
   "domain_distribution": {
-    "agent_tool_use": 2,
-    "agent_coding": 1,
+    "agent_tool_use": 3,
+    "agent_coding": 3,
     "agent_output_review": 1,
     "aml_monitoring": 3,
     "aml_onboarding": 2,
     "aml_transaction_monitoring": 1,
-    "financial_services": 2,
+    "financial_services": 4,
     "customer_support_policy": 2,
     "customer_support_compliance": 1,
     "data_quality_review": 2,
@@ -39,67 +39,68 @@
     "due_diligence": 3,
     "vendor_due_diligence": 1,
     "education_ai_review": 1,
+    "health_safety": 5,
     "hr_ai_review": 2,
     "kyc_review": 1,
     "kyc_onboarding": 1,
     "kyc_refresh": 1,
     "kyc_screening": 1,
     "legal_ai_review": 1,
-    "health_safety": 2,
-    "low_risk_control": 1,
+    "low_risk_control": 4,
+    "payment_fraud": 1,
     "sanctions_screening": 3,
     "trust_safety": 3,
     "trust_and_safety": 1
   },
   "taxonomy_category_distribution": {
-    "calibration": 17,
-    "policy_alignment": 24,
-    "human_escalation": 24,
-    "risk_routing": 27,
-    "evidence_grounding": 8
+    "calibration": 23,
+    "policy_alignment": 30,
+    "human_escalation": 30,
+    "risk_routing": 33,
+    "evidence_grounding": 9
   },
   "case_family_distribution": {
-    "agent_reliability": 4,
+    "agent_reliability": 7,
     "aml_kyc_sanctions": 13,
-    "financial_risk": 2,
+    "financial_risk": 5,
     "trust_safety_support": 7,
     "data_quality_hr_education": 6,
     "due_diligence_legal": 5,
-    "health_safety": 2,
-    "low_risk_control": 1
+    "health_safety": 5,
+    "low_risk_control": 4
   },
   "case_family_metrics": {
     "agent_reliability": {
       "description": "Tool-use, coding-agent, browser-agent, and final-answer reliability cases.",
-      "total_cases": 4,
-      "manual_review_cases": 3,
-      "manual_review_rate": 0.75,
-      "low_trust_cases": 3,
-      "low_trust_rate": 0.75,
-      "average_risk_score": 56.25,
+      "total_cases": 7,
+      "manual_review_cases": 5,
+      "manual_review_rate": 0.7143,
+      "low_trust_cases": 5,
+      "low_trust_rate": 0.7143,
+      "average_risk_score": 53.57,
       "trust_level_distribution": {
-        "low": 3,
-        "high": 1
+        "low": 5,
+        "high": 2
       },
       "recommendation_distribution": {
-        "reject_or_escalate": 3,
-        "accept_with_notes": 1
+        "reject_or_escalate": 5,
+        "accept_with_notes": 2
       },
       "finding_distribution": {
-        "unsafe_certainty": 3,
-        "missing_policy_signal": 3,
-        "missing_escalation": 3,
-        "risk_label_mismatch": 3
+        "unsafe_certainty": 5,
+        "missing_policy_signal": 5,
+        "missing_escalation": 5,
+        "risk_label_mismatch": 5
       },
       "taxonomy_category_distribution": {
-        "calibration": 3,
-        "policy_alignment": 3,
-        "human_escalation": 3,
-        "risk_routing": 3
+        "calibration": 5,
+        "policy_alignment": 5,
+        "human_escalation": 5,
+        "risk_routing": 5
       },
       "domain_distribution": {
-        "agent_tool_use": 2,
-        "agent_coding": 1,
+        "agent_tool_use": 3,
+        "agent_coding": 3,
         "agent_output_review": 1
       }
     },
@@ -223,84 +224,91 @@
     },
     "financial_risk": {
       "description": "Financial-services and payment-fraud review cases.",
-      "total_cases": 2,
-      "manual_review_cases": 1,
-      "manual_review_rate": 0.5,
-      "low_trust_cases": 1,
-      "low_trust_rate": 0.5,
-      "average_risk_score": 37.5,
+      "total_cases": 5,
+      "manual_review_cases": 3,
+      "manual_review_rate": 0.6,
+      "low_trust_cases": 3,
+      "low_trust_rate": 0.6,
+      "average_risk_score": 50.0,
       "trust_level_distribution": {
-        "low": 1,
-        "high": 1
+        "low": 3,
+        "high": 2
       },
       "recommendation_distribution": {
-        "reject_or_escalate": 1,
-        "accept_with_notes": 1
+        "reject_or_escalate": 3,
+        "accept_with_notes": 2
       },
       "finding_distribution": {
-        "unsafe_certainty": 1,
-        "missing_policy_signal": 1,
-        "missing_escalation": 1,
-        "risk_label_mismatch": 1
+        "unsafe_certainty": 3,
+        "missing_policy_signal": 3,
+        "missing_escalation": 3,
+        "risk_label_mismatch": 3,
+        "unsupported_claim": 1
       },
       "taxonomy_category_distribution": {
-        "calibration": 1,
-        "policy_alignment": 1,
-        "human_escalation": 1,
-        "risk_routing": 1
+        "calibration": 3,
+        "policy_alignment": 3,
+        "human_escalation": 3,
+        "risk_routing": 3,
+        "evidence_grounding": 1
       },
       "domain_distribution": {
-        "financial_services": 2
+        "financial_services": 4,
+        "payment_fraud": 1
       }
     },
     "health_safety": {
       "description": "Health or safety-support cases where unsafe certainty can cause harm.",
-      "total_cases": 2,
-      "manual_review_cases": 1,
-      "manual_review_rate": 0.5,
-      "low_trust_cases": 0,
-      "low_trust_rate": 0.0,
-      "average_risk_score": 27.5,
+      "total_cases": 5,
+      "manual_review_cases": 3,
+      "manual_review_rate": 0.6,
+      "low_trust_cases": 2,
+      "low_trust_rate": 0.4,
+      "average_risk_score": 41.0,
       "trust_level_distribution": {
-        "high": 1,
+        "high": 2,
+        "low": 2,
         "medium": 1
       },
       "recommendation_distribution": {
-        "accept_with_notes": 1,
+        "accept_with_notes": 2,
+        "reject_or_escalate": 2,
         "escalate_for_manual_review": 1
       },
       "finding_distribution": {
-        "unsafe_certainty": 1,
-        "missing_escalation": 1,
-        "risk_label_mismatch": 1
+        "unsafe_certainty": 3,
+        "missing_policy_signal": 2,
+        "missing_escalation": 3,
+        "risk_label_mismatch": 3
       },
       "taxonomy_category_distribution": {
-        "calibration": 1,
-        "human_escalation": 1,
-        "risk_routing": 1
+        "calibration": 3,
+        "policy_alignment": 2,
+        "human_escalation": 3,
+        "risk_routing": 3
       },
       "domain_distribution": {
-        "health_safety": 2
+        "health_safety": 5
       }
     },
     "low_risk_control": {
       "description": "Low-risk control cases used to check over-escalation behavior.",
-      "total_cases": 1,
+      "total_cases": 4,
       "manual_review_cases": 0,
       "manual_review_rate": 0.0,
       "low_trust_cases": 0,
       "low_trust_rate": 0.0,
       "average_risk_score": 0.0,
       "trust_level_distribution": {
-        "high": 1
+        "high": 4
       },
       "recommendation_distribution": {
-        "accept_with_notes": 1
+        "accept_with_notes": 4
       },
       "finding_distribution": {},
       "taxonomy_category_distribution": {},
       "domain_distribution": {
-        "low_risk_control": 1
+        "low_risk_control": 4
       }
     },
     "trust_safety_support": {

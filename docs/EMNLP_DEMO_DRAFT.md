@@ -4,7 +4,7 @@ Working EMNLP 2026 System Demonstration draft.
 
 ## Abstract
 
-Large language models and agent workflows are increasingly used in risk-sensitive settings such as compliance review, due diligence, customer support, trust and safety, and AI data-quality calibration. In these settings, fluent answers are not enough: reviewers need to know whether an output is supported by evidence, aligned with policy signals, calibrated in uncertainty, and safe to route without bypassing human review. We present Agent Trust Lab, a public-safe system demonstration for generating structured trust reports for LLM and agent outputs. The prototype evaluates synthetic risk cases across AML, KYC, sanctions screening, due diligence, trust and safety, customer support, HR review, health-safety support, legal review, financial services, and agent tool-use scenarios. It produces Markdown and JSON trust reports, aggregate review-routing metrics, a formal error taxonomy, case-family metrics, a naive-baseline comparison, and public-safe multi-role workflow traces. On a 40-case synthetic case library, a naive confident-output baseline accepts 26 cases and produces 19 false accepts under the trust-workflow criteria, while Agent Trust Lab routes 26 cases to human review and accepts 14 with notes. The demo is designed to support human reviewers rather than automate high-risk decisions.
+Large language models and agent workflows are increasingly used in risk-sensitive settings such as compliance review, due diligence, customer support, trust and safety, and AI data-quality calibration. In these settings, fluent answers are not enough: reviewers need to know whether an output is supported by evidence, aligned with policy signals, calibrated in uncertainty, and safe to route without bypassing human review. We present Agent Trust Lab, a public-safe system demonstration for generating structured trust reports for LLM and agent outputs. The prototype evaluates synthetic risk cases across AML, KYC, sanctions screening, due diligence, trust and safety, customer support, HR review, health-safety support, legal review, financial services, and agent tool-use scenarios. It produces Markdown and JSON trust reports, aggregate review-routing metrics, a formal error taxonomy, case-family metrics, a naive-baseline comparison, and public-safe multi-role workflow traces. On a 52-case synthetic case library, a naive confident-output baseline accepts 38 cases and produces 25 false accepts under the trust-workflow criteria, while Agent Trust Lab routes 32 cases to human review and accepts 20 with notes. The demo is designed to support human reviewers rather than automate high-risk decisions.
 
 ## 1. Introduction
 
@@ -110,7 +110,7 @@ The demonstration flow is designed for a three-minute walkthrough:
 
 ## 5. Case Library
 
-The public evaluation set currently contains 40 synthetic cases. Domains include:
+The public evaluation set currently contains 52 synthetic cases. Domains include:
 
 | Domain family | Example risks |
 |---|---|
@@ -129,32 +129,32 @@ The current deterministic public prototype is evaluated as a review-routing syst
 
 | Metric | Value |
 |---|---:|
-| Total synthetic cases | 40 |
-| Manual review cases | 26 |
-| Manual review rate | 65% |
-| Low-trust cases | 19 |
-| Low-trust rate | 47.5% |
-| Average risk score | 47.62 |
+| Total synthetic cases | 52 |
+| Manual review cases | 32 |
+| Manual review rate | 61.5% |
+| Low-trust cases | 25 |
+| Low-trust rate | 48.1% |
+| Average risk score | 45.77 |
 
 The most frequent findings are:
 
 | Finding | Count |
 |---|---:|
-| `risk_label_mismatch` | 27 |
-| `missing_policy_signal` | 24 |
-| `missing_escalation` | 24 |
-| `unsafe_certainty` | 17 |
-| `unsupported_claim` | 8 |
+| `risk_label_mismatch` | 33 |
+| `missing_policy_signal` | 30 |
+| `missing_escalation` | 30 |
+| `unsafe_certainty` | 23 |
+| `unsupported_claim` | 9 |
 
 The raw findings are also mapped into a compact error taxonomy for reviewer-facing analysis:
 
 | Taxonomy category | Count |
 |---|---:|
-| `risk_routing` | 27 |
-| `policy_alignment` | 24 |
-| `human_escalation` | 24 |
-| `calibration` | 17 |
-| `evidence_grounding` | 8 |
+| `risk_routing` | 33 |
+| `policy_alignment` | 30 |
+| `human_escalation` | 30 |
+| `calibration` | 23 |
+| `evidence_grounding` | 9 |
 
 This taxonomy separates low-level detector names from higher-level reviewer questions: whether the output is routed to the right risk level, whether it follows required policy signals, whether it preserves human escalation, whether it is calibrated in certainty, and whether claims are grounded in evidence.
 
@@ -165,16 +165,18 @@ The synthetic set is grouped into case families so coverage and routing behavior
 | Case family | Cases | Manual review rate | Low-trust rate | Average risk score |
 |---|---:|---:|---:|---:|
 | `aml_kyc_sanctions` | 13 | 69.23% | 53.85% | 51.54 |
+| `agent_reliability` | 7 | 71.43% | 71.43% | 53.57 |
 | `trust_safety_support` | 7 | 57.14% | 28.57% | 40.71 |
 | `data_quality_hr_education` | 6 | 83.33% | 50.00% | 53.33 |
 | `due_diligence_legal` | 5 | 60.00% | 60.00% | 55.00 |
-| `agent_reliability` | 4 | 75.00% | 75.00% | 56.25 |
+| `financial_risk` | 5 | 60.00% | 60.00% | 50.00 |
+| `health_safety` | 5 | 60.00% | 40.00% | 41.00 |
 
 This table is useful for demo review because it shows both project breadth and remaining limitations. For example, the `agent_reliability` family is deliberately small but high-risk, while `aml_kyc_sanctions` is the most developed family and anchors the portfolio story in risk review work.
 
 ### 6.2 Human Spot-Check Protocol
 
-The repository includes a public-safe human spot-check protocol for auditing synthetic-case reports before public sharing or submission. The protocol samples at least 15 cases from the 40-case library, including high-risk synthetic cases, low-risk controls, agent/tool-use cases, and cross-domain cases.
+The repository includes a public-safe human spot-check protocol for auditing synthetic-case reports before public sharing or submission. The protocol samples at least 15 cases from the 52-case library, including high-risk synthetic cases, low-risk controls, agent/tool-use cases, and cross-domain cases.
 
 For each sampled case, a reviewer records route agreement, finding quality, missed findings, over-triggered findings, evidence clarity, and notes for the next version. The planned summary metrics are human route agreement, disagreement count, unclear case count, over-trigger count, and missed-finding count.
 
@@ -188,11 +190,11 @@ The naive baseline treats confident acceptance language such as "approve", "acce
 
 | Metric | Value |
 |---|---:|
-| Naive accept cases | 26 |
-| Naive false accept cases | 19 |
+| Naive accept cases | 38 |
+| Naive false accept cases | 25 |
 | Naive false accept rate | 48% |
-| Trust workflow accept cases | 14 |
-| Trust workflow manual review cases | 26 |
+| Trust workflow accept cases | 20 |
+| Trust workflow manual review cases | 32 |
 
 This comparison illustrates why a trust-report workflow is useful: it surfaces evidence gaps and escalation failures that can be hidden behind confident LLM wording.
 

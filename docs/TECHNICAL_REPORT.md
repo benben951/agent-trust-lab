@@ -54,9 +54,9 @@ In the sample synthetic AML case, the reviewed LLM output incorrectly treats an 
 
 See `examples/trust_report_sample.md`.
 
-## 4.1 v0.3 Case Library
+## 4.1 v0.4 Case Library
 
-The v0.3 demo expands from one synthetic AML case to a 40-case library covering AML onboarding, AML transaction monitoring, KYC review, sanctions screening, vendor due diligence, trust and safety, customer support compliance, agent output review, coding-agent review, AI data quality, HR screening, health-safety support, legal review, education support, financial services, and low-risk control cases.
+The current demo expands from one synthetic AML case to a 52-case library covering AML onboarding, AML transaction monitoring, KYC review, sanctions screening, vendor due diligence, trust and safety, customer support compliance, agent output review, coding-agent review, AI data quality, HR screening, health-safety support, legal review, education support, financial services, and low-risk control cases.
 
 The batch review command generates one Markdown trust report per case and a JSON summary for downstream dashboards or evaluation scripts.
 
@@ -66,28 +66,28 @@ The v0.2 demo adds a static browser review console under `web/`. The console pre
 
 ## 4.3 Evaluation Metrics Summary
 
-The public demo includes a reproducible metrics summary generated from the 40-case synthetic review library. The summary is intentionally focused on review-routing behavior rather than generic accuracy.
+The public demo includes a reproducible metrics summary generated from the 52-case synthetic review library. The summary is intentionally focused on review-routing behavior rather than generic accuracy.
 
 | Metric | Value |
 |---|---:|
-| Total synthetic cases | 40 |
-| Manual review cases | 26 |
-| Manual review rate | 65% |
-| Low-trust cases | 19 |
-| Low-trust rate | 47.5% |
-| Average risk score | 47.62 |
+| Total synthetic cases | 52 |
+| Manual review cases | 32 |
+| Manual review rate | 61.5% |
+| Low-trust cases | 25 |
+| Low-trust rate | 48.1% |
+| Average risk score | 45.77 |
 
 The most frequent findings are `risk_label_mismatch`, `missing_policy_signal`, and `missing_escalation`. This reflects the central design principle of the prototype: in risk-sensitive AI workflows, escalation is a valid safety outcome when evidence, policy support, or uncertainty handling is weak.
 
 See `docs/EVALUATION_METRICS.md` and `examples/evaluation_metrics.json`.
 
-The same metrics file includes taxonomy category distribution and case-family metrics. On the current 40-case set, the largest taxonomy categories are `risk_routing` (27), `policy_alignment` (24), `human_escalation` (24), `calibration` (17), and `evidence_grounding` (8). The largest case family is `aml_kyc_sanctions` with 13 cases, followed by `trust_safety_support` with 7 cases and `data_quality_hr_education` with 6 cases.
+The same metrics file includes taxonomy category distribution and case-family metrics. On the current 52-case set, the largest taxonomy categories are `risk_routing` (33), `policy_alignment` (30), `human_escalation` (30), `calibration` (23), and `evidence_grounding` (9). The largest case family is `aml_kyc_sanctions` with 13 cases, followed by `agent_reliability` and `trust_safety_support` with 7 cases each.
 
 These additions make the evaluation more useful for project iteration. Aggregate metrics show the overall review posture, taxonomy metrics show recurring error classes, and case-family metrics show which scenario groups need more examples or reviewer calibration.
 
 ## 4.4 Naive Baseline Comparison
 
-Agent Trust Lab compares the structured trust workflow against a deliberately weak baseline that treats confident accept/approve language as usable. On the current 40-case synthetic set, the naive baseline accepts 26 cases and produces 19 false accepts under the trust-workflow review criteria. The trust workflow accepts 14 cases and routes 26 cases to manual review.
+Agent Trust Lab compares the structured trust workflow against a deliberately weak baseline that treats confident accept/approve language as usable. On the current 52-case synthetic set, the naive baseline accepts 38 cases and produces 25 false accepts under the trust-workflow review criteria. The trust workflow accepts 20 cases and routes 32 cases to manual review.
 
 This is not a production accuracy claim. It is a public-safe demonstration of a common LLM risk: confident language can look operationally complete even when evidence, policy signals, or escalation behavior are missing.
 

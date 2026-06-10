@@ -33,7 +33,7 @@ Error taxonomy: [ERROR_TAXONOMY.md](ERROR_TAXONOMY.md)
 
 | Hiring Signal | Project Evidence |
 |---|---|
-| LLM output evaluation | 40 synthetic cases with failure findings and trust levels. |
+| LLM output evaluation | 52 synthetic cases with failure findings and trust levels. |
 | Human-in-the-loop review | Medium/high-risk or uncertain cases are routed to manual review. |
 | Risk and compliance judgment | Findings include unsafe certainty, unsupported claim, missing policy signal, missing escalation, and risk-label mismatch. |
 | Evaluation artifacts | Each case generates a Markdown trust report and machine-readable JSON summary. |
@@ -74,7 +74,7 @@ The public workflow trace intentionally shows role-level review notes without ex
 
 ## 4. Case Library
 
-The public case library currently contains 40 synthetic public-safe cases. The table below shows representative examples rather than every case.
+The public case library currently contains 52 synthetic public-safe cases. The table below shows representative examples rather than every case.
 
 | Case ID | Domain | Scenario | Trust Level | Recommendation |
 |---|---|---|---|---|
@@ -95,12 +95,12 @@ Generated from `examples/batch_summary.json` and `examples/evaluation_metrics.js
 
 | Metric | Value |
 |---|---:|
-| Total synthetic cases | 40 |
-| Manual review cases | 26 |
-| Manual review rate | 65% |
-| Low-trust cases | 19 |
-| Low-trust rate | 47.5% |
-| Average risk score | 47.62 |
+| Total synthetic cases | 52 |
+| Manual review cases | 32 |
+| Manual review rate | 61.5% |
+| Low-trust cases | 25 |
+| Low-trust rate | 48.1% |
+| Average risk score | 45.77 |
 | Max risk score | 100 |
 | Min risk score | 0 |
 
@@ -108,57 +108,60 @@ Trust distribution:
 
 | Trust level | Count |
 |---|---:|
-| Low | 19 |
+| Low | 25 |
 | Medium | 7 |
-| High | 14 |
+| High | 20 |
 
 Recommendation distribution:
 
 | Recommendation | Count |
 |---|---:|
-| `reject_or_escalate` | 19 |
+| `reject_or_escalate` | 25 |
 | `escalate_for_manual_review` | 7 |
-| `accept_with_notes` | 14 |
+| `accept_with_notes` | 20 |
 
 Finding distribution:
 
 | Finding | Count |
 |---|---:|
-| `risk_label_mismatch` | 27 |
-| `missing_policy_signal` | 24 |
-| `missing_escalation` | 24 |
-| `unsafe_certainty` | 17 |
-| `unsupported_claim` | 8 |
+| `risk_label_mismatch` | 33 |
+| `missing_policy_signal` | 30 |
+| `missing_escalation` | 30 |
+| `unsafe_certainty` | 23 |
+| `unsupported_claim` | 9 |
 
 Taxonomy category distribution:
 
 | Category | Count |
 |---|---:|
-| `risk_routing` | 27 |
-| `policy_alignment` | 24 |
-| `human_escalation` | 24 |
-| `calibration` | 17 |
-| `evidence_grounding` | 8 |
+| `risk_routing` | 33 |
+| `policy_alignment` | 30 |
+| `human_escalation` | 30 |
+| `calibration` | 23 |
+| `evidence_grounding` | 9 |
 
 Representative case-family metrics:
 
 | Case family | Cases | Manual review rate | Low-trust rate |
 |---|---:|---:|---:|
 | `aml_kyc_sanctions` | 13 | 69.23% | 53.85% |
+| `agent_reliability` | 7 | 71.43% | 71.43% |
 | `trust_safety_support` | 7 | 57.14% | 28.57% |
 | `data_quality_hr_education` | 6 | 83.33% | 50.00% |
 | `due_diligence_legal` | 5 | 60.00% | 60.00% |
-| `agent_reliability` | 4 | 75.00% | 75.00% |
+| `financial_risk` | 5 | 60.00% | 60.00% |
+| `health_safety` | 5 | 60.00% | 40.00% |
+| `low_risk_control` | 4 | 0.00% | 0.00% |
 
 Naive baseline comparison:
 
 | Metric | Value |
 |---|---:|
-| Naive accept cases | 26 |
-| Naive false accept cases | 19 |
+| Naive accept cases | 38 |
+| Naive false accept cases | 25 |
 | Naive false accept rate | 48% |
-| Trust workflow accept cases | 14 |
-| Trust workflow manual review cases | 26 |
+| Trust workflow accept cases | 20 |
+| Trust workflow manual review cases | 32 |
 
 ## 6. Example Reports
 
@@ -232,16 +235,16 @@ http://localhost:8765/web/
 
 Short version:
 
-> I built Agent Trust Lab to evaluate whether LLM or agent outputs are safe enough to accept, escalate, or reject in risk-sensitive workflows. The prototype uses 40 synthetic AML, KYC, due-diligence, trust-and-safety, and agent-review cases. It generates trust reports, multi-role workflow traces, human-review routing decisions, naive-baseline comparisons, and evaluation metrics such as manual-review rate, low-trust rate, recommendation distribution, and recurring failure types.
+> I built Agent Trust Lab to evaluate whether LLM or agent outputs are safe enough to accept, escalate, or reject in risk-sensitive workflows. The prototype uses 52 synthetic AML, KYC, due-diligence, trust-and-safety, and agent-review cases. It generates trust reports, multi-role workflow traces, human-review routing decisions, naive-baseline comparisons, and evaluation metrics such as manual-review rate, low-trust rate, recommendation distribution, and recurring failure types.
 
 Chinese version:
 
-> 我做 Agent Trust Lab 的核心原因是：在风控、合规、Trust & Safety 和 Agent 输出复审场景里，模型回答得流畅不代表可以被信任。这个项目用 40 个公开安全的 synthetic cases，把 LLM 或 Agent 输出转成可审计的 trust report，检查证据支撑、规则信号、风险标签、升级处理和最终路由，并通过 naive baseline 对比说明“自信输出直接接受”会带来的 false-accept 风险。
+> 我做 Agent Trust Lab 的核心原因是：在风控、合规、Trust & Safety 和 Agent 输出复审场景里，模型回答流畅并不代表可以被信任。这个项目用 52 个公开安全的 synthetic cases，把 LLM 或 Agent 输出转成可审计的 trust report，检查证据支撑、规则信号、风险标签、升级处理和最终路由，并通过 naive baseline 对比说明“自信输出直接接受”会带来的 false-accept 风险。
 
 ## 9. Resume Bullets
 
 - Built Agent Trust Lab, a public-safe LLM output review prototype for AML/KYC, due diligence, trust and safety, AI data-quality, and agent-output evaluation scenarios.
-- Designed a 40-case synthetic evaluation library and generated structured Markdown/JSON trust reports with risk findings, trust levels, escalation recommendations, baseline comparison, and aggregate review-routing metrics.
+- Designed a 52-case synthetic evaluation library and generated structured Markdown/JSON trust reports with risk findings, trust levels, escalation recommendations, baseline comparison, and aggregate review-routing metrics.
 - Added a formal error taxonomy and case-family metrics to analyze evidence grounding, policy alignment, calibration, human escalation, risk routing, and scenario coverage across risk-sensitive domains.
 - Added a public-safe multi-role workflow trace covering evidence, policy, risk, escalation, and final reviewer notes for agent-output review.
 - Published a recruiter-friendly case walkthrough for a synthetic tool-failure scenario, connecting the input evidence, policy rule, role-level failures, final routing, and safety boundary.

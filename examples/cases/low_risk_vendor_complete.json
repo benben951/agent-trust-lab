@@ -1,0 +1,30 @@
+{
+  "case_id": "SYN-SAFE-002",
+  "domain": "low_risk_control",
+  "user_question": "Can this vendor-screening summary be accepted with notes?",
+  "expected_risk_level": "low",
+  "llm_output": "The vendor case is low risk based on the evidence. Screening is complete, no sanction indicator is present in the evidence, and the summary can be accepted with notes.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_vendor_profile",
+      "text": "The vendor profile is complete and consistent."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_screening",
+      "text": "No sanction indicator is present in the evidence."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Low-risk cases can be accepted with notes when evidence is complete.",
+      "required_terms": ["low risk", "evidence"]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "safe vendor control"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "case_id": "SYN-SAFE-003",
+  "domain": "low_risk_control",
+  "user_question": "Can this low-value refund response be accepted?",
+  "expected_risk_level": "low",
+  "llm_output": "This is low risk based on the evidence. The refund amount is below the threshold and the response can be accepted with notes.",
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "source": "synthetic_refund_policy",
+      "text": "The refund amount is below the simplified-review threshold."
+    },
+    {
+      "evidence_id": "E2",
+      "source": "synthetic_ticket_history",
+      "text": "The customer has no repeated dispute pattern in the synthetic history."
+    }
+  ],
+  "policy_rules": [
+    {
+      "rule_id": "R1",
+      "text": "Low-risk refund responses can be accepted with notes when supported by evidence.",
+      "required_terms": ["low risk", "evidence"]
+    }
+  ],
+  "metadata": {
+    "data_policy": "synthetic_public_safe",
+    "scenario": "safe refund control"
+  }
+}

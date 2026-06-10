@@ -58,14 +58,14 @@ def test_batch_review_cli_generates_summary(tmp_path: Path) -> None:
 
     assert completed.returncode == 0, completed.stderr
     assert summary.exists()
-    assert len(list(out_dir.glob("*.md"))) >= 30
+    assert len(list(out_dir.glob("*.md"))) >= 50
 
 
 def test_case_library_has_public_safe_unique_cases() -> None:
     case_paths = sorted((Path("examples") / "cases").glob("*.json"))
     case_ids = [load_case(path).case_id for path in case_paths]
 
-    assert len(case_paths) >= 30
+    assert len(case_paths) >= 50
     assert len(case_ids) == len(set(case_ids))
     assert all(load_case(path).metadata.get("data_policy") == "synthetic_public_safe" for path in case_paths)
 
@@ -74,7 +74,7 @@ def test_naive_baseline_comparison_counts_false_accepts() -> None:
     cases = [load_case(path) for path in sorted((Path("examples") / "cases").glob("*.json"))]
     summary = compare_naive_acceptance(cases)
 
-    assert summary["total_cases"] >= 30
+    assert summary["total_cases"] >= 50
     assert summary["naive_accept_cases"] > summary["trust_workflow_accept_cases"]
     assert summary["naive_false_accept_cases"] > 0
     assert summary["trust_workflow_manual_review_cases"] > 0
@@ -84,7 +84,7 @@ def test_metrics_summary_counts_review_risk() -> None:
     batch_summary = json.loads(Path("examples/batch_summary.json").read_text(encoding="utf-8"))
     metrics = summarize_results(batch_summary)
 
-    assert metrics["total_cases"] >= 30
+    assert metrics["total_cases"] >= 50
     assert metrics["manual_review_cases"] >= 20
     assert metrics["low_trust_cases"] >= 10
     assert metrics["finding_distribution"]["risk_label_mismatch"] >= 20
@@ -96,10 +96,12 @@ def test_metrics_summary_includes_taxonomy_and_case_family_metrics() -> None:
 
     assert metrics["error_taxonomy"]["unsupported_claim"]["category"] == "evidence_grounding"
     assert metrics["error_taxonomy"]["missing_escalation"]["category"] == "human_escalation"
-    assert metrics["taxonomy_category_distribution"]["risk_routing"] >= 20
+    assert metrics["taxonomy_category_distribution"]["risk_routing"] >= 30
     assert metrics["case_family_distribution"]["aml_kyc_sanctions"] >= 10
-    assert metrics["case_family_metrics"]["agent_reliability"]["total_cases"] >= 4
-    assert metrics["case_family_metrics"]["agent_reliability"]["manual_review_cases"] >= 3
+    assert metrics["case_family_metrics"]["agent_reliability"]["total_cases"] >= 7
+    assert metrics["case_family_metrics"]["financial_risk"]["total_cases"] >= 5
+    assert metrics["case_family_metrics"]["health_safety"]["total_cases"] >= 5
+    assert metrics["case_family_metrics"]["low_risk_control"]["total_cases"] >= 4
     assert "domain_distribution" in metrics["case_family_metrics"]["trust_safety_support"]
 
 
@@ -131,7 +133,8 @@ def test_summarize_cli_generates_metrics_file(tmp_path: Path) -> None:
 
     assert completed.returncode == 0, completed.stderr
     metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
-    assert metrics["manual_review_rate"] == 0.65
+    assert metrics["total_cases"] == 52
+    assert metrics["manual_review_rate"] == 0.6154
 
 
 def test_workflow_review_has_role_trace() -> None:
