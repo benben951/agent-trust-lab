@@ -72,6 +72,7 @@ For a recruiter/interviewer review path, start with:
 - [Demo Walkthrough](docs/DEMO_WALKTHROUGH.md): shortest three-minute path through the live demo, metrics, baseline comparison, workflow trace, and governance boundary.
 - [Demo Screenshots](docs/DEMO_SCREENSHOTS.md): desktop and narrow-layout screenshots for portfolio and recruiter review.
 - [Review Packet](docs/REVIEW_PACKET.md): three-minute project summary, case library, metrics, reports, reproduction steps, and interview pitch.
+- [Project One-Pager](docs/PROJECT_ONE_PAGER.md): two-minute English summary for recruiters, GitHub profile links, and job applications.
 - [Workflow Recipes](docs/WORKFLOW_RECIPES.md): reusable review recipes that turn one-off LLM review prompts into auditable workflows.
 - [Case Walkthrough](docs/CASE_WALKTHROUGH.md): step-by-step demo flow for an agent tool-failure review.
 - [Context Engineering](docs/CONTEXT_ENGINEERING.md): how the project is maintained with Codex-first context, verification gates, and public-safe boundaries.

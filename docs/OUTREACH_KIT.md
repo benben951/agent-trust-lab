@@ -29,6 +29,9 @@ and routes risky cases to human review. The repo includes CI, a live demo,
 synthetic cases, reusable review workflow recipes, baseline comparison, report
 examples, and a system-demo draft.
 
+For a compact recruiter-facing summary, see
+[`PROJECT_ONE_PAGER.md`](PROJECT_ONE_PAGER.md).
+
 ## GitHub Repository Description
 
 Risk-sensitive LLM output review and trust-report generation system.
