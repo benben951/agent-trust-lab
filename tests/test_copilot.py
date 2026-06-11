@@ -29,3 +29,16 @@ def test_render_copilot_markdown_contains_key_sections() -> None:
     assert "Rule pack" in report
     assert "Next Checks" in report
     assert "COPILOT-DEMO-001" in report
+
+
+def test_load_raw_text_copilot_input_and_review() -> None:
+    path = Path("examples/copilot_input_agent_failure.txt")
+    review_input = load_copilot_input(path)
+    session = ReviewOrchestrator().review(review_input)
+
+    assert review_input.case_id == "COPILOT-RAW-001"
+    assert review_input.domain == "agent_output_review"
+    assert review_input.agent_output.metadata["expected_risk_level"] == "high"
+    assert review_input.agent_output.tool_trace
+    assert session.selected_rulepack == "agent_tool_use"
+    assert session.decision.recommendation == "escalate_for_manual_review"

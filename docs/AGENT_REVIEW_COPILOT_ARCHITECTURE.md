@@ -220,6 +220,13 @@ task metadata
 
 This is closer to how real review work happens.
 
+The current scaffold supports both:
+
+- structured JSON input
+- lightweight raw text input with sections such as `Case ID:`, `Domain:`,
+  `User Request:`, `Final Output:`, `Tool Trace:`, `Evidence:`, and
+  `Reviewer Notes:`
+
 ## Migration Strategy
 
 ### Phase 1

@@ -61,6 +61,15 @@ python -m agent_trust_lab.cli workflow-review `
 
 Then open [examples/workflow_report_agent_tool_failure.md](examples/workflow_report_agent_tool_failure.md) to see the generated role trace and human-review recommendation.
 
+For the new copilot scaffold, you can also review a lightweight agent-output package:
+
+```powershell
+python -m agent_trust_lab.cli copilot-review `
+  --input examples\copilot_input_agent_failure.txt `
+  --out tmp\copilot_demo_raw.md `
+  --json-out tmp\copilot_demo_raw.json
+```
+
 ## Why Star This Repo
 
 Star it if you are interested in practical LLM evaluation, human-in-the-loop AI review, agent safety, trust reports, or reproducible examples of how to turn vague model-quality concerns into inspectable artifacts.
