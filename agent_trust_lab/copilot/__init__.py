@@ -5,6 +5,7 @@ from .models import (
     CopilotInput,
     CopilotSession,
 )
+from .io import load_copilot_input
 from .orchestrator import ReviewOrchestrator
 
 __all__ = [
@@ -13,5 +14,6 @@ __all__ = [
     "CopilotEvidence",
     "CopilotInput",
     "CopilotSession",
+    "load_copilot_input",
     "ReviewOrchestrator",
 ]

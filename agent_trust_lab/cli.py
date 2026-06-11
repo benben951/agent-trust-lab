@@ -6,6 +6,9 @@ from pathlib import Path
 
 from .metrics import load_batch_summary, summarize_results
 from .baseline import compare_naive_acceptance
+from .copilot import ReviewOrchestrator, load_copilot_input
+from .copilot.memory import write_session_memory
+from .copilot.reports import render_copilot_markdown
 from .reviewer import evaluate_case, load_case, render_markdown
 from .workflow import evaluate_workflow, render_workflow_markdown
 
@@ -41,20 +44,32 @@ def main() -> int:
     baseline.add_argument("--out", required=True, help="Path for baseline comparison JSON")
     baseline.add_argument("--markdown-out", help="Optional Markdown summary output path")
 
+    copilot = subparsers.add_parser(
+        "copilot-review",
+        help="Run the first-pass Agent review copilot on a structured input package",
+    )
+    copilot.add_argument("--input", required=True, help="Path to copilot input JSON")
+    copilot.add_argument("--out", required=True, help="Markdown copilot report output path")
+    copilot.add_argument("--json-out", help="Optional JSON session output path")
+    copilot.add_argument(
+        "--memory-out-dir",
+        help="Optional directory for writing session memory JSON",
+    )
+
     args = parser.parse_args()
     if args.command == "review":
         case = load_case(args.case)
         result = evaluate_case(case)
-        Path(args.out).write_text(render_markdown(case, result), encoding="utf-8")
+        _write_text(args.out, render_markdown(case, result))
         if args.json_out:
-            Path(args.json_out).write_text(json.dumps(result, indent=2), encoding="utf-8")
+            _write_json(args.json_out, result)
         return 0
     if args.command == "workflow-review":
         case = load_case(args.case)
         result = evaluate_workflow(case)
-        Path(args.out).write_text(render_workflow_markdown(case, result), encoding="utf-8")
+        _write_text(args.out, render_workflow_markdown(case, result))
         if args.json_out:
-            Path(args.json_out).write_text(json.dumps(result, indent=2), encoding="utf-8")
+            _write_json(args.json_out, result)
         return 0
     if args.command == "batch-review":
         cases_dir = Path(args.cases_dir)
@@ -78,21 +93,43 @@ def main() -> int:
                     "report": str(report_path.as_posix()),
                 }
             )
-        Path(args.summary).write_text(json.dumps(summary, indent=2), encoding="utf-8")
+        _write_json(args.summary, summary)
         return 0
     if args.command == "summarize":
         results = load_batch_summary(args.summary)
         metrics = summarize_results(results)
-        Path(args.out).write_text(json.dumps(metrics, indent=2), encoding="utf-8")
+        _write_json(args.out, metrics)
         return 0
     if args.command == "baseline-compare":
         cases = [load_case(path) for path in sorted(Path(args.cases_dir).glob("*.json"))]
         result = compare_naive_acceptance(cases)
-        Path(args.out).write_text(json.dumps(result, indent=2), encoding="utf-8")
+        _write_json(args.out, result)
         if args.markdown_out:
-            Path(args.markdown_out).write_text(_render_baseline_markdown(result), encoding="utf-8")
+            _write_text(args.markdown_out, _render_baseline_markdown(result))
+        return 0
+    if args.command == "copilot-review":
+        orchestrator = ReviewOrchestrator()
+        review_input = load_copilot_input(args.input)
+        session = orchestrator.review(review_input)
+        _write_text(args.out, render_copilot_markdown(session))
+        if args.json_out:
+            from dataclasses import asdict
+
+            _write_json(args.json_out, asdict(session))
+        if args.memory_out_dir:
+            write_session_memory(session, args.memory_out_dir)
         return 0
     return 1
+
+
+def _write_text(path: str, content: str) -> None:
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(content, encoding="utf-8")
+
+
+def _write_json(path: str, payload: object) -> None:
+    _write_text(path, json.dumps(payload, indent=2))
 
 
 def _render_baseline_markdown(result: dict) -> str:
