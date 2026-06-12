@@ -12,6 +12,8 @@ def load_copilot_input(path: str | Path) -> CopilotInput:
     text = input_path.read_text(encoding="utf-8")
     if input_path.suffix.lower() == ".json":
         return _load_json_input(text)
+    if _looks_like_transcript(text):
+        return _load_transcript_input(text)
     return _load_raw_text_input(text)
 
 
@@ -61,6 +63,41 @@ def _load_raw_text_input(text: str) -> CopilotInput:
     )
 
 
+def _load_transcript_input(text: str) -> CopilotInput:
+    messages = _parse_transcript_messages(text)
+    user_messages = [body for role, body in messages if role == "USER"]
+    agent_messages = [body for role, body in messages if role == "AGENT"]
+    tool_messages = [body for role, body in messages if role == "TOOL"]
+    reviewer_messages = [body for role, body in messages if role == "REVIEWER"]
+    system_messages = [body for role, body in messages if role == "SYSTEM"]
+
+    metadata = _extract_metadata_from_system(system_messages)
+    case_id = metadata.get("case_id", "COPILOT-TRANSCRIPT-001")
+    domain = metadata.get("domain", "agent_output_review")
+    expected_risk_level = metadata.get("expected_risk_level", "medium")
+    required_terms = metadata.get("required_terms", [])
+
+    evidence_snippets = tool_messages[:]
+    if reviewer_messages:
+        evidence_snippets.extend([f"Reviewer note: {item}" for item in reviewer_messages[:2]])
+
+    return CopilotInput(
+        case_id=case_id,
+        domain=domain,
+        user_request=user_messages[0] if user_messages else "",
+        agent_output=AgentOutputPackage(
+            final_output=agent_messages[-1] if agent_messages else "",
+            tool_trace=tool_messages,
+            evidence_snippets=evidence_snippets,
+            metadata={
+                "expected_risk_level": expected_risk_level,
+                "required_terms": required_terms,
+            },
+        ),
+        reviewer_notes=reviewer_messages,
+    )
+
+
 def _split_sections(text: str) -> dict[str, str]:
     pattern = re.compile(r"(?mi)^([A-Za-z][A-Za-z _-]+):\s*$")
     matches = list(pattern.finditer(text))
@@ -74,6 +111,48 @@ def _split_sections(text: str) -> dict[str, str]:
         end = matches[idx + 1].start() if idx + 1 < len(matches) else len(text)
         sections[name] = text[start:end].strip()
     return sections
+
+
+def _looks_like_transcript(text: str) -> bool:
+    prefixes = ("USER:", "AGENT:", "TOOL:", "REVIEWER:", "SYSTEM:")
+    return any(line.strip().startswith(prefixes) for line in text.splitlines())
+
+
+def _parse_transcript_messages(text: str) -> list[tuple[str, str]]:
+    messages: list[tuple[str, str]] = []
+    current_role: str | None = None
+    current_lines: list[str] = []
+
+    for raw_line in text.splitlines():
+        line = raw_line.rstrip()
+        match = re.match(r"^(USER|AGENT|TOOL|REVIEWER|SYSTEM):\s*(.*)$", line)
+        if match:
+            if current_role is not None:
+                messages.append((current_role, "\n".join(current_lines).strip()))
+            current_role = match.group(1)
+            current_lines = [match.group(2).strip()] if match.group(2).strip() else []
+            continue
+        if current_role is not None:
+            current_lines.append(line.strip())
+
+    if current_role is not None:
+        messages.append((current_role, "\n".join(current_lines).strip()))
+    return [(role, body) for role, body in messages if body]
+
+
+def _extract_metadata_from_system(system_messages: list[str]) -> dict[str, object]:
+    metadata: dict[str, object] = {}
+    for message in system_messages:
+        for line in message.splitlines():
+            if "=" not in line:
+                continue
+            key, value = [item.strip() for item in line.split("=", 1)]
+            lowered = key.lower()
+            if lowered == "required_terms":
+                metadata["required_terms"] = [item.strip() for item in value.split(",") if item.strip()]
+            elif lowered in {"case_id", "domain", "expected_risk_level"}:
+                metadata[lowered] = value
+    return metadata
 
 
 def _parse_bullets(text: str) -> list[str]:

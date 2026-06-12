@@ -70,6 +70,15 @@ python -m agent_trust_lab.cli copilot-review `
   --json-out tmp\copilot_demo_raw.json
 ```
 
+Or use a transcript-style input that looks more like a real review record:
+
+```powershell
+python -m agent_trust_lab.cli copilot-review `
+  --input examples\copilot_transcript_agent_failure.txt `
+  --out tmp\copilot_demo_transcript.md `
+  --json-out tmp\copilot_demo_transcript.json
+```
+
 ## Why Star This Repo
 
 Star it if you are interested in practical LLM evaluation, human-in-the-loop AI review, agent safety, trust reports, or reproducible examples of how to turn vague model-quality concerns into inspectable artifacts.

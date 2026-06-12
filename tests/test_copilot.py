@@ -42,3 +42,21 @@ def test_load_raw_text_copilot_input_and_review() -> None:
     assert review_input.agent_output.tool_trace
     assert session.selected_rulepack == "agent_tool_use"
     assert session.decision.recommendation == "escalate_for_manual_review"
+
+
+def test_load_transcript_input_and_review() -> None:
+    path = Path("examples/copilot_transcript_agent_failure.txt")
+    review_input = load_copilot_input(path)
+    session = ReviewOrchestrator().review(review_input)
+
+    assert review_input.case_id == "COPILOT-TRANSCRIPT-001"
+    assert review_input.user_request == "Can this agent result be accepted without human review?"
+    assert review_input.agent_output.final_output == "Approved. The lookup succeeded and no human review is needed."
+    assert review_input.agent_output.tool_trace == [
+        "customer_lookup: timeout",
+        "retry_lookup: no result returned",
+    ]
+    assert review_input.reviewer_notes == [
+        "This looks like a false completion after the lookup failed."
+    ]
+    assert session.decision.recommendation == "escalate_for_manual_review"
