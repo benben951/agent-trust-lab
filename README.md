@@ -22,6 +22,7 @@ Agent Trust Lab is a public-safe proof project for one core capability:
 | Naive baseline comparison | [Baseline comparison](examples/baseline_comparison.md) |
 | Multi-role agent review trace | [Agent tool-failure workflow](examples/workflow_report_agent_tool_failure.md) |
 | Reusable review workflows | [Workflow recipes](docs/WORKFLOW_RECIPES.md) |
+| Risk-review copilot slice | [Risk Review Copilot](docs/RISK_REVIEW_COPILOT.md) |
 | Recruiter-facing evidence packet | [Review packet](docs/REVIEW_PACKET.md) |
 | Public feedback request | [Issue #2: feedback wanted](https://github.com/benben951/agent-trust-lab/issues/2) |
 
@@ -102,6 +103,7 @@ For a recruiter/interviewer review path, start with:
 - [Project One-Pager](docs/PROJECT_ONE_PAGER.md): two-minute English summary for recruiters, GitHub profile links, and job applications.
 - [Agent Review Copilot Architecture](docs/AGENT_REVIEW_COPILOT_ARCHITECTURE.md): evolution path from trust-report demo to a more useful review copilot.
 - [Workflow Recipes](docs/WORKFLOW_RECIPES.md): reusable review recipes that turn one-off LLM review prompts into auditable workflows.
+- [Risk Review Copilot](docs/RISK_REVIEW_COPILOT.md): AML/KYC, sanctions, due diligence, payment-fraud, and compliance-QA project framing with schema, decision chain, metrics, and governance boundary.
 - [Case Walkthrough](docs/CASE_WALKTHROUGH.md): step-by-step demo flow for an agent tool-failure review.
 - [Context Engineering](docs/CONTEXT_ENGINEERING.md): how the project is maintained with Codex-first context, verification gates, and public-safe boundaries.
 - [Portfolio Showcase](docs/PORTFOLIO_SHOWCASE.md): demo scope, case table, browser console, and resume angle.
