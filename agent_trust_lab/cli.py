@@ -9,6 +9,7 @@ from .baseline import compare_naive_acceptance
 from .copilot import ReviewOrchestrator, load_copilot_input
 from .copilot.memory import write_session_memory
 from .copilot.reports import render_copilot_markdown
+from .copilot.session_extract import write_codex_session_transcript
 from .reviewer import evaluate_case, load_case, render_markdown
 from .workflow import evaluate_workflow, render_workflow_markdown
 
@@ -54,6 +55,21 @@ def main() -> int:
     copilot.add_argument(
         "--memory-out-dir",
         help="Optional directory for writing session memory JSON",
+    )
+
+    extract = subparsers.add_parser(
+        "extract-codex-session",
+        help="Convert a local Codex session JSONL file into a redacted transcript draft",
+    )
+    extract.add_argument("--session-file", required=True, help="Path to a Codex session JSONL file")
+    extract.add_argument("--out", required=True, help="Transcript draft output path")
+    extract.add_argument("--case-id", default="COPILOT-CODEX-SESSION-001", help="Case id for the transcript header")
+    extract.add_argument("--domain", default="agent_output_review", help="Domain for the transcript header")
+    extract.add_argument("--expected-risk-level", default="medium", help="Expected risk level for the transcript header")
+    extract.add_argument(
+        "--required-terms",
+        default="human review",
+        help="Comma-separated required terms for the transcript header",
     )
 
     args = parser.parse_args()
@@ -118,6 +134,16 @@ def main() -> int:
             _write_json(args.json_out, asdict(session))
         if args.memory_out_dir:
             write_session_memory(session, args.memory_out_dir)
+        return 0
+    if args.command == "extract-codex-session":
+        write_codex_session_transcript(
+            args.session_file,
+            args.out,
+            case_id=args.case_id,
+            domain=args.domain,
+            expected_risk_level=args.expected_risk_level,
+            required_terms=[item.strip() for item in args.required_terms.split(",") if item.strip()],
+        )
         return 0
     return 1
 

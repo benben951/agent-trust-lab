@@ -79,6 +79,15 @@ python -m agent_trust_lab.cli copilot-review `
   --json-out tmp\copilot_demo_transcript.json
 ```
 
+If you want to turn a local Codex session into a draft review transcript first:
+
+```powershell
+python -m agent_trust_lab.cli extract-codex-session `
+  --session-file "C:\Users\jie13\.codex\sessions\...\rollout-xxxx.jsonl" `
+  --out tmp\codex_session_draft.txt `
+  --case-id REAL-CODEX-001
+```
+
 ## Why Star This Repo
 
 Star it if you are interested in practical LLM evaluation, human-in-the-loop AI review, agent safety, trust reports, or reproducible examples of how to turn vague model-quality concerns into inspectable artifacts.
