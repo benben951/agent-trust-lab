@@ -2,11 +2,21 @@
 
 [![CI](https://github.com/benben951/agent-trust-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/benben951/agent-trust-lab/actions/workflows/ci.yml)
 
-Risk-sensitive LLM output review and trust-report generation system.
+Risk-sensitive LLM and agent-output review system for turning uncertain AI conclusions into auditable trust reports.
 
 Live demo: [https://benben951.github.io/agent-trust-lab/](https://benben951.github.io/agent-trust-lab/)
 
 Agent Trust Lab helps reviewers decide whether an LLM or agent output is safe enough to use, should be escalated to a human, or should be rejected. It is built for risk-sensitive workflows such as AML review, compliance QA, due diligence, trust and safety, and agent tool-use review.
+
+![Agent Trust Lab demo flow](assets/demo_review_flow.gif)
+
+| Current evidence | Value |
+|---|---:|
+| Synthetic review cases | 52 |
+| Case families | 8 |
+| Naive false-accept rate | 48% |
+| Trust workflow manual-review rate | 61.5% |
+| Tests | 20 passing |
 
 ## At A Glance
 
@@ -21,6 +31,7 @@ Agent Trust Lab is a public-safe proof project for one core capability:
 | 52-case synthetic evaluation set | [Evaluation metrics](docs/EVALUATION_METRICS.md) |
 | Naive baseline comparison | [Baseline comparison](examples/baseline_comparison.md) |
 | Multi-role agent review trace | [Agent tool-failure workflow](examples/workflow_report_agent_tool_failure.md) |
+| Realistic agent failure cases | [Realistic cases](docs/REALISTIC_CASES.md) |
 | Reusable review workflows | [Workflow recipes](docs/WORKFLOW_RECIPES.md) |
 | Risk-review copilot slice | [Risk Review Copilot](docs/RISK_REVIEW_COPILOT.md) |
 | Recruiter-facing evidence packet | [Review packet](docs/REVIEW_PACKET.md) |
