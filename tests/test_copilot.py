@@ -60,3 +60,14 @@ def test_load_transcript_input_and_review() -> None:
         "This looks like a false completion after the lookup failed."
     ]
     assert session.decision.recommendation == "escalate_for_manual_review"
+
+
+def test_realistic_failed_tool_false_success_case_is_flagged() -> None:
+    path = Path("examples/realistic_cases/codex_tool_failure_false_success.txt")
+    review_input = load_copilot_input(path)
+    session = ReviewOrchestrator().review(review_input)
+
+    finding_types = {item["type"] for item in session.decision.findings}
+
+    assert "failed_tool_false_success" in finding_types
+    assert session.decision.recommendation == "reject_or_escalate"
