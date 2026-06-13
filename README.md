@@ -2,11 +2,11 @@
 
 [![CI](https://github.com/benben951/agent-trust-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/benben951/agent-trust-lab/actions/workflows/ci.yml)
 
-Risk-sensitive LLM and agent-output review system for turning uncertain AI conclusions into auditable trust reports.
+An open-source review copilot for checking whether risky LLM and agent outputs should be trusted, escalated, or rejected.
 
 Live demo: [https://benben951.github.io/agent-trust-lab/](https://benben951.github.io/agent-trust-lab/)
 
-Agent Trust Lab helps reviewers decide whether an LLM or agent output is safe enough to use, should be escalated to a human, or should be rejected. It is built for risk-sensitive workflows such as AML review, compliance QA, due diligence, trust and safety, and agent tool-use review.
+Agent Trust Lab helps reviewers turn fluent-but-uncertain AI outputs into structured trust reports. It checks evidence support, policy signals, unsafe certainty, risk-label mismatch, and missing escalation. The current public demo is built for AML/KYC-style review, compliance QA, due diligence, trust and safety, and agent tool-use failure review.
 
 ![Agent Trust Lab demo flow](assets/demo_review_flow.gif)
 
@@ -48,6 +48,22 @@ flowchart LR
     G --> H["Reusable workflow recipes"]
     H --> I["Public feedback issue"]
 ```
+
+## Try It In Three Minutes
+
+| Path | Best for | Link |
+|---|---|---|
+| No install | Quickly inspect review routing, findings, and trust scores | [Live demo](https://benben951.github.io/agent-trust-lab/) |
+| Recruiter review | See the shortest evidence path and project story | [Review packet](docs/REVIEW_PACKET.md) |
+| Technical review | Reproduce CLI reports and metrics locally | [60-second quickstart](#60-second-quickstart) |
+| Feedback | Critique the taxonomy and review workflow | [Feedback issue](https://github.com/benben951/agent-trust-lab/issues/2) |
+
+## Who This Is For
+
+- LLM evaluation practitioners who care about unsupported, overconfident, or unreviewable outputs.
+- Agent builders who need a second-pass review layer after tool calls, browser actions, or code-generation runs.
+- Risk, AML/KYC, compliance QA, and Trust & Safety reviewers exploring human-in-the-loop AI review.
+- Recruiters or interviewers looking for concrete evidence of AI evaluation, risk thinking, and reproducible engineering.
 
 ## What You Can Do With It
 
@@ -126,6 +142,7 @@ For a recruiter/interviewer review path, start with:
 - [EMNLP Demo Draft](docs/EMNLP_DEMO_DRAFT.md): working system-demonstration paper draft.
 - [Paper Strategy](docs/PAPER_STRATEGY.md): system-demo positioning, submission readiness, and claim boundaries.
 - [Impact Roadmap](docs/IMPACT_ROADMAP.md): visibility, citation, external-feedback, and star-conversion plan.
+- [Influence Playbook](docs/INFLUENCE_PLAYBOOK.md): ethical visibility plan for turning useful artifacts into feedback, stars, PRs, and job-search evidence.
 - [Outreach Kit](docs/OUTREACH_KIT.md): recruiter pitch, LinkedIn draft, feedback prompt, and anti-spam rules.
 - [Outreach Log](docs/OUTREACH_LOG.md): public feedback requests and follow-up evidence.
 - [Reusable Trust Workflows Post Draft](docs/POST_REUSABLE_TRUST_WORKFLOWS.md): shareable GitHub/LinkedIn post draft for feedback and visibility.
