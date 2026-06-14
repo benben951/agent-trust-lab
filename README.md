@@ -35,6 +35,7 @@ Agent Trust Lab is a public-safe proof project for one core capability:
 | Reusable review workflows | [Workflow recipes](docs/WORKFLOW_RECIPES.md) |
 | Risk-review copilot slice | [Risk Review Copilot](docs/RISK_REVIEW_COPILOT.md) |
 | Recruiter-facing evidence packet | [Review packet](docs/REVIEW_PACKET.md) |
+| AI trend-to-product radar | [AI Hotspot Radar](docs/AI_HOTSPOT_RADAR.md) |
 | Public feedback request | [Issue #2: feedback wanted](https://github.com/benben951/agent-trust-lab/issues/2) |
 
 ```mermaid
@@ -145,6 +146,7 @@ For a recruiter/interviewer review path, start with:
 - [Influence Playbook](docs/INFLUENCE_PLAYBOOK.md): ethical visibility plan for turning useful artifacts into feedback, stars, PRs, and job-search evidence.
 - [Outreach Kit](docs/OUTREACH_KIT.md): recruiter pitch, LinkedIn draft, feedback prompt, and anti-spam rules.
 - [Outreach Log](docs/OUTREACH_LOG.md): public feedback requests and follow-up evidence.
+- [AI Hotspot Radar](docs/AI_HOTSPOT_RADAR.md): compact daily AI-signal log that turns industry news into project decisions, safe experiments, and public evidence.
 - [Reusable Trust Workflows Post Draft](docs/POST_REUSABLE_TRUST_WORKFLOWS.md): shareable GitHub/LinkedIn post draft for feedback and visibility.
 - [GitHub Proxy Push Tip](docs/GITHUB_PROXY_PUSH_TIP.md): small Windows note for pushing through a local proxy when direct GitHub HTTPS fails.
 
