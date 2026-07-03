@@ -10,6 +10,13 @@ from .copilot import ReviewOrchestrator, load_copilot_input
 from .copilot.memory import write_session_memory
 from .copilot.reports import render_copilot_markdown
 from .copilot.session_extract import write_codex_session_transcript
+from .llm_reviewer import (
+    batch_evaluate_with_llm,
+    evaluate_with_llm,
+    generate_comparison_report,
+    render_comparison_markdown,
+    render_llm_markdown,
+)
 from .reviewer import evaluate_case, load_case, render_markdown
 from .workflow import evaluate_workflow, render_workflow_markdown
 
@@ -71,6 +78,55 @@ def main() -> int:
         default="human review",
         help="Comma-separated required terms for the transcript header",
     )
+
+    llm_review = subparsers.add_parser(
+        "llm-review",
+        help="Generate a trust report using an LLM evaluator instead of the deterministic engine",
+    )
+    llm_review.add_argument("--case", required=True, help="Path to synthetic case JSON")
+    llm_review.add_argument("--out", required=True, help="Markdown report output path")
+    llm_review.add_argument("--json-out", help="Optional JSON result output path")
+    llm_review.add_argument(
+        "--no-fallback",
+        action="store_true",
+        help="Do not fall back to deterministic evaluation if LLM is unavailable",
+    )
+    llm_review.add_argument(
+        "--model",
+        help="LLM model to use (overrides LLM_MODEL env var)",
+    )
+
+    llm_batch = subparsers.add_parser(
+        "llm-batch-review",
+        help="Run LLM evaluation on all synthetic cases in a directory",
+    )
+    llm_batch.add_argument("--cases-dir", required=True, help="Directory containing synthetic case JSON files")
+    llm_batch.add_argument("--out-dir", required=True, help="Directory for LLM-augmented Markdown reports")
+    llm_batch.add_argument("--summary", required=True, help="JSON summary output path")
+    llm_batch.add_argument(
+        "--no-fallback",
+        action="store_true",
+        help="Do not fall back to deterministic evaluation if LLM is unavailable",
+    )
+    llm_batch.add_argument(
+        "--delay",
+        type=float,
+        default=0.5,
+        help="Delay in seconds between API calls (default: 0.5)",
+    )
+    llm_batch.add_argument(
+        "--model",
+        help="LLM model to use (overrides LLM_MODEL env var)",
+    )
+
+    compare = subparsers.add_parser(
+        "llm-compare",
+        help="Compare deterministic and LLM batch evaluation results",
+    )
+    compare.add_argument("--det-summary", required=True, help="Path to deterministic batch summary JSON")
+    compare.add_argument("--llm-summary", required=True, help="Path to LLM batch summary JSON")
+    compare.add_argument("--out", required=True, help="Path for comparison JSON output")
+    compare.add_argument("--markdown-out", help="Optional Markdown comparison report output path")
 
     args = parser.parse_args()
     if args.command == "review":
@@ -143,6 +199,67 @@ def main() -> int:
             domain=args.domain,
             expected_risk_level=args.expected_risk_level,
             required_terms=[item.strip() for item in args.required_terms.split(",") if item.strip()],
+        )
+        return 0
+    if args.command == "llm-review":
+        from .llm.client import LLMClient, LLMNotAvailableError
+
+        case = load_case(args.case)
+        client = None
+        if args.model:
+            try:
+                client = LLMClient(model=args.model)
+            except LLMNotAvailableError as exc:
+                if args.no_fallback:
+                    print(f"Error: {exc}")
+                    return 2
+        try:
+            result = evaluate_with_llm(case, client=client, fallback=not args.no_fallback)
+        except LLMNotAvailableError as exc:
+            print(f"Error: {exc}")
+            return 2
+        _write_text(args.out, render_llm_markdown(case, result))
+        if args.json_out:
+            _write_json(args.json_out, result)
+        evaluator = result.get("evaluator", "llm")
+        print(f"Evaluation complete (evaluator: {evaluator})")
+        return 0
+    if args.command == "llm-batch-review":
+        from .llm.client import LLMClient, LLMNotAvailableError
+
+        client = None
+        if args.model:
+            try:
+                client = LLMClient(model=args.model)
+            except LLMNotAvailableError as exc:
+                if args.no_fallback:
+                    print(f"Error: {exc}")
+                    return 2
+        try:
+            summary = batch_evaluate_with_llm(
+                args.cases_dir,
+                args.out_dir,
+                client=client,
+                fallback=not args.no_fallback,
+                delay_seconds=args.delay,
+            )
+        except LLMNotAvailableError as exc:
+            print(f"Error: {exc}")
+            return 2
+        _write_json(args.summary, summary)
+        print(f"\nBatch complete: {len(summary)} cases evaluated")
+        return 0
+    if args.command == "llm-compare":
+        comparison = generate_comparison_report(
+            args.det_summary,
+            args.llm_summary,
+            args.out,
+        )
+        if args.markdown_out:
+            _write_text(args.markdown_out, render_comparison_markdown(comparison))
+        print(
+            f"Comparison complete: {comparison['total_compared']} cases, "
+            f"agreement rate: {comparison['recommendation_agreement_rate']:.0%}"
         )
         return 0
     return 1

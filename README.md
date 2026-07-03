@@ -2,41 +2,42 @@
 
 [![CI](https://github.com/benben951/agent-trust-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/benben951/agent-trust-lab/actions/workflows/ci.yml)
 
-An open-source review copilot for checking whether risky LLM and agent outputs should be trusted, escalated, or rejected.
+A public-safe review copilot for checking whether risky LLM and agent outputs should be trusted, escalated, or rejected.
 
 Live demo: [https://benben951.github.io/agent-trust-lab/](https://benben951.github.io/agent-trust-lab/)
 
-Agent Trust Lab helps reviewers turn fluent-but-uncertain AI outputs into structured trust reports. It checks evidence support, policy signals, unsafe certainty, risk-label mismatch, and missing escalation. The current public demo is built for AML/KYC-style review, compliance QA, due diligence, trust and safety, and agent tool-use failure review.
+Agent Trust Lab is a small evaluation and review system for cases where model outputs sound plausible but still need human judgment. The project turns those outputs into structured trust reports, with checks for evidence support, policy signals, unsafe certainty, risk-label mismatch, and missing escalation.
+
+The current public demo is built around AML/KYC-style review, compliance QA, due diligence, trust and safety, and agent tool-use failure review.
 
 ![Agent Trust Lab demo flow](assets/demo_review_flow.gif)
 
 | Current evidence | Value |
-|---|---:|
+|---|---|---:|
 | Synthetic review cases | 52 |
 | Case families | 8 |
 | Naive false-accept rate | 48% |
 | Trust workflow manual-review rate | 61.5% |
-| Tests | 20 passing |
+| Tests | 35 passing |
+| LLM evaluation (DeepSeek) | 52/52 cases, 87% agreement with deterministic |
 
-## At A Glance
+## Quick Review Path
 
-Agent Trust Lab is a public-safe proof project for one core capability:
+If you only want the shortest path to understand the project, start here:
 
-> Turn risky LLM and agent outputs into structured, auditable trust reports with human-in-the-loop routing.
+| What to review | Link | Why it matters |
+|---|---|---|
+| Demo | [Live GitHub Pages demo](https://benben951.github.io/agent-trust-lab/) | Shows the browser review flow and final routing output. |
+| Project summary | [Review packet](docs/REVIEW_PACKET.md) | Shortest written explanation of scope, evidence, and limits. |
+| Role fit | [Role fit map](docs/ROLE_FIT_MAP.md) | Shows which job families this project is best matched to and why. |
+| Business scenarios | [Business scenario map](docs/BUSINESS_SCENARIO_MAP.md) | Shows what kinds of real workflows this project most closely resembles. |
+| Metrics | [Evaluation metrics](docs/EVALUATION_METRICS.md) | Shows current case coverage, baseline gap, and review rates. |
+| Workflow trace | [Agent tool-failure workflow](examples/workflow_report_agent_tool_failure.md) | Shows how the multi-role review path behaves on one concrete case. |
+| Risk framing | [Risk Review Copilot](docs/RISK_REVIEW_COPILOT.md) | Connects the project to AML/KYC, due diligence, and compliance-style review. |
 
-| Proof point | Artifact |
-|---|---|
-| Browser demo | [Live GitHub Pages demo](https://benben951.github.io/agent-trust-lab/) |
-| Reproducible CLI | [60-second quickstart](#60-second-quickstart) |
-| 52-case synthetic evaluation set | [Evaluation metrics](docs/EVALUATION_METRICS.md) |
-| Naive baseline comparison | [Baseline comparison](examples/baseline_comparison.md) |
-| Multi-role agent review trace | [Agent tool-failure workflow](examples/workflow_report_agent_tool_failure.md) |
-| Realistic agent failure cases | [Realistic cases](docs/REALISTIC_CASES.md) |
-| Reusable review workflows | [Workflow recipes](docs/WORKFLOW_RECIPES.md) |
-| Risk-review copilot slice | [Risk Review Copilot](docs/RISK_REVIEW_COPILOT.md) |
-| Recruiter-facing evidence packet | [Review packet](docs/REVIEW_PACKET.md) |
-| AI trend-to-product radar | [AI Hotspot Radar](docs/AI_HOTSPOT_RADAR.md) |
-| Public feedback request | [Issue #2: feedback wanted](https://github.com/benben951/agent-trust-lab/issues/2) |
+The core idea is simple:
+
+> Take a risky or under-supported AI output and turn it into something a reviewer can inspect, score, and route.
 
 ```mermaid
 flowchart LR
@@ -50,30 +51,20 @@ flowchart LR
     H --> I["Public feedback issue"]
 ```
 
-## Try It In Three Minutes
+## Best Fit
 
-| Path | Best for | Link |
-|---|---|---|
-| No install | Quickly inspect review routing, findings, and trust scores | [Live demo](https://benben951.github.io/agent-trust-lab/) |
-| Recruiter review | See the shortest evidence path and project story | [Review packet](docs/REVIEW_PACKET.md) |
-| Technical review | Reproduce CLI reports and metrics locally | [60-second quickstart](#60-second-quickstart) |
-| Feedback | Critique the taxonomy and review workflow | [Feedback issue](https://github.com/benben951/agent-trust-lab/issues/2) |
+- LLM evaluation and AI quality work
+- Agent reliability and second-pass review
+- Risk / compliance / due-diligence flavored AI workflows
+- Trust & Safety style review systems
 
-## Who This Is For
+## What This Repo Shows
 
-- LLM evaluation practitioners who care about unsupported, overconfident, or unreviewable outputs.
-- Agent builders who need a second-pass review layer after tool calls, browser actions, or code-generation runs.
-- Risk, AML/KYC, compliance QA, and Trust & Safety reviewers exploring human-in-the-loop AI review.
-- Recruiters or interviewers looking for concrete evidence of AI evaluation, risk thinking, and reproducible engineering.
-
-## What You Can Do With It
-
-- Turn a synthetic LLM/agent output into a Markdown and JSON trust report.
-- Flag unsafe certainty, unsupported claims, missing evidence, missing escalation, and risk-label mismatch.
-- Compare a naive "accept confident output" baseline against a structured trust-review workflow.
-- Inspect a public-safe multi-role review trace across evidence, policy, risk, escalation, and final-review roles.
-- Reuse review workflow recipes for AML, agent tool-failure, financial, health-safety, and low-risk control scenarios.
-- Open a static browser demo to review cases without sending data to any external service.
+- A browser demo for reviewing synthetic AI outputs
+- Reproducible CLI reports in Markdown and JSON
+- A small synthetic evaluation set with metrics and baseline comparison
+- A multi-role workflow trace for agent-output review
+- Public-safe examples for AML/KYC, due diligence, compliance QA, and tool-use failure cases
 
 ## 60-Second Quickstart
 
@@ -117,15 +108,13 @@ python -m agent_trust_lab.cli extract-codex-session `
   --case-id REAL-CODEX-001
 ```
 
-## Why Star This Repo
-
-Star it if you are interested in practical LLM evaluation, human-in-the-loop AI review, agent safety, trust reports, or reproducible examples of how to turn vague model-quality concerns into inspectable artifacts.
-
 ## Start Here
 
 For a recruiter/interviewer review path, start with:
 
 - [Demo Walkthrough](docs/DEMO_WALKTHROUGH.md): shortest three-minute path through the live demo, metrics, baseline comparison, workflow trace, and governance boundary.
+- [Role Fit Map](docs/ROLE_FIT_MAP.md): shortest path for matching the project to AI quality, agent reliability, risk-tech, compliance AI, and Trust & Safety style roles.
+- [Business Scenario Map](docs/BUSINESS_SCENARIO_MAP.md): shortest path for matching the project to realistic analyst-copilot, compliance-QA, due-diligence, and agent-review workflows.
 - [Demo Screenshots](docs/DEMO_SCREENSHOTS.md): desktop and narrow-layout screenshots for portfolio and recruiter review.
 - [Review Packet](docs/REVIEW_PACKET.md): three-minute project summary, case library, metrics, reports, reproduction steps, and interview pitch.
 - [Project One-Pager](docs/PROJECT_ONE_PAGER.md): two-minute English summary for recruiters, GitHub profile links, and job applications.
@@ -195,6 +184,7 @@ This public repository intentionally exposes only the demo-safe layer:
 
 - a synthetic case schema
 - a deterministic trust-report generator
+- an LLM-based semantic evaluator (supports OpenAI-compatible APIs including DeepSeek)
 - sample LLM outputs and review reports
 - a 52-case synthetic risk review library
 - batch report generation
@@ -347,6 +337,49 @@ coverage:
 | `financial_risk` | 5 | 60.00% | 60.00% |
 | `health_safety` | 5 | 60.00% | 40.00% |
 | `low_risk_control` | 4 | 0.00% | 0.00% |
+
+## LLM-Powered Evaluation (v0.2)
+
+Agent Trust Lab now supports an LLM-based evaluator that uses semantic understanding instead of keyword matching. The deterministic engine catches surface-level patterns; the LLM evaluator checks whether claims are actually grounded in evidence.
+
+### LLM vs Deterministic Comparison (52 cases, DeepSeek-chat)
+
+| Metric | Value |
+|---|---:|
+| Recommendation agreement rate | **87%** |
+| Deterministic average score | 45.8 |
+| LLM average score | 57.1 |
+| `unsupported_claim` (det) | 9 |
+| `unsupported_claim` (LLM) | **30** |
+| `unsafe_certainty` (det) | 23 |
+| `unsafe_certainty` (LLM) | **32** |
+
+The biggest gap is in evidence grounding: the deterministic engine only flags 9 cases for unsupported claims while the LLM catches 30. This is the difference between keyword-matching a risk-term list and actually reading the evidence.
+
+Full comparison: [docs/llm_evaluation/llm_vs_deterministic_comparison.md](docs/llm_evaluation/llm_vs_deterministic_comparison.md)
+
+### Quick Start (LLM)
+
+```powershell
+pip install openai
+$env:OPENAI_API_KEY = "sk-xxx"
+
+python -m agent_trust_lab.cli llm-review `
+  --case examples/synthetic_aml_case.json `
+  --out tmp/llm_report.md `
+  --json-out tmp/llm_result.json
+
+python -m agent_trust_lab.cli llm-batch-review `
+  --cases-dir examples/cases `
+  --out-dir tmp/llm_reports `
+  --summary tmp/llm_batch_summary.json
+
+python -m agent_trust_lab.cli llm-compare `
+  --det-summary examples/batch_summary.json `
+  --llm-summary tmp/llm_batch_summary.json `
+  --out tmp/comparison.json `
+  --markdown-out tmp/comparison.md
+```
 
 ## Public Demo Case
 
